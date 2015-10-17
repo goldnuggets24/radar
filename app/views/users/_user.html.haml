@@ -1,0 +1,24 @@
+.card{class: @user.name}
+  %header
+    .avatar-wrapper
+      &nbsp;
+      / %img.avatar{src: @user.name}/
+    .info-wrapper
+      %h4= @user.name
+      %ul.meta
+        %li
+          = fa_icon 'map-marker'
+          = @user.name
+        %li
+          = fa_icon 'birthday-cake'
+          = l(@user.name, format: :long)
+  .card-body
+    .headline
+      %p= @user.name
+    %ul.contact-info
+      %li
+        = fa_icon 'phone'
+        = @user.name
+      %li
+        = fa_icon 'envelope'
+        = @user.email

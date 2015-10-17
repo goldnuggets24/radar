@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include PgSearch
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
@@ -10,4 +11,16 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  scope :sorted, ->{ order(name: :asc) }
+  pg_search_scope :search,
+                  against: [
+                    :name
+                  ],
+                  using: {
+                    tsearch: {
+                      prefix: true,
+                      normalization: 2
+                    }
+                  }
 end
