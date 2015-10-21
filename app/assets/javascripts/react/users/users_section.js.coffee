@@ -13,17 +13,22 @@ ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
     didFetchData: false
     # The users JSON array used to display the cards in the view
     users: []
+    attributes: []
+
+    fetchData:
+      search: ''
+      sex: ''
 
   # Invoked right after the component renders
   componentDidMount: ->
     @_fetchUsers({})
 
-  # AJAX call to our UsersController
-  _fetchUsers: (data)->
+  # AJAX call to UsersController
+  _fetchUsers: ()->
     $.ajax
       url: Routes.users_path()
       dataType: 'json'
-      data: data
+      data: @state.fetchData
     .done @_fetchDataDone
     .fail @_fetchDataFail
 
@@ -32,15 +37,29 @@ ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
     return false unless @isMounted()
     @setState
       didFetchData: true
-      users: data
+      users: data.users
+      attributes: data.attributes
 
   # If errors in AJAX call...
   _fetchDataFail: (xhr, status, err) =>
     console.error @props.url, status, err.toString()
 
   _handleOnSearchSubmit: (search) ->
-    @_fetchUsers
+    @state.fetchData=
       search: search
+
+    @_fetchUsers()
+
+  _handleOnFilterSubmit: (search) ->
+    @state.fetchData=
+      search: search
+
+    @_fetchUsers()
+
+  _handleOnClickFilter: (sex) ->
+    @state.fetchData.sex = sex
+    
+    @_fetchUsers()
 
   render: ->
     cardsNode = @state.users.map (user) ->
@@ -53,10 +72,14 @@ ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
         </span>
         <h4>No people found...</h4>
       </div>
-
     <div>
+
       <UsersSearch onFormSubmit={@_handleOnSearchSubmit}/>
+      <UsersFilter onFormSubmit={@_handleOnFilterSubmit}/>
+      <FilterLink onFilterLinkClick={@_handleOnClickFilter} key={@state.attributes} data={@state.attributes}/>
+
       <div className="cards-wrapper">
+
         {
           # If there are people render the cards...
           if @state.users.length > 0

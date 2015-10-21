@@ -1,15 +1,19 @@
 class UsersController < ApplicationController
-  before_filter :search_users
+  before_filter :search_and_filter_users
+  # before_filter :filter_users
   before_action :authenticate_user!
 
   def index
-    render json: @users
+    render json: {
+      users: @users,
+      attributes: User.new.attributes.keys
+    }
   end
 
-  # def show
-  #   @user = User.where(:name => params[:name]).first
-  #   render @user
-  # end
+  def show
+    @user = User.where(:name => params[:name]).first
+    render @user
+  end
 
   def update
     @user = User.find(params[:id])
@@ -30,13 +34,16 @@ class UsersController < ApplicationController
 
   private
 
-  def search_users
-    @users =  if params[:search].present?
+  def search_and_filter_users
+    @users = if params[:search].present?
       User.search(params[:search])
+    elsif params[:filter].present?
+      User.where(:role => 2)
     else
       User.all
     end.sorted
   end
+
 
   def secure_params
     params.require(:user).permit(:role)

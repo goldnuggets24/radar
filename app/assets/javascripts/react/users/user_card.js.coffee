@@ -22,9 +22,6 @@
             <li>
               <i className="fa fa-map-marker"></i> {@props.data.name}
             </li>
-            <li>
-              <i className="fa fa-birthday-cake"></i> {@props.data.name}
-            </li>
           </ul>
         </div>
       </header>
