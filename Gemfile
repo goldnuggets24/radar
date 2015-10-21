@@ -10,11 +10,10 @@ gem 'react-rails', '~> 1.3.0'
 gem 'sprockets-coffee-react'
 gem "active_model_serializers", github: 'rails-api/active_model_serializers'
 gem "pry"
-gem 'pg'
 gem 'pg_search'
 gem "js-routes", github: 'railsware/js-routes'
 gem 'font-awesome-rails'
-gem "active_model_serializers", github: 'rails-api/active_model_serializers'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'

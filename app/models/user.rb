@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   after_create :create_user_profile
 
   has_one :user_profile, dependent: :destroy
-  
+
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
 

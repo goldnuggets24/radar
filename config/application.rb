@@ -20,6 +20,7 @@ module Radar
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
 
+<<<<<<< HEAD
     module RailsAndReact
         class Application < Rails::Application
     # ...
@@ -28,6 +29,8 @@ module Radar
         end
     end
 
+=======
+>>>>>>> 568d6b36db273d9ad8f140683047fc600dd299f1
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

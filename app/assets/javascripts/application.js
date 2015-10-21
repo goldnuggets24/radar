@@ -18,3 +18,4 @@
 //= require js-routes
 //= require_tree .
 //= require_tree ./react
+//= require_tree .
