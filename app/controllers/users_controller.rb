@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   def search_and_filter_users
     @users = if params[:search].present?
       User.search(params[:search])
-    elsif params[:filter].present?
+    elsif params[:attr].present?
       User.where(:role => 2)
     else
       User.all

@@ -17,7 +17,7 @@ ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
 
     fetchData:
       search: ''
-      sex: ''
+      attr: ''
 
   # Invoked right after the component renders
   componentDidMount: ->
@@ -56,8 +56,8 @@ ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
 
     @_fetchUsers()
 
-  _handleOnClickFilter: (sex) ->
-    @state.fetchData.sex = sex
+  _handleOnClickFilter: (attr) ->
+    @state.fetchData.attr = attr
     
     @_fetchUsers()
 
