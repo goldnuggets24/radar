@@ -16,40 +16,6 @@ ActiveRecord::Schema.define(version: 20151020163705) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "user_profiles", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "sex"
-    t.datetime "dob"
-    t.integer  "mobile"
-    t.string   "ethnicity"
-    t.string   "height"
-    t.integer  "weight"
-    t.string   "t_shirt_size"
-    t.string   "dress_size"
-    t.string   "chest"
-    t.string   "cup_size"
-    t.string   "hip"
-    t.string   "waist"
-    t.string   "shoe_size"
-    t.string   "eye_color"
-    t.string   "hair_color"
-    t.string   "hair_length"
-    t.string   "tattoes"
-    t.string   "address"
-    t.string   "unit"
-    t.string   "city"
-    t.string   "state"
-    t.integer  "zip_code"
-    t.integer  "created_by_id"
-    t.integer  "updated_by_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "user_profiles", ["created_by_id"], name: "index_user_profiles_on_created_by_id", using: :btree
-  add_index "user_profiles", ["updated_by_id"], name: "index_user_profiles_on_updated_by_id", using: :btree
-  add_index "user_profiles", ["user_id"], name: "index_user_profiles_on_user_id", using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -65,6 +31,28 @@ ActiveRecord::Schema.define(version: 20151020163705) do
     t.datetime "updated_at",                          null: false
     t.string   "name"
     t.integer  "role"
+    t.string   "sex"
+    t.datetime "dob"
+    t.integer  "mobile"
+    t.string   "ethnicity"
+    t.string   "height"
+    t.string   "weight"
+    t.string   "t_shirt_size"
+    t.string   "dress_size"
+    t.string   "chest"
+    t.string   "cup_size"
+    t.string   "hip"
+    t.string   "waist"
+    t.string   "shoe_size"
+    t.string   "eye_color"
+    t.string   "hair_color"
+    t.string   "hair_length"
+    t.string   "tattoes"
+    t.string   "address"
+    t.string   "unit"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

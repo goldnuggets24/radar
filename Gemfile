@@ -13,6 +13,7 @@ gem "pry"
 gem 'pg_search'
 gem "js-routes", github: 'railsware/js-routes'
 gem 'font-awesome-rails'
+gem "browserify-rails"
 
 group :development, :test do
   gem 'byebug'

@@ -19,3 +19,5 @@
 //= require_tree .
 //= require_tree ./react
 //= require_tree .
+
+var SearchInput = require('react/react-search-input');

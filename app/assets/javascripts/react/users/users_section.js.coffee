@@ -58,7 +58,7 @@ ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
 
   _handleOnClickFilter: (attr) ->
     @state.fetchData.attr = attr
-    
+
     @_fetchUsers()
 
   render: ->
@@ -73,18 +73,15 @@ ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
         <h4>No people found...</h4>
       </div>
     <div>
-
-      <UsersSearch onFormSubmit={@_handleOnSearchSubmit}/>
-      <UsersFilter onFormSubmit={@_handleOnFilterSubmit}/>
-      <FilterLink onFilterLinkClick={@_handleOnClickFilter} key={@state.attributes} data={@state.attributes}/>
+      <a onClick={@_handleOnClickFilter.bind this, "apple"} href="#">fdgsfg</a>
 
       <div className="cards-wrapper">
-
         {
+          window.all_users = @state.users
           # If there are people render the cards...
           if @state.users.length > 0
             <ReactCSSTransitionGroup transitionName="card">
-              {cardsNode}
+              <FilterLink onFilterLinkClick={@_handleOnClickFilter} data={@state.users}/>
             </ReactCSSTransitionGroup>
           else if @state.didFetchData
             {noDataNode}

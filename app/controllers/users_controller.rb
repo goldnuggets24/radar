@@ -5,8 +5,7 @@ class UsersController < ApplicationController
 
   def index
     render json: {
-      users: @users,
-      attributes: User.new.attributes.keys
+      users: @users
     }
   end
 
@@ -38,7 +37,9 @@ class UsersController < ApplicationController
     @users = if params[:search].present?
       User.search(params[:search])
     elsif params[:attr].present?
-      User.where(:role => 2)
+      if ['admin', 'user'].include?(params[:attr])
+        User.send(params[:attr])
+      end
     else
       User.all
     end.sorted
