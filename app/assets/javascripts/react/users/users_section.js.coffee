@@ -73,7 +73,7 @@ ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
         <h4>No people found...</h4>
       </div>
     <div>
-      <a onClick={@_handleOnClickFilter.bind this, "apple"} href="#">fdgsfg</a>
+      <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} href="#"/>
 
       <div className="cards-wrapper">
         {

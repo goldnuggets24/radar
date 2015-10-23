@@ -6,7 +6,6 @@
   # Submit handler
   _handleOnSubmit: (e) ->
     e.preventDefault()
-
     searchValue = @refs.search.getDOMNode().value.trim()
     @props.onFormSubmit(searchValue)
 
