@@ -9,6 +9,18 @@ Bundler.require(*Rails.groups)
 module Radar
   class Application < Rails::Application
 
+    config.react.variant      = :production
+    config.react.addons       = true
+
+    config.assets.enabled = true
+    config.assets.paths << Rails.root.join('node_modules')
+    config.assets.paths << Rails.root.join('bower_components')
+
+    config.browserify_rails.paths << '/lib/assets/javascripts/'
+    config.browserify_rails.evaluate_node_modules = false
+    config.browserify_rails.force = false
+    config.browserify_rails.commandline_options = '-t [ babelify --stage 0 ] -t require-globify'
+
     config.generators do |g|
       g.test_framework :rspec,
         fixtures: true,
@@ -22,6 +34,16 @@ module Radar
 
     module RailsAndReact
         class Application < Rails::Application
+            config.react.variant      = :production
+            config.react.addons       = true
+            config.assets.enabled = true
+            config.assets.paths << Rails.root.join('node_modules')
+            config.assets.paths << Rails.root.join('bower_components')
+
+            config.browserify_rails.paths << '/lib/assets/javascripts/'
+            config.browserify_rails.evaluate_node_modules = false
+            config.browserify_rails.force = false
+            config.browserify_rails.commandline_options = '-t [ babelify --stage 0 ] -t require-globify'
     # ...
     # React config
             config.react.addons = true

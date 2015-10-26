@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/rails-api/active_model_serializers.git
-  revision: 73cb9f7a1f75b01f90827171a61a5fe85d0bed7a
+  revision: f3403c302c46fd470c2c6073d6cc6c364d9c5bd0
   specs:
     active_model_serializers (0.10.0.rc3)
       actionpack (>= 4.0)
@@ -58,7 +58,7 @@ GEM
     autoprefixer-rails (6.0.3)
       execjs
       json
-    babel-source (5.8.26)
+    babel-source (5.8.27)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
@@ -72,6 +72,7 @@ GEM
     bootstrap-sass (3.3.5.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
+    bower-rails (0.9.2)
     browserify-rails (1.5.0)
       railties (>= 4.0.0, < 5.0)
       sprockets (> 3.0.2)
@@ -84,7 +85,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    childprocess (0.5.6)
+    childprocess (0.5.7)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
     coffee-rails (4.1.0)
@@ -344,6 +345,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  bower-rails
   browserify-rails
   byebug
   capybara

@@ -18,6 +18,6 @@
 //= require js-routes
 //= require_tree .
 //= require_tree ./react
-//= require_tree .
 
+Object.assign(window, require('./components/*.js', {mode: 'hash'}));
 var SearchInput = require('react/react-search-input');

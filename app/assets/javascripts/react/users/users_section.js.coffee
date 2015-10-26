@@ -1,5 +1,3 @@
-# @cjsx React.DOM
-
 ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
 
 @UsersSection = React.createClass
@@ -76,6 +74,7 @@ ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
       <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} href="#"/>
 
       <div className="cards-wrapper">
+
         {
           window.all_users = @state.users
           # If there are people render the cards...

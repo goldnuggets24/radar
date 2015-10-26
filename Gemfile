@@ -14,6 +14,7 @@ gem 'pg_search'
 gem "js-routes", github: 'railsware/js-routes'
 gem 'font-awesome-rails'
 gem "browserify-rails"
+gem "bower-rails"
 
 group :development, :test do
   gem 'byebug'
