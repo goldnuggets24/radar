@@ -18,7 +18,7 @@ var CheckBox = React.createClass({
     }
 });
 
-ReactDOM.render(
-  <CheckBox />,
-  document.getElementById('checkboxes')
-);
+// ReactDOM.render(
+//   <CheckBox />,
+//   document.getElementById('checkboxes')
+// );

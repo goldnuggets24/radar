@@ -16,6 +16,11 @@ UsersSection = React.createClass
     didFetchData: false
     # The users JSON array used to display the cards in the view
     users: []
+    attributes: []
+
+    fetchData:
+      search: ''
+      attr: ''
 
   # Invoked right after the component renders
   componentDidMount: ->
@@ -36,6 +41,7 @@ UsersSection = React.createClass
     @setState
       didFetchData: true
       users: data.users
+      attributes: data.attributes
 
     # If errors in AJAX call...
   _fetchDataFail: (xhr, status, err) =>
@@ -60,11 +66,11 @@ UsersSection = React.createClass
 
   render: ->
     cardsNode = @state.users.map (user) ->
-      <Profile email={user.email} name={user.name}/>
+      <Profile key={user.id} email={user.email} name={user.name}/>
 
     <div className="cards-wrapper">
-      <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} href="#"/>
+      <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
       {cardsNode}
     </div>
 
-ReactDOM.render(<UsersSection />, document.getElementById('yup'))
+ReactDOM.render(<UsersSection />, document.getElementById('staff'))

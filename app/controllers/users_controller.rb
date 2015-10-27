@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
-  # before_filter :search_and_filter_users
+  before_filter :search_and_filter_users
   before_action :authenticate_user!
 
   def index
-    @users = User.all
     render json: {
       users: @users
     }
