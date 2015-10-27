@@ -22,10 +22,10 @@ module.exports = React.createClass({
             title="Demo Url Based Avatar"
             subtitle="Subtitle"
             avatar="http://lorempixel.com/100/100/nature/"/>
-          <CardMedia overlay={<CardTitle title="Title" subtitle="Subtitle"/>}>
+          <CardMedia overlay={<CardTitle title={this.props.name} subtitle="Subtitle"/>}>
             <img src="http://lorempixel.com/600/337/nature/"/>
           </CardMedia>
-          <CardTitle title="Title" subtitle="Subtitle"/>
+          <CardTitle title={this.props.email} subtitle="Subtitle"/>
           <CardActions>
             <FlatButton label="Action1"/>
             <FlatButton label="Action2"/>
@@ -34,7 +34,6 @@ module.exports = React.createClass({
             <div className="Profile">
               <h2 className="Profile-title">{this.props.name}</h2>
               <div className="Profile-body">
-                <Avatar imgSrc={this.props.email} />
                 <Bio text={this.props.name} />
               </div>
             </div>
