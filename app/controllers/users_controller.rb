@@ -36,9 +36,7 @@ class UsersController < ApplicationController
     @users = if params[:search].present?
       User.search(params[:search])
     elsif params[:attr].present?
-      if ['admin', 'user'].include?(params[:attr])
-        User.send(params[:attr])
-      end
+      User.where(:sex => params[:attr])
     else
       User.all
     end.sorted

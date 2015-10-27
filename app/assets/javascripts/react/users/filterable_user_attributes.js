@@ -7,12 +7,11 @@ module.exports = React.createClass({
 	mixins: [LinkedStateMixin],
 
   	handleChange: function(event) {
-  		debugger;
-  		if(this.refs[event.target.value].isChecked() == true) {
-    		this.props.onFilterLinkClick(event.target.value);
-    	} else {
-    		this.props.onFilterLinkClick('');
-    	}
+  		window.allVals = [];
+		$('input:checked').each(function() {
+			allVals.push($(this).val());
+		});
+    	this.props.onFilterLinkClick(allVals);
   	},
 
 	render: function() {
@@ -21,8 +20,8 @@ module.exports = React.createClass({
   			<div className="col-md-12">
 				<div className="filter-buttons">
 					<h3>Filter by Role</h3>
-					<Checkbox className="admin" ref="admin" value="admin" name="checkboxName1" onCheck={this.handleChange} label="Admin"/>
-					<Checkbox className="user" ref="user" value="user" name="checkboxName1" onCheck={this.handleChange} label="User"/>
+					<Checkbox className="male" ref="male" value="male" name="checkboxName1" onCheck={this.handleChange} label="Male"/>
+					<Checkbox className="female" ref="female" value="female" name="checkboxName1" onCheck={this.handleChange} label="Female"/>
 				</div>
 			</div>
 		);
