@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require react
 //= require react_ujs
 //= require js-routes
 //= require_tree .
@@ -21,3 +20,10 @@
 
 Object.assign(window, require('./components/*.js', {mode: 'hash'}));
 var SearchInput = require('react/react-search-input');
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var Mui = require ('material-ui');
+var Menu = require('material-ui/lib/menus/menu');
+var MenuItem = require('material-ui/lib/menus/menu-item');

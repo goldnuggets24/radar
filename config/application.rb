@@ -15,6 +15,7 @@ module Radar
     config.assets.enabled = true
     config.assets.paths << Rails.root.join('node_modules')
     config.assets.paths << Rails.root.join('bower_components')
+    config.assets.paths << Rails.root.join('/app/assets/javascripts')
 
     config.browserify_rails.paths << '/lib/assets/javascripts/'
     config.browserify_rails.evaluate_node_modules = false
@@ -39,6 +40,7 @@ module Radar
             config.assets.enabled = true
             config.assets.paths << Rails.root.join('node_modules')
             config.assets.paths << Rails.root.join('bower_components')
+            config.assets.paths << Rails.root.join('/app/assets/javascripts')
 
             config.browserify_rails.paths << '/lib/assets/javascripts/'
             config.browserify_rails.evaluate_node_modules = false

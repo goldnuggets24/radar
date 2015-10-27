@@ -1,6 +1,7 @@
-# @cjsx React.DOM
+React = require('react')
+ReactDOM = require('react-dom')
 
-@FilterLink = React.createClass
+FilterLink = React.createClass
   displayName: 'filterLink'
   # Click handler will use it's onFilterLinkClick prop to pass 
   # value to it's parent.

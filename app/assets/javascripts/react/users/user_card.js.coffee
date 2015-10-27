@@ -1,6 +1,7 @@
-# @cjsx React.DOM
+React = require('react')
+ReactDOM = require('react-dom')
 
-@UserCard = React.createClass
+UserCard = React.createClass
   displayName: 'UserCard'
   render: ->
     # let's use this add-on to set the main div's class names

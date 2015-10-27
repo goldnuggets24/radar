@@ -1,6 +1,7 @@
-# @cjsx React.DOM
+React = require('react')
+ReactDOM = require('react-dom')
 
-@UsersSearch = React.createClass
+UsersSearch = React.createClass
   displayName: 'UsersSearch'
 
   # Submit handler

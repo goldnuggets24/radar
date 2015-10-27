@@ -1,6 +1,7 @@
-# @cjsx React.DOM
+React = require('react')
+ReactDOM = require('react-dom')
 
-@UsersFilter = React.createClass
+UsersFilter = React.createClass
   displayName: 'UsersFilter'
 
   # Submit handler

@@ -1,3 +1,5 @@
+var React = require('react');
+var ReactDOM = require('react-dom');
 var Menu = require('material-ui/lib/menus/menu');
 var MenuItem = require('material-ui/lib/menus/menu-item');
 
