@@ -67,7 +67,7 @@ UsersSection = React.createClass
 
   render: ->
     cardsNode = @state.users.map (user) ->
-      <Profile key={user.id} email={user.email} name={user.name}/>
+      <Profile key={user.id} email={user.email} bio={user.bio} name={user.name}/>
 
     <div className="cards-wrapper col-md-12">
       <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />

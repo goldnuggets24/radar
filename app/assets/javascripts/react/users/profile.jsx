@@ -16,7 +16,7 @@ module.exports = React.createClass({
         <Card className="card-class" initiallyExpanded={true}>
           <CardHeader
             title={this.props.name}
-            subtitle="Subtitle"
+            subtitle={this.props.bio}
             actAsExpander={true}
             showExpandableButton={false} 
             avatar="http://lorempixel.com/100/100/nature/"/>
