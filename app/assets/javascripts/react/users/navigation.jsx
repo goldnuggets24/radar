@@ -32,7 +32,7 @@ module.exports = React.createClass({
   		return (
   			<Toolbar className="toolbar">
 				<ToolbarGroup key={0} float="left">
-					<Avatar className="logo" src="/assets/logo.png" />
+					<Avatar className="logo" src="http://www.bkreader.com/wp-content/uploads/2015/10/logo.png" />
 					<FlatButton label="Home" linkButton={true} href="/" />
 					<FlatButton secondary={true} label="Edit Account" linkButton={true} href="/users/edit" />
 					<FlatButton secondary={true} label="Sign Out" linkButton={true} href="/users/sign_out" />
