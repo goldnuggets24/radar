@@ -17,13 +17,14 @@ module.exports = React.createClass({
 	render: function() {
 
   		return (
-  			<div className="col-md-12">
+			<div className="col-md-2">
 				<div className="filter-buttons">
-					<h3>Filter by Role</h3>
+					<h3 className="filter-by-role">Filter</h3>
 					<Checkbox className="male" ref="male" value="male" name="checkboxName1" onCheck={this.handleChange} label="Male"/>
 					<Checkbox className="female" ref="female" value="female" name="checkboxName1" onCheck={this.handleChange} label="Female"/>
 				</div>
-			</div>
+		</div>
+
 		);
 	}
 });

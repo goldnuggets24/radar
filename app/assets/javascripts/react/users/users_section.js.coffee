@@ -2,6 +2,7 @@ React = require('react')
 ReactDOM = require('react-dom')
 Profile = require('./profile.jsx')
 FilterableUserAttributes = require('./filterable_user_attributes')
+Navigation = require('./navigation.jsx')
 
 # ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
 
@@ -68,9 +69,12 @@ UsersSection = React.createClass
     cardsNode = @state.users.map (user) ->
       <Profile key={user.id} email={user.email} name={user.name}/>
 
-    <div className="cards-wrapper">
+    <div className="cards-wrapper col-md-12">
       <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
-      {cardsNode}
+      <div className="col-md-10">
+        {cardsNode}
+      </div>
     </div>
 
 ReactDOM.render(<UsersSection />, document.getElementById('staff'))
+ReactDOM.render(<Navigation />, document.getElementById('nav'))

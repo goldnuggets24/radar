@@ -1869,3 +1869,10 @@ section header {
 .search-input .search-field:focus {
   outline: none;
 }
+
+/* filtering on users page */
+
+.filter-by-role {
+    color: #000;
+    font-weight: 600;
+}
