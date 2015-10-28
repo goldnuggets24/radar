@@ -9,6 +9,10 @@ var FontIcon = require('material-ui/lib/font-icon');
 var DropDownIcon = require('material-ui/lib/drop-down-icon');
 var ToolbarSeparator = require('material-ui/lib/toolbar/toolbar-separator');
 var FlatButton = require('material-ui/lib/flat-button');
+var FontIcon = require('material-ui/lib/font-icon');
+var Colors = require('material-ui/lib/styles/colors');
+var mui = require('mui');
+var SvgIcon = mui.SvgIcon;
 
 let filterOptions = [
 	{ payload: '1', text: 'Home' },
@@ -29,6 +33,7 @@ module.exports = React.createClass({
   		return (
   			<Toolbar className="toolbar">
 				<ToolbarGroup key={0} float="left">
+					<FontIcon className="muidocs-icon-action-home" color={Colors.blue500} />
 					<FlatButton label="Home" linkButton={true} href="/" />
 					<FlatButton secondary={true} label="Edit Account" linkButton={true} href="/users/edit" />
 					<FlatButton secondary={true} label="Sign Out" linkButton={true} href="/users/sign_out" />

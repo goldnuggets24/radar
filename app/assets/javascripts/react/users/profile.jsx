@@ -25,7 +25,7 @@ module.exports = React.createClass({
           <CardMedia overlay={<CardTitle title={this.props.name} subtitle="Subtitle"/>}>
             <img src="http://lorempixel.com/600/337/nature/"/>
           </CardMedia>
-          <CardTitle title={this.props.email} subtitle="Subtitle"/>
+          <CardTitle title={this.props.name} subtitle={this.props.email}/>
           <CardActions>
             <FlatButton label="Action1"/>
             <FlatButton label="Action2"/>
