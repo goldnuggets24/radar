@@ -4,7 +4,7 @@
     "alt": "^0.16.10",
     "babel-core": "^5.7.4",
     "babelify": "^6.1.3",
-    "browserify": "~> 10.2.4",
+    "browserify": "^10.2.6",
     "browserify-incremental": "^3.0.1",
     "es6-promise": "^2.3.0",
     "jquery": "^2.1.4",
