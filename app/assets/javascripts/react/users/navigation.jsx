@@ -11,8 +11,6 @@ var ToolbarSeparator = require('material-ui/lib/toolbar/toolbar-separator');
 var FlatButton = require('material-ui/lib/flat-button');
 var FontIcon = require('material-ui/lib/font-icon');
 var Colors = require('material-ui/lib/styles/colors');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
 
 let filterOptions = [
 	{ payload: '1', text: 'Home' },
