@@ -10,6 +10,11 @@ img {
 
 .toolbar {background: #fff !important;}
 
+.logo {
+  float:left;
+  margin-top: 8px;
+}
+
 // override for the 'Home' navigation link
 .navbar-brand {
   font-size: inherit;
@@ -83,3 +88,7 @@ section {
   @extend .btn-primary;
   @extend .btn-xs;
 }
+
+/* Cards */
+
+.card-class {margin-bottom: 10px;}
