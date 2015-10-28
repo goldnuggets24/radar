@@ -26,7 +26,6 @@ let iconMenuItems = [
 
 module.exports = React.createClass({
 	render: function() {
-
   		return (
   			<Toolbar className="toolbar">
 				<ToolbarGroup key={0} float="left">
