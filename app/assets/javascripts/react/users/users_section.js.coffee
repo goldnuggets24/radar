@@ -76,5 +76,7 @@ UsersSection = React.createClass
       </div>
     </div>
 
-ReactDOM.render(<UsersSection />, document.getElementById('staff'))
+container = document.getElementById('staff');
+
+Peter = if $('#staff').length > 0 then ReactDOM.render(<UsersSection />, container) else ''
 ReactDOM.render(<Navigation />, document.getElementById('nav'))
