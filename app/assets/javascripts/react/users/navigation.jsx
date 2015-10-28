@@ -39,7 +39,7 @@ module.exports = React.createClass({
 					<FontIcon className="mui-icon-sort" />
 					<DropDownIcon iconClassName="icon-navigation-expand-more" menuItems={iconMenuItems} />
 					<ToolbarSeparator/>
-					<FlatButton label="Manage Users" linkButton={true} href="https://github.com/callemall/material-ui" primary={true} />
+					<FlatButton label="Manage Users" linkButton={true} href="/" primary={true} />
 				</ToolbarGroup>
 			</Toolbar>
 
