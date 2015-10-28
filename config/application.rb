@@ -20,7 +20,7 @@ module Radar
     config.browserify_rails.paths << '/lib/assets/javascripts/'
     config.browserify_rails.evaluate_node_modules = false
     config.browserify_rails.force = false
-    config.browserify_rails.commandline_options = '-t [ babelify --stage 0 ] -t require-globify'
+    config.browserify_rails.commandline_options = '-t [ babelify --stage 0 ] -t require-globify --fast'
 
     config.generators do |g|
       g.test_framework :rspec,
@@ -45,7 +45,7 @@ module Radar
             config.browserify_rails.paths << '/lib/assets/javascripts/'
             config.browserify_rails.evaluate_node_modules = false
             config.browserify_rails.force = false
-            config.browserify_rails.commandline_options = '-t [ babelify --stage 0 ] -t require-globify'
+            config.browserify_rails.commandline_options = '-t [ babelify --stage 0 ] -t require-globify --fast'
     # ...
     # React config
             config.react.addons = true
