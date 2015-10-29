@@ -119,11 +119,10 @@ UsersSection = React.createClass
     <div className="cards-wrapper col-md-12">
       <AppBar title='More Options' className='hamburger' onLeftIconButtonTouchTap={@_handleClick} isInitiallyOpen={true}/>
       <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
+      <PaginatorSection totalPages={@state.meta.total_pages} currentPage={@state.meta.current_page} onPaginate={@_handleOnPaginate}/>
       <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
       <div className="col-md-10">
-        <PaginatorSection totalPages={@state.meta.total_pages} currentPage={@state.meta.current_page} onPaginate={@_handleOnPaginate}/>
         {cardsNode}
-        <PaginatorSection totalPages={@state.meta.total_pages} currentPage={@state.meta.current_page} onPaginate={@_handleOnPaginate}/>
       </div>
     </div>
 

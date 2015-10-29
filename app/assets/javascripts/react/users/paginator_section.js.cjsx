@@ -17,7 +17,7 @@ module.exports = React.createClass
             <li key={i}>
               {
                 if i == @props.currentPage
-                  <span>&nbsp;</span>
+                  <span>{@props.currentPage}</span>
                 else
                   <PaginatorLink pageNumber={i} onPaginatorLinkClick={@_handleOnClick} />
               }

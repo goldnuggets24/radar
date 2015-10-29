@@ -9,7 +9,7 @@ module.exports = React.createClass({
 
   render: function() {
     return (
-    	<a href="#" onClick={this._handleOnClick}>&nbsp;</a>
+    	<a href="#" onClick={this._handleOnClick}>{this.props.pageNumber}</a>
     	)
   }
 });
