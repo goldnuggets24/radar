@@ -3,6 +3,7 @@ ReactDOM = require('react-dom')
 Profile = require('./profile.jsx')
 FilterableUserAttributes = require('./filterable_user_attributes')
 Navigation = require('./navigation.jsx')
+PaginatorSection  = require('./paginator_section.js.cjsx');
 
 # ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
 
@@ -22,6 +23,12 @@ UsersSection = React.createClass
     fetchData:
       search: ''
       attr: ''
+      page: 1
+
+    meta:
+      total_pages: 0
+      current_page: 1
+      total_count: 0
 
   # Invoked right after the component renders
   componentDidMount: ->
@@ -43,6 +50,7 @@ UsersSection = React.createClass
       didFetchData: true
       users: data.users
       attributes: data.attributes
+      meta: data.meta
 
     # If errors in AJAX call...
   _fetchDataFail: (xhr, status, err) =>
@@ -65,6 +73,13 @@ UsersSection = React.createClass
 
     @_fetchUsers()
 
+    # PaginatorSection handler
+  _handleOnPaginate: (pageNumber) ->
+    # Changes  the sate pageNumber value and cal
+    @state.fetchData.page = pageNumber
+    # Retrieve new results page
+    @_fetchUsers()
+
   render: ->
     cardsNode = @state.users.map (user) ->
       <Profile key={user.id} email={user.email} bio={user.bio} name={user.name}/>
@@ -72,7 +87,9 @@ UsersSection = React.createClass
     <div className="cards-wrapper col-md-12">
       <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
       <div className="col-md-10">
+        <PaginatorSection totalPages={@state.meta.total_pages} currentPage={@state.meta.current_page} onPaginate={@_handleOnPaginate}/>
         {cardsNode}
+        <PaginatorSection totalPages={@state.meta.total_pages} currentPage={@state.meta.current_page} onPaginate={@_handleOnPaginate}/>
       </div>
     </div>
 

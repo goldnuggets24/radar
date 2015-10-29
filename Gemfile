@@ -15,6 +15,7 @@ gem "js-routes", github: 'railsware/js-routes'
 gem 'font-awesome-rails'
 gem "browserify-rails"
 gem "bower-rails"
+gem "kaminari"
 
 group :development, :test do
   gem 'byebug'

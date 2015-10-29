@@ -18,7 +18,7 @@
 //= require_tree .
 //= require_tree ./react
 
-Object.assign(window, require('./components/*.js', {mode: 'hash'}));
+// Object.assign(window, require('./components/*.js', {mode: 'hash'}));
 // var SearchInput = require('react/react-search-input');
 
 var React = require('react');

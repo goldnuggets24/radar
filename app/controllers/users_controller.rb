@@ -4,7 +4,15 @@ class UsersController < ApplicationController
 
   def index
     render json: {
-      users: @users
+      users: @users,
+
+      meta: {
+        current_page: @users.current_page,
+        next_page: @users.next_page,
+        prev_page: @users.prev_page,
+        total_pages: @users.total_pages,
+        total_count: @users.total_count
+      }
     }
   end
 
@@ -39,7 +47,7 @@ class UsersController < ApplicationController
       User.where(:sex => params[:attr])
     else
       User.all
-    end.sorted
+    end.sorted.page(params[:page])
   end
 
 
