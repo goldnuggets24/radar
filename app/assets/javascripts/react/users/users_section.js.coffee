@@ -3,7 +3,35 @@ ReactDOM = require('react-dom')
 Profile = require('./profile.jsx')
 FilterableUserAttributes = require('./filterable_user_attributes')
 Navigation = require('./navigation.jsx')
-PaginatorSection  = require('./paginator_section.js.cjsx');
+LeftNav = require('material-ui/lib/left-nav')
+MenuItem = require('material-ui/lib/menu/menu-item')
+AppBar = require('material-ui/lib/app-bar')
+injectTapEventPlugin = require("react-tap-event-plugin")
+injectTapEventPlugin()
+
+menuItems = [
+  { route: 'get-started', text: 'Get Started' },
+  { route: 'customization', text: 'Customization' },
+  { route: 'components', text: 'Components' },
+  { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
+  {
+     type: MenuItem.Types.LINK,
+     payload: 'https://github.com/callemall/material-ui',
+     text: 'GitHub'
+  },
+  {
+     text: 'Disabled',
+     disabled: true
+  },
+  {
+     type: MenuItem.Types.LINK,
+     payload: 'https://www.google.com',
+     text: 'Disabled Link',
+     disabled: true
+  },
+]
+
+PaginatorSection  = require('./paginator_section.js.cjsx')
 
 # ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
 
@@ -80,11 +108,17 @@ UsersSection = React.createClass
     # Retrieve new results page
     @_fetchUsers()
 
+  _handleClick: (e) ->
+    e.preventDefault()
+    @refs.leftNav.toggle()
+
   render: ->
     cardsNode = @state.users.map (user) ->
       <Profile key={user.id} email={user.email} bio={user.bio} name={user.name}/>
 
     <div className="cards-wrapper col-md-12">
+      <AppBar title='More Options' className='hamburger' onLeftIconButtonTouchTap={@_handleClick} isInitiallyOpen={true}/>
+      <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
       <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
       <div className="col-md-10">
         <PaginatorSection totalPages={@state.meta.total_pages} currentPage={@state.meta.current_page} onPaginate={@_handleOnPaginate}/>
