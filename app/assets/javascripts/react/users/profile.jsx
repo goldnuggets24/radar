@@ -18,9 +18,9 @@ module.exports = React.createClass({
             title={this.props.first_name + ' ' + this.props.last_name}
             subtitle={this.props.bio}
             actAsExpander={true}
-            showExpandableButton={false} 
+            showExpandableButton={true} 
             avatar="http://lorempixel.com/100/100/nature/"/>
-          <CardMedia overlay={<CardTitle title={this.props.name} subtitle="Subtitle"/>}>
+          <CardMedia expandable={true} overlay={<CardTitle title={this.props.name} subtitle="Subtitle"/>}>
             <img src="http://lorempixel.com/600/337/nature/"/>
           </CardMedia>
           <CardTitle title="Contact" subtitle={this.props.email}/>
