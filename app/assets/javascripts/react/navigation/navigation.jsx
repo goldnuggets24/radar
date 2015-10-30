@@ -40,11 +40,11 @@ module.exports = React.createClass({
 					<FlatButton secondary={true} label="Sign Out" linkButton={true} href="/users/sign_out" />
 				</ToolbarGroup>
 				<ToolbarGroup key={1} float="right">
-					<ToolbarTitle text="Options" />
+					<ToolbarTitle text="Notifications" />
 					<FontIcon className="mui-icon-sort" />
 					<DropDownIcon iconClassName="icon-navigation-expand-more" menuItems={iconMenuItems} />
 					<ToolbarSeparator/>
-					<FlatButton label="Manage Users" linkButton={true} href="/" primary={true} />
+					<FlatButton label="Support" linkButton={true} href="/" primary={true} />
 				</ToolbarGroup>
 			</Toolbar>
 

@@ -10,25 +10,15 @@ injectTapEventPlugin = require("react-tap-event-plugin")
 injectTapEventPlugin()
 
 menuItems = [
-  { route: 'Stuff', text: 'Home' },
-  { route: 'Other Stuff', text: 'Other Stuff' },
-  { route: 'More Stuff', text: 'More Stuff' },
-  { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
-  {
-     type: MenuItem.Types.LINK,
-     payload: 'https://radar360.com',
-     text: 'Home'
-  },
-  {
-     text: 'Disabled',
-     disabled: true
-  },
-  {
-     type: MenuItem.Types.LINK,
-     payload: 'https://www.google.com',
-     text: 'Disabled Link',
-     disabled: true
-  },
+  { type: MenuItem.Types.SUBHEADER, text: 'New Assignment' },
+  { route: 'Stuff', text: 'Projects' },
+  { type: MenuItem.Types.SUBHEADER, text: 'Find Workers' },
+  { route: 'Stuff', text: 'Groups' },
+  { type: MenuItem.Types.SUBHEADER, text: 'Payments' },
+  { route: 'Stuff', text: 'Add Funds' },
+  { route: 'Stuff', text: 'Accounts' },
+  { type: MenuItem.Types.SUBHEADER, text: 'Reports' },
+  { route: 'Stuff', text: 'New Report' }
 ]
 
 PaginatorSection  = require('./paginator_section.js.cjsx')
