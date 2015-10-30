@@ -107,7 +107,7 @@ UsersSection = React.createClass
       <Profile key={user.id} email={user.email} bio={user.bio} first_name={user.first_name} last_name={user.last_name} name={user.name}/>
 
     <div className="cards-wrapper col-md-12">
-      <AppBar title='More Options' className='hamburger' onLeftIconButtonTouchTap={@_handleClick} isInitiallyOpen={true}/>
+      <AppBar title='Users' className='hamburger' onLeftIconButtonTouchTap={@_handleClick} isInitiallyOpen={true}/>
       <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
       <PaginatorSection totalPages={@state.meta.total_pages} currentPage={@state.meta.current_page} onPaginate={@_handleOnPaginate}/>
       <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
