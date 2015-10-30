@@ -20,7 +20,7 @@ module.exports = React.createClass({
             actAsExpander={true}
             showExpandableButton={true} 
             avatar="http://lorempixel.com/100/100/nature/"/>
-          <CardMedia expandable={true} overlay={<CardTitle title={this.props.name} subtitle="Subtitle"/>}>
+          <CardMedia expandable={true} overlay={<CardTitle title={this.props.first_name} subtitle="subtitle"/>}>
             <img src="http://lorempixel.com/600/337/nature/"/>
           </CardMedia>
           <CardTitle title="Contact" subtitle={this.props.email}/>
