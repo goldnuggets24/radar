@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   include PgSearch
-  paginates_per 2
+  paginates_per 4
   # after_create :create_user_profile
 
   # has_one :user_profile, dependent: :destroy

@@ -10,14 +10,14 @@ injectTapEventPlugin = require("react-tap-event-plugin")
 injectTapEventPlugin()
 
 menuItems = [
-  { route: 'get-started', text: 'Get Started' },
-  { route: 'customization', text: 'Customization' },
-  { route: 'components', text: 'Components' },
+  { route: 'Stuff', text: 'Home' },
+  { route: 'Other Stuff', text: 'Other Stuff' },
+  { route: 'More Stuff', text: 'More Stuff' },
   { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
   {
      type: MenuItem.Types.LINK,
-     payload: 'https://github.com/callemall/material-ui',
-     text: 'GitHub'
+     payload: 'https://radar360.com',
+     text: 'Home'
   },
   {
      text: 'Disabled',
@@ -114,7 +114,7 @@ UsersSection = React.createClass
 
   render: ->
     cardsNode = @state.users.map (user) ->
-      <Profile key={user.id} email={user.email} bio={user.bio} name={user.name}/>
+      <Profile key={user.id} email={user.email} bio={user.bio} first_name={user.first_name} last_name={user.last_name} name={user.name}/>
 
     <div className="cards-wrapper col-md-12">
       <AppBar title='More Options' className='hamburger' onLeftIconButtonTouchTap={@_handleClick} isInitiallyOpen={true}/>

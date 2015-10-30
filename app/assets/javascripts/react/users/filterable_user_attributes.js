@@ -20,8 +20,8 @@ module.exports = React.createClass({
 			<div className="col-md-2">
 				<div className="filter-buttons">
 					<h3 className="filter-by-role">Filter</h3>
-					<Checkbox className="male" ref="male" value="male" name="checkboxName1" onCheck={this.handleChange} label="Male"/>
-					<Checkbox className="female" ref="female" value="female" name="checkboxName1" onCheck={this.handleChange} label="Female"/>
+					<Checkbox className="male" ref="Male" value="Male" name="checkboxName1" onCheck={this.handleChange} label="Male"/>
+					<Checkbox className="female" ref="Female" value="Female" name="checkboxName1" onCheck={this.handleChange} label="Female"/>
 				</div>
 		</div>
 

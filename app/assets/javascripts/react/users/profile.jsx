@@ -15,7 +15,7 @@ module.exports = React.createClass({
       <div className="col-md-5">
         <Card className="card-class" initiallyExpanded={true}>
           <CardHeader
-            title={this.props.name}
+            title={this.props.first_name + ' ' + this.props.last_name}
             subtitle={this.props.bio}
             actAsExpander={true}
             showExpandableButton={false} 
