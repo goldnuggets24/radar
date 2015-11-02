@@ -1,4 +1,8 @@
 @Event = React.createClass
+
+  getInitialState: ->
+    edit: false
+    
   render: ->  	
     React.DOM.tr null,
       React.DOM.td null, @props.event.date

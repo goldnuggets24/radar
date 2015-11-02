@@ -5,7 +5,7 @@
     description: ''
 
   valid: ->
-    @state.title && @state.date && @state.amount
+    @state.title && @state.date && @state.description
 
   handleChange: (e) ->
     name = e.target.name
@@ -46,8 +46,8 @@
           type: 'text'
           className: 'form-control'
           placeholder: 'Description'
-          name: 'amount'
-          value: @state.amount
+          name: 'description'
+          value: @state.description
           onChange: @handleChange
       React.DOM.button
         type: 'submit'

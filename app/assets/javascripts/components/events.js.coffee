@@ -7,7 +7,7 @@
     events: []
 
   addEvent: (event) ->
-    events = React.addons.update(@state.events, { $push: [events] })
+    events = React.addons.update(@state.events, { $push: [event] })
     @setState events: events
 
   render: ->
@@ -22,7 +22,7 @@
           React.DOM.tr null,
             React.DOM.th null, 'Date'
             React.DOM.th null, 'Title'
-            React.DOM.th null, 'Amount'
+            React.DOM.th null, 'Description'
         React.DOM.tbody null,
           for event in @state.events
             React.createElement Event, key: event.id, event: event
