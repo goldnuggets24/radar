@@ -14,7 +14,8 @@
     "react-addons-css-transition-group": "^0.14.0",
     "react-addons-linked-state-mixin": "^0.14.0",
     "react-tap-event-plugin": "^0.2.1",
-    "require-globify": "^1.2.1"
+    "require-globify": "^1.2.1",
+    "react-day-picker": "~1.0.10"
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.js"

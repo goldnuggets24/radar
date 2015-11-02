@@ -6,6 +6,7 @@ Navigation = require('../navigation/navigation.jsx')
 LeftNav = require('material-ui/lib/left-nav')
 MenuItem = require('material-ui/lib/menu/menu-item')
 AppBar = require('material-ui/lib/app-bar')
+Calendar = require('material-ui/lib/date-picker/calendar')
 injectTapEventPlugin = require("react-tap-event-plugin")
 injectTapEventPlugin()
 
@@ -55,7 +56,7 @@ UsersSection = React.createClass
   # AJAX call to UsersController
   _fetchUsers: ()->
     $.ajax
-      url: Routes.users_path()
+      url: '/users'
       dataType: 'json'
       data: @state.fetchData
     .done @_fetchDataDone
@@ -111,12 +112,11 @@ UsersSection = React.createClass
       <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
       <PaginatorSection totalPages={@state.meta.total_pages} currentPage={@state.meta.current_page} onPaginate={@_handleOnPaginate}/>
       <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
+      <Calendar />
       <div className="col-md-10">
         {cardsNode}
       </div>
     </div>
 
-container = document.getElementById('staff');
-
-Peter = if $('#staff').length > 0 then ReactDOM.render(<UsersSection />, container) else ''
+Staff = if $('#staff').length > 0 then ReactDOM.render(<UsersSection />, document.getElementById('staff')) else ''
 ReactDOM.render(<Navigation />, document.getElementById('nav'))

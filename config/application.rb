@@ -22,35 +22,16 @@ module Radar
     config.browserify_rails.force = false
     config.browserify_rails.commandline_options = '-t [ babelify --stage 0 ] -t coffee-reactify -t require-globify --fast'
 
-    config.generators do |g|
-      g.test_framework :rspec,
-        fixtures: true,
-        view_specs: false,
-        helper_specs: false,
-        routing_specs: false,
-        controller_specs: false,
-        request_specs: false
-      g.fixture_replacement :factory_girl, dir: "spec/factories"
-    end
-
-    module RailsAndReact
-        class Application < Rails::Application
-            config.react.variant      = :production
-            config.react.addons       = true
-            config.assets.enabled = true
-            config.assets.paths << Rails.root.join('node_modules')
-            config.assets.paths << Rails.root.join('bower_components')
-            config.assets.paths << Rails.root.join('/app/assets/javascripts')
-
-            config.browserify_rails.paths << '/lib/assets/javascripts/'
-            config.browserify_rails.evaluate_node_modules = false
-            config.browserify_rails.force = false
-            config.browserify_rails.commandline_options = '-t [ babelify --stage 0 ] -t coffee-reactify -t require-globify --fast'
-    # ...
-    # React config
-            config.react.addons = true
-        end
-    end
+    # config.generators do |g|
+    #   g.test_framework :rspec,
+    #     fixtures: true,
+    #     view_specs: false,
+    #     helper_specs: false,
+    #     routing_specs: false,
+    #     controller_specs: false,
+    #     request_specs: false
+    #   g.fixture_replacement :factory_girl, dir: "spec/factories"
+    # end
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
