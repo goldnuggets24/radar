@@ -7,7 +7,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'therubyracer'
-gem 'react-rails', '~> 1.3.0'
+gem 'react-rails', '~> 1.4.0'
 gem 'sprockets-coffee-react'
 gem "active_model_serializers", github: 'rails-api/active_model_serializers'
 gem "pry"

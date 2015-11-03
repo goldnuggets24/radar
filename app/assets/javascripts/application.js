@@ -20,5 +20,5 @@
 
 window.React = require('react');
 Object.assign(window, require('./components/*.js', {mode: 'hash'}));
-
+window.ReactDOM = require('react-dom');
 require('react_ujs');

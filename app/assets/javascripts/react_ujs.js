@@ -41,7 +41,7 @@
         var propsJson = node.getAttribute(window.ReactRailsUJS.PROPS_ATTR);
         var props = propsJson && JSON.parse(propsJson);
 
-        React.render(React.createElement(constructor, props), node);
+        ReactDOM.render(React.createElement(constructor, props), node);
       }
     },
 
