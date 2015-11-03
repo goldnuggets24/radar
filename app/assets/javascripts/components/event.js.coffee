@@ -1,4 +1,6 @@
-@Event = React.createClass
+React = require('react')
+
+Event = React.createClass
 
   getInitialState: ->
     edit: false
@@ -8,3 +10,5 @@
       React.DOM.td null, @props.event.date
       React.DOM.td null, @props.event.title
       React.DOM.td null, @props.event.description
+
+module.exports = Event

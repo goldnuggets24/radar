@@ -1,4 +1,7 @@
-@EventForm = React.createClass
+React = require('react')
+
+EventForm = React.createClass
+
   getInitialState: ->
     title: ''
     date: ''
@@ -54,3 +57,5 @@
         className: 'btn btn-primary'
         disabled: !@valid()
         'Create event'
+
+module.exports = EventForm

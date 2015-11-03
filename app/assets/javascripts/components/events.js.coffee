@@ -1,4 +1,10 @@
-@Events = React.createClass
+React = require('react')
+update = require('react-addons-update')
+EventForm = require('./event_form.js.coffee')
+ReactDOM = require('react-dom')
+Event = require('./event.js.coffee')
+
+window.Events = React.createClass
 
   getInitialState: ->
     events: @props.data
@@ -7,7 +13,7 @@
     events: []
 
   addEvent: (event) ->
-    events = React.addons.update(@state.events, { $push: [event] })
+    events = update(@state.events, { $push: [event] })
     @setState events: events
 
   render: ->
@@ -27,3 +33,5 @@
           for event in @state.events
             React.createElement Event, key: event.id, event: event
       React.createElement EventForm, handleNewEvent: @addEvent
+
+module.exports = Events
