@@ -112,7 +112,6 @@ UsersSection = React.createClass
       <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
       <PaginatorSection totalPages={@state.meta.total_pages} currentPage={@state.meta.current_page} onPaginate={@_handleOnPaginate}/>
       <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
-      <Calendar />
       <div className="col-md-10">
         {cardsNode}
       </div>

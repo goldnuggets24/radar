@@ -13,12 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-
+//= require react
 //= require js-routes
 //= require_tree .
 //= require_tree ./components
 
-window.React = require('react');
+
 Object.assign(window, require('./components/*.js', {mode: 'hash'}));
 window.ReactDOM = require('react-dom');
 require('react_ujs');
