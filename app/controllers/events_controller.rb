@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 	def index
-    @events = Event.limit(2)
+    @events = Event.last(2)
     respond_to do |format|
       format.html
       format.json { render json: {events: @events} }

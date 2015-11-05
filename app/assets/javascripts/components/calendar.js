@@ -23,13 +23,11 @@ window.Calendar = React.createClass({
         url: "/events.json",
         dataType: 'JSON',
         success: function(data) {
-            window.help = data.events;
             this.setState({
               events: data.events
             });
         }.bind(this)
       });
-    $( "input[name='date']").val(date);
   	},
 
   addEvent: function(event) {
@@ -63,7 +61,7 @@ window.Calendar = React.createClass({
       }
       return results;
     }).call(this))), React.createElement(Calendar, {events: this.state.events, onDayTouchTap: this._handleDayTouchTap}), React.createElement(EventForm, {
-      handleNewEvent: this.addEvent
+      handleNewEvent: this.addEvent, events: this.state.events
     }));
   }
 });

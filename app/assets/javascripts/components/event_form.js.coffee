@@ -31,7 +31,7 @@ EventForm = React.createClass
         React.DOM.input
           type: 'text'
           className: 'form-control'
-          placeholder: 'Date'
+          placeholder: @props.events[0].date
           name: 'date'
           value: @state.date
           onChange: @handleChange
