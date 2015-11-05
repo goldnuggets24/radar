@@ -16,12 +16,20 @@ window.Calendar = React.createClass({
     	};
   	},
 
-  	getDefaultProps: function() {
-    	events: []
-	},
-
 	_handleDayTouchTap: function(e, date) {
-    	$( "input[name='date']").val(date);
+      $.ajax({
+        method: 'GET',
+        data: {date},
+        url: "/events.json",
+        dataType: 'JSON',
+        success: function(data) {
+            window.help = data.events;
+            this.setState({
+              events: data.events
+            });
+        }.bind(this)
+      });
+    $( "input[name='date']").val(date);
   	},
 
   addEvent: function(event) {

@@ -1,9 +1,13 @@
 class EventsController < ApplicationController
 	def index
-		@events = Event.all
+    @events = Event.limit(2)
+    respond_to do |format|
+      format.html
+      format.json { render json: {events: @events} }
     end
+  end
 
-    def create
+  def create
     @event = Event.new(event_params)
 
     if @event.save
@@ -15,7 +19,7 @@ class EventsController < ApplicationController
 
   private
 
-    def event_params
-      params.require(:event).permit(:title, :description, :date)
-    end
+  def event_params
+    params.require(:event).permit(:title, :description, :date)
+  end
 end
