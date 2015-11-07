@@ -16,6 +16,12 @@ window.Events = React.createClass
     events = update(@state.events, { $push: [event] })
     @setState events: events
 
+  deleteEvent: (event) ->
+    events = @state.events.slice()
+    index = events.indexOf event
+    events.splice index, 1
+    @replaceState events: events
+
   render: ->
     React.DOM.div
       className: 'events'
@@ -29,9 +35,10 @@ window.Events = React.createClass
             React.DOM.th null, 'Date'
             React.DOM.th null, 'Title'
             React.DOM.th null, 'Description'
+            React.DOM.th null, 'Actions'
         React.DOM.tbody null,
           for event in @state.events
-            React.createElement Event, key: event.id, event: event
+            React.createElement Event, key: event.id, event: event, handleDeleteEvent: @deleteEvent
       React.createElement EventForm, handleNewEvent: @addEvent
 
 module.exports = Events

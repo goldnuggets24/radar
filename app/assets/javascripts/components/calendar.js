@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Calendar = require("material-ui/lib/date-picker/calendar");
-var Events = require('./events.js.coffee');
 var EventForm = require('./event_form.js.coffee');
 var Event = require('./event.js.coffee');
 var update = require('react-addons-update');
@@ -40,6 +39,27 @@ window.Calendar = React.createClass({
     });
   },
 
+  deleteEvent: function(event) {
+    var events, index;
+    events = this.state.events.slice();
+    index = events.indexOf(event);
+    events.splice(index, 1);
+    return this.replaceState({
+      events: events
+    });
+  },
+
+  updateEvent: function(event, data) {
+    var events, index;
+    index = this.state.events.indexOf(event);
+    events = update(this.state.events, {
+      $splice: [[index, 1, data]]
+    });
+    return this.replaceState({
+      events: events
+    });
+  },
+
   render: function() {
     var event;
     return React.DOM.div({
@@ -48,7 +68,7 @@ window.Calendar = React.createClass({
       className: 'title'
     }, 'Events'), React.DOM.table({
       className: 'table table-bordered'
-    }, React.DOM.thead(null, React.DOM.tr(null, React.DOM.th(null, 'Date'), React.DOM.th(null, 'Title'), React.DOM.th(null, 'Description'))), React.DOM.tbody(null, (function() {
+    }, React.DOM.thead(null, React.DOM.tr(null, React.DOM.th(null, 'Date'), React.DOM.th(null, 'Title'), React.DOM.th(null, 'Description'), React.DOM.th(null, 'Actions'))), React.DOM.tbody(null, (function() {
       var i, len, ref, results;
       ref = this.state.events;
       results = [];
@@ -56,6 +76,8 @@ window.Calendar = React.createClass({
         event = ref[i];
         results.push(React.createElement(Event, {
           key: event.id,
+          handleDeleteEvent: this.deleteEvent,
+          handleEditEvent: this.updateEvent,
           event: event
         }));
       }

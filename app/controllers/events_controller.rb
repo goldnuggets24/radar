@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 	def index
-    @events = Event.last(2)
+    @events = Event.all
     respond_to do |format|
       format.html
       format.json { render json: {events: @events} }
@@ -15,6 +15,21 @@ class EventsController < ApplicationController
     else
       render json: @event.errors, status: :unprocessable_entity
     end
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      render json: @event
+    else
+      render json: @event.errors, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    head :no_content
   end
 
   private
