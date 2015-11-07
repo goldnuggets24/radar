@@ -29,6 +29,19 @@ window.Calendar = React.createClass({
       });
   	},
 
+        // tests to see if there's an event on a given date of the month
+    // if (typeof this.props.date != null) {
+    //   var string = this.props.date.toJSON();
+    //   var string_date = string.slice(0, string.indexOf("T"));
+    //   var events = this.props.events;
+    //   for (var key in events) {
+    //     if (events[key].date == string_date) {
+    //       styles.label.color = this.getTheme().color;
+    //     }
+    //   }
+    // }
+
+
   addEvent: function(event) {
     var events;
     events = update(this.state.events, {
@@ -66,7 +79,7 @@ window.Calendar = React.createClass({
       className: 'events'
     }, React.DOM.h2({
       className: 'title'
-    }, 'Events'), React.DOM.table({
+    }, ''), React.createElement(Calendar, {events: this.state.events, onDayTouchTap: this._handleDayTouchTap}), React.DOM.table({
       className: 'table table-bordered'
     }, React.DOM.thead(null, React.DOM.tr(null, React.DOM.th(null, 'Date'), React.DOM.th(null, 'Title'), React.DOM.th(null, 'Description'), React.DOM.th(null, 'Actions'))), React.DOM.tbody(null, (function() {
       var i, len, ref, results;
@@ -82,7 +95,7 @@ window.Calendar = React.createClass({
         }));
       }
       return results;
-    }).call(this))), React.createElement(Calendar, {events: this.state.events, onDayTouchTap: this._handleDayTouchTap}), React.createElement(EventForm, {
+    }).call(this))), React.createElement(EventForm, {
       handleNewEvent: this.addEvent, events: this.state.events
     }));
   }
