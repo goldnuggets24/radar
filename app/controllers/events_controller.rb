@@ -1,6 +1,12 @@
 class EventsController < ApplicationController
 	def index
-    @events = Event.all
+    @all_events = Event.all
+    if params[:date].present?
+        str = params[:date]
+        @events = Event.where(:date => str.slice(0..(str.index(' GMT'))))
+    else
+      @events = Event.all
+    end
     respond_to do |format|
       format.html
       format.json { render json: {events: @events} }

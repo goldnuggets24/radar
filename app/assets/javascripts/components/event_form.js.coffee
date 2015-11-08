@@ -17,7 +17,7 @@ EventForm = React.createClass
 
   handleSubmit: (e) ->
     e.preventDefault()
-    $.post '', { event: @state }, (data) =>
+    $.post '', { event: @state, new_event: true }, (data) =>
       @props.handleNewEvent data
       @setState @getInitialState()
     , 'JSON'
@@ -31,9 +31,9 @@ EventForm = React.createClass
         React.DOM.input
           type: 'text'
           className: 'form-control'
-          placeholder: @props.events[0].date
+          placeholder: 'Date'
           name: 'date'
-          value: @state.date
+          value: '2015-11-27'
           onChange: @handleChange
       React.DOM.div
         className: 'form-group'
