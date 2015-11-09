@@ -15,8 +15,8 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-
     if @event.save
+      @event.update_attributes(:date => params[:date].to_date)
       render json: @event
     else
       render json: @event.errors, status: :unprocessable_entity

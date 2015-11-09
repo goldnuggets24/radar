@@ -30,6 +30,7 @@ window.Calendar = React.createClass({
           });
       }.bind(this)
     });
+    $('input[name="date"]').attr('value', date);
   },
 
   addEvent: function(event) {
@@ -38,7 +39,8 @@ window.Calendar = React.createClass({
       $push: [event]
     });
     return this.setState({
-      events: events
+      events: events,
+      all_events: this.props.all_events
     });
   },
 
@@ -48,18 +50,21 @@ window.Calendar = React.createClass({
     index = events.indexOf(event);
     events.splice(index, 1);
     return this.replaceState({
-      events: events
+      events: events,
+      all_events: this.props.all_events
     });
   },
 
   updateEvent: function(event, data) {
+    debugger;
     var events, index;
     index = this.state.events.indexOf(event);
     events = update(this.state.events, {
       $splice: [[index, 1, data]]
     });
     return this.replaceState({
-      events: events
+      events: events,
+      all_events: this.props.all_events
     });
   },
 

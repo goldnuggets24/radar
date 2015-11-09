@@ -9,7 +9,7 @@ EventForm = React.createClass
     description: ''
 
   valid: ->
-    @state.title && @state.date && @state.description
+    @state.title && @state.description
 
   handleChange: (e) ->
     name = e.target.name
@@ -17,7 +17,7 @@ EventForm = React.createClass
 
   handleSubmit: (e) ->
     e.preventDefault()
-    $.post '', { event: @state, new_event: true }, (data) =>
+    $.post '', { event: @state, new_event: true, date: $('input[name="date"]').val() }, (data) =>
       @props.handleNewEvent data
       @setState @getInitialState()
     , 'JSON'
@@ -31,10 +31,10 @@ EventForm = React.createClass
         React.DOM.input
           type: 'text'
           className: 'form-control'
-          placeholder: 'Date'
+          placeholder: if window.date? then window.date else 'Date'
           name: 'date'
-          value: '2015-11-27'
-          onChange: @handleChange
+          value: if window.date? then window.date else 'Date'
+
       React.DOM.div
         className: 'form-group'
         React.DOM.input
