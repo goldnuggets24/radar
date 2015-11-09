@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   include PgSearch
+
+  has_and_belongs_to_many :events
+  
   paginates_per 4
   # after_create :create_user_profile
 

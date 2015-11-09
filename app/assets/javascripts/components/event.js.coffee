@@ -34,13 +34,13 @@ window.Event = React.createClass
 	      success: (data) =>
 	        @setState edit: false
 	        @props.handleEditEvent @props.event, data
-	        debugger
 
 	eventRow: ->
 	    React.DOM.tr null,
 	      React.DOM.td null, @props.event.date
 	      React.DOM.td null, @props.event.title
 	      React.DOM.td null, @props.event.description
+	      React.DOM.td null, if typeof @props.event.users != 'undefined' then @props.event.users[0].email
 	      React.DOM.td null,
 	        React.DOM.a
 	          className: 'btn btn-default'
@@ -71,6 +71,12 @@ window.Event = React.createClass
 	          type: 'text'
 	          defaultValue: @props.event.description
 	          ref: 'description'
+	      React.DOM.td null,
+	        React.DOM.input
+	          className: 'form-control'
+	          type: 'text'
+	          defaultValue: ''
+	          ref: 'Users'
 	      React.DOM.td null,
 	        React.DOM.a
 	          className: 'btn btn-default'

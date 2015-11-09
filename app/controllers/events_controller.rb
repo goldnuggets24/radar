@@ -1,11 +1,11 @@
 class EventsController < ApplicationController
 	def index
-    @all_events = Event.all
+    @all_events = Event.all.as_json(include: :users)
     if params[:date].present?
         str = params[:date]
-        @events = Event.where(:date => str.slice(0..(str.index(' GMT'))))
+        @events = Event.where(:date => str.slice(0..(str.index(' GMT')))).as_json(include: :users)
     else
-      @events = Event.all
+      @events = Event.all.as_json(include: :users)
     end
     respond_to do |format|
       format.html
