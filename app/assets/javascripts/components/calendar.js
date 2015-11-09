@@ -33,14 +33,18 @@ window.Calendar = React.createClass({
     $('input[name="date"]').attr('value', date);
   },
 
-  addEvent: function(event) {
+  addEvent: function(event, all_event) {
     var events;
+    var all_events;
+    all_events = update(this.state.all_events, {
+      $push: [event]
+    });
     events = update(this.state.events, {
       $push: [event]
     });
     return this.setState({
       events: events,
-      all_events: this.props.all_events
+      all_events: all_events
     });
   },
 
@@ -91,7 +95,7 @@ window.Calendar = React.createClass({
       }
       return results;
     }).call(this))), React.createElement(EventForm, {
-      handleNewEvent: this.addEvent, events: this.state.events
+      handleNewEvent: this.addEvent, events: this.state.events, all_events: this.state.all_events
     }));
   }
 });
