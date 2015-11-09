@@ -60,7 +60,6 @@ window.Calendar = React.createClass({
   },
 
   updateEvent: function(event, data) {
-    debugger;
     var events, index;
     index = this.state.events.indexOf(event);
     events = update(this.state.events, {

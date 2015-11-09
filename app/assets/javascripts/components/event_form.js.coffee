@@ -30,7 +30,7 @@ EventForm = React.createClass
         className: 'form-group'
         React.DOM.input
           type: 'text'
-          className: 'form-control'
+          className: 'form-control date'
           placeholder: if window.date? then window.date else 'Date'
           name: 'date'
           value: if window.date? then window.date else 'Date'
@@ -48,14 +48,14 @@ EventForm = React.createClass
         className: 'form-group'
         React.DOM.input
           type: 'text'
-          className: 'form-control'
+          className: 'form-control description'
           placeholder: 'Description'
           name: 'description'
           value: @state.description
           onChange: @handleChange
       React.DOM.button
         type: 'submit'
-        className: 'btn btn-primary'
+        className: 'btn btn-primary create-event'
         disabled: !@valid()
         'Create event'
 
