@@ -4,8 +4,8 @@ class UsersController < ApplicationController
 
   def index
     render json: {
-      users: @users,
-
+      users: @users.includes(:events),
+      events: Event.all.as_json(include: :users),
       meta: {
         current_page: @users.current_page,
         next_page: @users.next_page,
@@ -44,9 +44,9 @@ class UsersController < ApplicationController
     @users = if params[:search].present?
       User.search(params[:search])
     elsif params[:attr].present?
-      User.where(:sex => params[:attr])
+      User.where(:sex => params[:attr]).includes(:events)
     else
-      User.all
+      User.all.includes(:events)
     end.sorted.page(params[:page])
   end
 

@@ -8,6 +8,7 @@ var CardActions = require('material-ui/lib/card/card-actions');
 var CardText = require('material-ui/lib/card/card-text');
 var CardTitle = require('material-ui/lib/card/card-title');
 var FlatButton = require('material-ui/lib/flat-button');
+var DatePicker = require('material-ui/lib/date-picker/date-picker');
 
 module.exports = React.createClass({
   render: function() {
@@ -25,8 +26,7 @@ module.exports = React.createClass({
           </CardMedia>
           <CardTitle title="Contact" subtitle={this.props.email}/>
           <CardActions expandable={true}>
-            <FlatButton label="Action1"/>
-            <FlatButton label="Action2"/>
+            <DatePicker events={this.props.events} className="add-to-event" hintText="Add to Event"/> 
           </CardActions>
         </Card>
       </div>

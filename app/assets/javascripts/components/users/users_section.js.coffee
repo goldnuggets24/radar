@@ -38,6 +38,7 @@ UsersSection = React.createClass
     # The users JSON array used to display the cards in the view
     users: []
     attributes: []
+    events: []
 
     fetchData:
       search: ''
@@ -69,6 +70,7 @@ UsersSection = React.createClass
       didFetchData: true
       users: data.users
       attributes: data.attributes
+      events: data.events
       meta: data.meta
 
     # If errors in AJAX call...
@@ -103,9 +105,13 @@ UsersSection = React.createClass
     e.preventDefault()
     @refs.leftNav.toggle()
 
+  _handleTouchTap: (e) ->
+    e.preventDefault
+
   render: ->
+    all_events = @state.events
     cardsNode = @state.users.map (user) ->
-      <Profile key={user.id} email={user.email} bio={user.bio} first_name={user.first_name} last_name={user.last_name} name={user.name}/>
+      <Profile key={user.id} events={all_events} email={user.email} bio={user.bio} first_name={user.first_name} last_name={user.last_name} name={user.name}/>
 
     <div className="cards-wrapper col-md-12">
       <AppBar title='Users' className='hamburger' onLeftIconButtonTouchTap={@_handleClick} isInitiallyOpen={true}/>

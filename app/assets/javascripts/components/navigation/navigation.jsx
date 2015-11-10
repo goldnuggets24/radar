@@ -38,6 +38,7 @@ module.exports = React.createClass({
 					<FlatButton label="Home" linkButton={true} href="/" />
 					<FlatButton secondary={true} label="Edit Account" linkButton={true} href="/users/edit" />
 					<FlatButton secondary={true} label="Sign Out" linkButton={true} href="/users/sign_out" />
+					<FlatButton secondary={true} label="Events" linkButton={true} href="/events" />
 				</ToolbarGroup>
 				<ToolbarGroup key={1} float="right">
 					<DropDownIcon iconClassName="icon-navigation-expand-more" menuItems={iconMenuItems} />
