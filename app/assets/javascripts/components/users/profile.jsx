@@ -8,7 +8,7 @@ var CardActions = require('material-ui/lib/card/card-actions');
 var CardText = require('material-ui/lib/card/card-text');
 var CardTitle = require('material-ui/lib/card/card-title');
 var FlatButton = require('material-ui/lib/flat-button');
-var DatePicker = require('material-ui/lib/date-picker/date-picker');
+var DatePicker = require('../events_calendar/date-picker');
 
 module.exports = React.createClass({
   render: function() {

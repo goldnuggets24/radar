@@ -136,6 +136,7 @@ var Calendar = React.createClass({
       React.createElement(DateDisplay, {
         disableYearSelection: this.props.disableYearSelection,
         style: styles.dateDisplay,
+        events: this.props.events,
         selectedDate: this.state.selectedDate,
         handleMonthDayClick: this._handleMonthDayClick,
         handleYearClick: this._handleYearClick,

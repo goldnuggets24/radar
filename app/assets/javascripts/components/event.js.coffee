@@ -32,7 +32,6 @@ window.Event = React.createClass
 	      data:
 	        event: data
 	      success: (data) =>
-	        @setState edit: false
 	        @props.handleEditEvent @props.event, data
 
 	eventRow: ->

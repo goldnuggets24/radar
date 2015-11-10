@@ -6,7 +6,6 @@ Navigation = require('../navigation/navigation.jsx')
 LeftNav = require('material-ui/lib/left-nav')
 MenuItem = require('material-ui/lib/menu/menu-item')
 AppBar = require('material-ui/lib/app-bar')
-Calendar = require('material-ui/lib/date-picker/calendar')
 injectTapEventPlugin = require("react-tap-event-plugin")
 injectTapEventPlugin()
 
