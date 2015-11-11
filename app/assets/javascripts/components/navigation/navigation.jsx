@@ -14,13 +14,9 @@ var Colors = require('material-ui/lib/styles/colors');
 var Avatar = require('material-ui/lib/avatar');
 
 let filterOptions = [
-	{ payload: '1', text: 'Home' },
-	{ payload: '2', text: 'All Voice' },
-	{ payload: '3', text: 'All Text' },
-	{ payload: '4', text: 'Complete Voice' },
-	{ payload: '5', text: 'Complete Text' },
-	{ payload: '6', text: 'Active Voice' },
-	{ payload: '7', text: 'Active Text' },
+	{ payload: '', text: 'Account' },
+	{ payload: '/users/edit', text: 'Edit Account' },
+	{ payload: '/users/sign_out', text: 'Sign Out' },
 ];
 let iconMenuItems = [
 	{ payload: '1', text: 'Download' },
@@ -28,6 +24,11 @@ let iconMenuItems = [
 ];
 
 module.exports = React.createClass({
+
+	_handleTextFieldChange: function(e) {
+        window.location.href = e.target.value;
+    },
+
 	render: function() {
   		return (
   			<Toolbar className="toolbar">
@@ -36,8 +37,7 @@ module.exports = React.createClass({
 						<Avatar className="logo" src="http://www.bkreader.com/wp-content/uploads/2015/10/logo.png" />
 					</a>
 					<FlatButton label="Home" linkButton={true} href="/" />
-					<FlatButton secondary={true} label="Edit Account" linkButton={true} href="/users/edit" />
-					<FlatButton secondary={true} label="Sign Out" linkButton={true} href="/users/sign_out" />
+					<DropDownMenu className="nav-account-dropdown" onChange={this._handleTextFieldChange} menuItems={filterOptions} />
 					<FlatButton secondary={true} label="Events" linkButton={true} href="/events" />
 				</ToolbarGroup>
 				<ToolbarGroup key={1} float="right">
