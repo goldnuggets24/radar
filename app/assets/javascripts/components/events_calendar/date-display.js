@@ -177,7 +177,7 @@ var DateDisplay = React.createClass({
           React.createElement(
             'span',
             {onClick: this._handleOnTitleClick},
-            'Event Info Here',
+            year,
             ','
           ),
           React.createElement(
