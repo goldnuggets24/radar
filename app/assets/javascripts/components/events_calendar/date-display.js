@@ -193,7 +193,6 @@ var DateDisplay = React.createClass({
   },
 
   _handleOnTitleClick: function _handleOnTitleClick() {
-    console.log('sdfds');
     $.ajax({
       url: '/users', 
       type: 'PUT', 

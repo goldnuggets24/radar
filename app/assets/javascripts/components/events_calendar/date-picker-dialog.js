@@ -107,10 +107,18 @@ var DatePickerDialog = React.createClass({
 
       actions: {
         marginRight: 8
+      },
+
+      color: {
+        color: '#000'
       }
     };
 
-    var actions = [React.createElement(FlatButton, {
+    var actions = [ React.createElement(
+      'div',
+      { style: styles.color },
+      'Event Info'
+    ), React.createElement(FlatButton, {
       key: 0,
       label: 'Cancel',
       secondary: true,
