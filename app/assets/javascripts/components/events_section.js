@@ -1,10 +1,10 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Calendar = require("./events_calendar/calendar");
+var Calendar = require('./events_calendar/calendar');
 var EventForm = require('./event_form.js.coffee');
 var Event = require('./event.js.coffee');
 var update = require('react-addons-update');
-var injectTapEventPlugin = require("react-tap-event-plugin");
+var injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
 
 window.date = ''
@@ -98,4 +98,3 @@ window.EventsSection = React.createClass({
     }));
   }
 });
-
