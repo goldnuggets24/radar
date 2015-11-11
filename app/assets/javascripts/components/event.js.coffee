@@ -40,7 +40,7 @@ window.Event = React.createClass
 	      React.DOM.td null, @props.event.date
 	      React.DOM.td null, @props.event.title
 	      React.DOM.td null, @props.event.description
-	      React.DOM.td null, if typeof @props.event.users == 'undefined' || typeof @props.event.users[0] == 'undefined' then 'Add some users' else @props.event.users[0].email
+	      React.DOM.td null, 'Put Event Info Here'
 	      React.DOM.td null,
 	        React.DOM.a
 	          className: 'btn btn-default'

@@ -131,6 +131,17 @@ var DayButton = React.createClass({
       }
     }
 
+    if (this.props.events && this.props.date) {
+      var string = this.props.date.toJSON();
+      var string_date = string.slice(0, string.indexOf("T"));
+      var events = this.props.events;
+      for (var key in events) {
+        if (events[key].date == string_date) {
+          styles.label.color = this.getTheme().color;
+        }
+      }
+    }
+
     return this.props.date ? React.createElement(
       EnhancedButton,
       _extends({}, other, {

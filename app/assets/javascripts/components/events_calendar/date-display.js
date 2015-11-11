@@ -177,7 +177,7 @@ var DateDisplay = React.createClass({
           React.createElement(
             'span',
             {onClick: this._handleOnTitleClick},
-            typeof this.props.events == 'undefined' || typeof this.props.events[0] == 'undefined' ? '' : this.props.event.users[0].title,
+            'Event Info Here',
             ','
           ),
           React.createElement(
