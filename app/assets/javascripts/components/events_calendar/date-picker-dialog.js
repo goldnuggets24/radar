@@ -68,6 +68,7 @@ var DatePickerDialog = React.createClass({
   getInitialState: function getInitialState() {
     return {
       isCalendarActive: false,
+      eventTitle: '',
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme)
     };
   },
@@ -109,16 +110,23 @@ var DatePickerDialog = React.createClass({
         marginRight: 8
       },
 
-      event_cta: {
+      eventCta: {
         color: '#000',
-        float: 'left'
+        width: '100%',
+        textAlign: 'left'
       }
     };
 
+    var eventTitle = this.state.eventTitle;
+
     var actions = [ React.createElement(
       'div',
-      { style: styles.event_cta },
-      'Event Info | Add?'
+      { 
+        key: 2, 
+        style: styles.eventCta,
+        onClick: this._handleOnClick
+      },
+      typeof eventTitle == 'undefined' ? '' : 'Event: ' + eventTitle + ' [Add User to Event]'
     ), React.createElement(FlatButton, {
       key: 0,
       label: 'Cancel',
@@ -171,10 +179,21 @@ var DatePickerDialog = React.createClass({
   },
 
   _onDayTouchTap: function _onDayTouchTap() {
+    debugger;
     if (this.props.autoOk) {
       setTimeout(this._handleOKTouchTap, 300);
     }
-  },
+    var string = this.refs.calendar.getSelectedDate().toJSON();
+    var string_date = string.slice(0, string.indexOf("T"));
+    var events = this.props.events;
+      for (var key in events) {
+        if (events[key].date == string_date) {
+          this.setState({
+            eventTitle: events[key].title
+          });
+        }
+      }
+    },
 
   _handleCancelTouchTap: function _handleCancelTouchTap() {
     this.dismiss();
