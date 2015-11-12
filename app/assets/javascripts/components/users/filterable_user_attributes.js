@@ -18,9 +18,13 @@ module.exports = React.createClass({
 
   		return (
 			<div className="filter-buttons">
-				<h3 className="filter-by-role">Filter</h3>
+				<h4 className="filter-by-role">Filter:</h4>
+				<h5 className="black">Sex</h5>
 				<Checkbox className="male" ref="Male" value="Male" name="checkboxName1" onCheck={this.handleChange} label="Male"/>
 				<Checkbox className="female" ref="Female" value="Female" name="checkboxName1" onCheck={this.handleChange} label="Female"/>
+				<h5 className="black">Ethnicity</h5>
+				<Checkbox className="male" ref="White" value="Male" name="checkboxName1" onCheck={this.handleChange} label="White"/>
+				<Checkbox className="female" ref="Black" value="Female" name="checkboxName1" onCheck={this.handleChange} label="Black"/>
 			</div>
 		);
 	}
