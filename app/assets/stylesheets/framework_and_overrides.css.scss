@@ -113,3 +113,16 @@ section {
 .form-control.date {display: none;}
 .form-control.description {width: 300px;}
 .btn-primary.create-event {margin-bottom: 4px;}
+
+/* Search */
+.search-input {
+  padding-left: 0 !important;
+  input {
+    color: #000;
+  }
+}
+
+.search-text {
+  color: #000;
+  font-weight: 600;
+}

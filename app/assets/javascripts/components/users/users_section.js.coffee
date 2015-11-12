@@ -6,6 +6,7 @@ Navigation = require('../navigation/navigation.jsx')
 LeftNav = require('material-ui/lib/left-nav')
 MenuItem = require('material-ui/lib/menu/menu-item')
 AppBar = require('material-ui/lib/app-bar')
+SearchInput = require('react-search-input')
 injectTapEventPlugin = require("react-tap-event-plugin")
 injectTapEventPlugin()
 
@@ -107,16 +108,40 @@ UsersSection = React.createClass
   _handleTouchTap: (e) ->
     e.preventDefault
 
+  searchUpdated: (term) ->
+    @_fetchUsers()
+    @setState searchTerm: term
+
   render: ->
+
     all_events = @state.events
+
+    searchInputStyle =
+      float: 'left'
+      width: '100px'
+      border: '1px solid black'
+
+    if @refs.search
+      filters = [
+        'city'
+        'state'
+        'sex'
+        'first_name'
+      ]
+      @state.users = @state.users.filter(@refs.search.filter(filters))
+
     cardsNode = @state.users.map (user) ->
-      <Profile key={user.id} events={all_events} email={user.email} bio={user.bio} first_name={user.first_name} last_name={user.last_name} name={user.name}/>
+      <Profile key={user.id} events={all_events} city={user.city} email={user.email} bio={user.bio} first_name={user.first_name} last_name={user.last_name} name={user.name}/>
 
     <div className="cards-wrapper col-md-12">
-      <AppBar title='Users' className='hamburger' onLeftIconButtonTouchTap={@_handleClick} isInitiallyOpen={true}/>
+      <AppBar title='Find and Add Promotional Staff to Your Events' className='hamburger' onLeftIconButtonTouchTap={@_handleClick} isInitiallyOpen={true}/>
       <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
       <PaginatorSection totalPages={@state.meta.total_pages} currentPage={@state.meta.current_page} onPaginate={@_handleOnPaginate}/>
-      <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
+      <div className="col-md-2">
+        <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
+        <h4 className="search-text">Search by City:</h4>
+        <SearchInput className='search-input' style={searchInputStyle} ref='search' onChange={this.searchUpdated} />
+      </div>
       <div className="col-md-10">
         {cardsNode}
       </div>

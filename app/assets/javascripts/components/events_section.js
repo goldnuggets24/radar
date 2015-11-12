@@ -79,7 +79,7 @@ window.EventsSection = React.createClass({
       className: 'title'
     }, ''), React.createElement(Calendar, {events: this.state.events, all_events: this.state.all_events, onDayTouchTap: this._handleDayTouchTap}), React.DOM.table({
       className: 'table table-bordered'
-    }, React.DOM.thead(null, React.DOM.tr(null, React.DOM.th(null, 'Date'), React.DOM.th(null, 'Title'), React.DOM.th(null, 'Description'), React.DOM.th(null, 'Users'), React.DOM.th(null, 'Actions'))), React.DOM.tbody(null, (function() {
+    }, React.DOM.thead(null, React.DOM.tr(null, React.DOM.th(null, 'Date'), React.DOM.th(null, 'Title'), React.DOM.th(null, 'Description'), React.DOM.th(null, 'Promotional Staff'), React.DOM.th(null, 'Actions'))), React.DOM.tbody(null, (function() {
       var i, len, ref, results;
       ref = this.state.events;
       results = [];
