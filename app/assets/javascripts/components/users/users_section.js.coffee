@@ -146,6 +146,6 @@ UsersSection = React.createClass
         {cardsNode}
       </div>
     </div>
-
+debugger
 Staff = if $('#staff').length > 0 then ReactDOM.render(<UsersSection />, document.getElementById('staff')) else ''
 ReactDOM.render(<Navigation />, document.getElementById('nav'))

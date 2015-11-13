@@ -4,6 +4,7 @@ var Calendar = require('./events_calendar/calendar');
 var EventForm = require('./event_form.js.coffee');
 var Event = require('./event.js.coffee');
 var update = require('react-addons-update');
+var AppBar = require('material-ui/lib/app-bar');
 var injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
 
@@ -77,7 +78,11 @@ window.EventsSection = React.createClass({
       className: 'events'
     }, React.DOM.h2({
       className: 'title'
-    }, ''), React.createElement(Calendar, {events: this.state.events, all_events: this.state.all_events, onDayTouchTap: this._handleDayTouchTap}), React.DOM.table({
+    }, ''), React.createElement(AppBar, { 
+        title: 'View / Add / Edit Your Events',
+        className: 'hamburger',
+        isInitiallyOpen: true
+      }), React.createElement(Calendar, {events: this.state.events, all_events: this.state.all_events, onDayTouchTap: this._handleDayTouchTap}), React.DOM.table({
       className: 'table table-bordered'
     }, React.DOM.thead(null, React.DOM.tr(null, React.DOM.th(null, 'Date'), React.DOM.th(null, 'Title'), React.DOM.th(null, 'Description'), React.DOM.th(null, 'Promotional Staff'), React.DOM.th(null, 'Actions'))), React.DOM.tbody(null, (function() {
       var i, len, ref, results;
