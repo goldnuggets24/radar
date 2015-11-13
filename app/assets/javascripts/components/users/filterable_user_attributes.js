@@ -23,8 +23,8 @@ module.exports = React.createClass({
 				<Checkbox className="male" ref="Male" value="Male" name="checkboxName1" onCheck={this.handleChange} label="Male"/>
 				<Checkbox className="female" ref="Female" value="Female" name="checkboxName1" onCheck={this.handleChange} label="Female"/>
 				<h5 className="black">Ethnicity</h5>
-				<Checkbox className="male" ref="White" value="Male" name="checkboxName1" onCheck={this.handleChange} label="White"/>
-				<Checkbox className="female" ref="Black" value="Female" name="checkboxName1" onCheck={this.handleChange} label="Black"/>
+				<Checkbox className="white" ref="White" value="White" name="checkboxName1" onCheck={this.handleChange} label="White"/>
+				<Checkbox className="black" ref="Black" value="Black" name="checkboxName1" onCheck={this.handleChange} label="Black"/>
 			</div>
 		);
 	}

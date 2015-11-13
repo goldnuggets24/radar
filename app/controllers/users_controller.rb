@@ -41,10 +41,17 @@ class UsersController < ApplicationController
   private
 
   def search_and_filter_users
+    sex = [['Male'], ['Female']]
+    ethnicity = [['White'], ['Black']]
+
     @users = if params[:search].present?
       User.search(params[:search])
     elsif params[:attr].present?
-      User.where(:sex => params[:attr]).includes(:events)
+      if sex.include?(params[:attr])
+        User.where(:sex => params[:attr]).includes(:events)
+      elsif ethnicity.include?(params[:attr])
+        User.where(:ethnicity => params[:attr]).includes(:events)
+      end
     else
       User.all.includes(:events)
     end.sorted.page(params[:page])
