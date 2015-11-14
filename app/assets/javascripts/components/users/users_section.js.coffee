@@ -7,6 +7,11 @@ LeftNav = require('material-ui/lib/left-nav')
 MenuItem = require('material-ui/lib/menu/menu-item')
 AppBar = require('material-ui/lib/app-bar')
 SearchInput = require('react-search-input')
+List = require('material-ui/lib/lists/list')
+ListItem = require('material-ui/lib/lists/list-item')
+ListDivider = require('material-ui/lib/lists/list-divider')
+Checkbox = require('material-ui/lib/checkbox')
+EventList = require('./event_list.jsx')
 injectTapEventPlugin = require("react-tap-event-plugin")
 injectTapEventPlugin()
 
@@ -39,6 +44,7 @@ UsersSection = React.createClass
     users: []
     attributes: []
     events: []
+    selectedEvent: ''
 
     fetchData:
       search: ''
@@ -112,9 +118,14 @@ UsersSection = React.createClass
     @_fetchUsers()
     @setState searchTerm: term
 
+  _handleOnEventSelection: (e) ->
+    @setState selectedEvent: e
+    @_fetchUsers()
+
   render: ->
 
     all_events = @state.events
+    selectedEvent = @state.selectedEvent
 
     searchInputStyle =
       float: 'left'
@@ -131,11 +142,15 @@ UsersSection = React.createClass
       @state.users = @state.users.filter(@refs.search.filter(filters))
 
     cardsNode = @state.users.map (user) ->
-      <Profile key={user.id} events={all_events} city={user.city} email={user.email} bio={user.bio} first_name={user.first_name} last_name={user.last_name} name={user.name}/>
+      <Profile key={user.id} user_events={user.events} selectedEvent={selectedEvent} events={all_events} id={user.id} city={user.city} email={user.email} bio={user.bio} first_name={user.first_name} last_name={user.last_name} name={user.name}/>
 
     <div className="cards-wrapper col-md-12">
+
+      <EventList onEventSelection={@_handleOnEventSelection} events={all_events} key=1 />
+
       <AppBar title='Find and Add Promotional Staff to Your Events' className='hamburger' onLeftIconButtonTouchTap={@_handleClick} isInitiallyOpen={true}/>
       <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
+
       <PaginatorSection totalPages={@state.meta.total_pages} currentPage={@state.meta.current_page} onPaginate={@_handleOnPaginate}/>
       <div className="col-md-2">
         <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
@@ -146,6 +161,6 @@ UsersSection = React.createClass
         {cardsNode}
       </div>
     </div>
-debugger
+
 Staff = if $('#staff').length > 0 then ReactDOM.render(<UsersSection />, document.getElementById('staff')) else ''
 ReactDOM.render(<Navigation />, document.getElementById('nav'))

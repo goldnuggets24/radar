@@ -5,8 +5,8 @@ PaginatorLink = require('./paginator_link.js')
 module.exports = React.createClass
   displayName: 'PaginatorSection'
   _handleOnClick: (pageNumber) ->
-
     @props.onPaginate(pageNumber)
+    
   render: ->
 
     if @props.totalPages > 1

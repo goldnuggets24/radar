@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :set_event, :except => [:create, :index]
+
 	def index
     @all_events = Event.all.as_json(include: :users)
     if params[:date].present?
@@ -24,7 +26,6 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = Event.find(params[:id])
     if @event.update(event_params)
       render json: @event
     else
@@ -33,12 +34,20 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event = Event.find(params[:id])
     @event.destroy
     head :no_content
   end
 
+  def add_user
+    @event.users << User.find(params[:user])
+    render json: Event.all
+  end
+
   private
+
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
   def event_params
     params.require(:event).permit(:title, :description, :date)

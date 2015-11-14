@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :events
+  resources :events do
+    get 'add_user', :on => :member
+  end
+
   authenticated :user do
   	root 'home#index', as: :authenticated_root
   end
