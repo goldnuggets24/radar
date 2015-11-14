@@ -8,7 +8,7 @@ module.exports = React.createClass({
 
   	handleChange: function(event) {
   		window.allVals = [];
-		$('input:checked').each(function() {
+		$('.filter-buttons input:checked').each(function() {
 			allVals.push($(this).val());
 		});
     	this.props.onFilterLinkClick(allVals);

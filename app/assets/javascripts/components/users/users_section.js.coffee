@@ -119,11 +119,17 @@ UsersSection = React.createClass
     @setState searchTerm: term
 
   _handleOnEventSelection: (e) ->
-    @setState selectedEvent: e
+    @setState 
+      selectedEvent: e
+    @_fetchUsers()
+
+  _handleOnCheckedEvent: (e) ->
+    this.setChecked(true)
     @_fetchUsers()
 
   render: ->
 
+    all_users = @state.users
     all_events = @state.events
     selectedEvent = @state.selectedEvent
 
@@ -141,9 +147,6 @@ UsersSection = React.createClass
       ]
       @state.users = @state.users.filter(@refs.search.filter(filters))
 
-    cardsNode = @state.users.map (user) ->
-      <Profile key={user.id} user_events={user.events} selectedEvent={selectedEvent} events={all_events} id={user.id} city={user.city} email={user.email} bio={user.bio} first_name={user.first_name} last_name={user.last_name} name={user.name}/>
-
     <div className="cards-wrapper col-md-12">
       <AppBar title='Find and Add Promotional Staff to Your Events' className='hamburger' onLeftIconButtonTouchTap={@_handleClick} isInitiallyOpen={true}/>
       <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
@@ -156,7 +159,7 @@ UsersSection = React.createClass
         <SearchInput className='search-input' style={searchInputStyle} ref='search' onChange={this.searchUpdated} />
       </div>
       <div className="col-md-10">
-        {cardsNode}
+        <Profile onCheckedEvent={@_handleOnCheckedEvent} selectedEvent={selectedEvent} events={all_events} users={all_users} />
       </div>
     </div>
 

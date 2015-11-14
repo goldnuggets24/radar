@@ -15,40 +15,46 @@ module.exports = React.createClass({
   displayName: 'Profile',
 
   handleSubmit: function(e) {
+        // this.refs.checkbox.setChecked(false);
     if ($(this.getDOMNode()).find('input:checked').is(':checked')) {
       $.get('/events/' + this.props.selectedEvent + '/add_user', {
         user: e
       }, (function(_this) {
       })(this), 'JSON');
     }
+      this.props.onCheckedEvent(this);
   },
 
   render: function() {
+    var rows = [];
 
-    var myArray = this.props.user_events.map(function(i) {return i.id});
+    for (var i=0; i < this.props.users.length; i++) {
+      // check / uncheck users depending on which event is selected
+      var right = false;
+      var myArray = this.props.users[i].events.map(function(i) {return i.id});
+      if ($.inArray(this.props.selectedEvent, myArray) != -1) {var right = true}
 
-    if ($.inArray(this.props.selectedEvent, myArray) != -1) {var right = true} else {var right = false}
-
-    debugger;
-
-    return (
-      <div className="col-md-5">
-        <Card className="card-class" initiallyExpanded={false}>
-          <CardHeader
-            title={this.props.first_name + ' ' + this.props.last_name}
-            subtitle={this.props.city}
-            actAsExpander={true}
-            showExpandableButton={true} 
-            avatar="http://lorempixel.com/100/100/nature/"/>
-          <Checkbox key="sddgf" defaultChecked={right} onCheck={this.handleSubmit.bind(this, this.props.id)} />
-          <CardMedia expandable={true} overlay={<CardTitle title={this.props.first_name} subtitle="subtitle"/>}>
-            <img src="http://lorempixel.com/600/337/nature/"/>
-          </CardMedia>
-          <CardTitle title={this.props.city} subtitle={this.props.email}/>
-          <CardActions expandable={true}>
-          </CardActions>
-        </Card>
-      </div>
-    )
+      rows.push(
+        <div className="col-md-5">
+          <Card key={this.props.id} className="card-class" initiallyExpanded={false}>
+            <CardHeader
+              key={this.props.id}
+              title={this.props.users[i].first_name + ' ' + this.props.users[i].last_name}
+              subtitle={this.props.users[i].city}
+              actAsExpander={true}
+              showExpandableButton={true} 
+              avatar="http://lorempixel.com/100/100/nature/"/>
+            <Checkbox ref="checkbox" key={this.props.id} defaultChecked={right} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id)} />
+            <CardMedia key={this.props.id} expandable={true} overlay={<CardTitle title={this.props.users[i].first_name} subtitle="subtitle"/>}>
+              <img src="http://lorempixel.com/600/337/nature/"/>
+            </CardMedia>
+            <CardTitle key={this.props.id} title={this.props.users[i].city} subtitle={this.props.users[i].email}/>
+            <CardActions key={this.props.id} expandable={true}>
+            </CardActions>
+          </Card>
+        </div>
+      )
+    }
+    return <div>{rows}</div>;
   }
 });

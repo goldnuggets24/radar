@@ -15,7 +15,11 @@ module.exports = React.createClass({
 	},
 
 	_handleCheckBoxOnCheck: function(event) {
-		this.props.onEventSelection(event);
+		if ($('.events-checkbox input').is(':checked')) {
+			this.props.onEventSelection(event);
+		} else {
+			this.props.onEventSelection('');
+		}
 	},
 
 	render: function() {
@@ -24,7 +28,7 @@ module.exports = React.createClass({
 		for (var i=0; i < this.props.events.length; i++) {
 		    rows.push(
 		    	<List subheader="Today" key={this.props.events[i].id}>
-      				<ListItem key={this.props.events[i].id} leftCheckbox={<Checkbox ref={this.props.events[i].title} key={i} onCheck={this._handleCheckBoxOnCheck.bind(this, this.props.events[i].id)} />} primaryText={this.props.events[i].title} secondaryText={this.props.events[i].description} />
+      				<ListItem key={this.props.events[i].id} leftCheckbox={<Checkbox className="events-checkbox" ref={this.props.events[i].title} key={i} onCheck={this._handleCheckBoxOnCheck.bind(this, this.props.events[i].id)} />} primaryText={this.props.events[i].title} secondaryText={this.props.events[i].description} />
     			</List>
 		    );
 		}
