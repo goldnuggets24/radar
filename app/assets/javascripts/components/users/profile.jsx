@@ -14,11 +14,21 @@ var DatePicker = require('../events_calendar/date-picker');
 module.exports = React.createClass({
   displayName: 'Profile',
 
-  handleSubmit: function(e) {
+  handleSubmit: function(i) {
+    debugger;
         // this.refs.checkbox.setChecked(false);
-    if ($(this.getDOMNode()).find('input:checked').is(':checked')) {
+    var selected_user = ({});
+    if (this.props.users.map(function(user){ if (user.id == i) {selected_user = user} }));
+    var myArray = selected_user.events.map(function(i) {return i.id});
+
+    if ($.inArray(this.props.selectedEvent, myArray) == -1) {
       $.get('/events/' + this.props.selectedEvent + '/add_user', {
-        user: e
+        user: i
+      }, (function(_this) {
+      })(this), 'JSON');
+    } else {
+      $.get('/events/' + this.props.selectedEvent + '/remove_user', {
+        user: i
       }, (function(_this) {
       })(this), 'JSON');
     }

@@ -43,6 +43,12 @@ class EventsController < ApplicationController
     render json: Event.all
   end
 
+  def remove_user
+    @user = User.find(params[:user])
+    @event.users.delete(@user)
+    render json: Event.all
+  end
+
   private
 
   def set_event

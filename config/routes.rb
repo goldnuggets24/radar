@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :events do
     get 'add_user', :on => :member
+    get 'remove_user', :on => :member
   end
 
   authenticated :user do
