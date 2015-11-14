@@ -15,8 +15,7 @@ module.exports = React.createClass({
   displayName: 'Profile',
 
   handleSubmit: function(i) {
-    debugger;
-        // this.refs.checkbox.setChecked(false);
+    // uncheck / check based on selection
     var selected_user = ({});
     if (this.props.users.map(function(user){ if (user.id == i) {selected_user = user} }));
     var myArray = selected_user.events.map(function(i) {return i.id});
@@ -32,7 +31,7 @@ module.exports = React.createClass({
       }, (function(_this) {
       })(this), 'JSON');
     }
-      this.props.onCheckedEvent(this);
+      this.props.onCheckedEvent(i);
   },
 
   render: function() {

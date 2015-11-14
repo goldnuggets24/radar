@@ -124,7 +124,6 @@ UsersSection = React.createClass
     @_fetchUsers()
 
   _handleOnCheckedEvent: (e) ->
-    this.setChecked(true)
     @_fetchUsers()
 
   render: ->
