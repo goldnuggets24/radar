@@ -40,7 +40,7 @@ window.Event = React.createClass
 	      React.DOM.td null, @props.event.date
 	      React.DOM.td null, @props.event.title
 	      React.DOM.td null, @props.event.description
-	      React.DOM.td null, 'Add Promotional Staff'
+	      React.DOM.td null, if @props.event.users != 'undefined' then @props.event.users[0].first_name + ' ' + @props.event.users[0].last_name else 'Add Promotional Staff'
 	      React.DOM.td null,
 	        React.DOM.a
 	          className: 'btn btn-default'
