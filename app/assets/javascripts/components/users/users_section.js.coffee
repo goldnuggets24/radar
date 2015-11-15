@@ -141,7 +141,6 @@ UsersSection = React.createClass
       filters = [
         'city'
         'state'
-        'sex'
         'first_name'
       ]
       @state.users = @state.users.filter(@refs.search.filter(filters))
@@ -158,7 +157,7 @@ UsersSection = React.createClass
         <SearchInput className='search-input' style={searchInputStyle} ref='search' onChange={this.searchUpdated} />
       </div>
       <div className="col-md-10">
-        <Profile onCheckedEvent={@_handleOnCheckedEvent} selectedEvent={selectedEvent} events={all_events} users={all_users} />
+        <Profile key=1 onCheckedEvent={@_handleOnCheckedEvent} selectedEvent={selectedEvent} events={all_events} users={@state.users} />
       </div>
     </div>
 

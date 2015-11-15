@@ -64,6 +64,6 @@ module.exports = React.createClass({
         </div>
       )
     }
-    return <div>{rows}</div>;
+    return <div key={1}>{rows}</div>;
   }
 });

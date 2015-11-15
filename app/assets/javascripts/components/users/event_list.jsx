@@ -24,7 +24,6 @@ module.exports = React.createClass({
 
 	render: function() {
 		var rows = [];
-
 		for (var i=0; i < this.props.events.length; i++) {
 		    rows.push(
 		    	<List subheader={this.props.events[i].title} key={this.props.events[i].id}>
@@ -32,7 +31,7 @@ module.exports = React.createClass({
     			</List>
 		    );
 		}
-		return <div><h3 className="events-title">Events</h3>{rows}</div>;
+		return <div className="events-section"><h3 className="events-title">Events</h3>{rows}</div>;
 	}
 });
 

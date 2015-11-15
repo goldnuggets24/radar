@@ -116,6 +116,14 @@ section {
 
 .events-title {color: #000;}
 
+.events-section {
+  max-height: 400px;
+  overflow: scroll;
+  padding: 3px;
+  border: 1px solid #ccc;
+  min-width: 208px;
+}
+
 /* Search */
 .search-input {
   padding-left: 0 !important;
