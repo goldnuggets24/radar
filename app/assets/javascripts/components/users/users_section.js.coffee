@@ -45,6 +45,7 @@ UsersSection = React.createClass
     attributes: []
     events: []
     selectedEvent: ''
+    initiallyExpanded: false
 
     fetchData:
       search: ''
@@ -126,6 +127,14 @@ UsersSection = React.createClass
   _handleOnCheckedEvent: (e) ->
     @_fetchUsers()
 
+  _handleOnCheckedProfileExpander: (e) -> 
+    if $('input').is(':checked')
+      @setState 
+        initiallyExpanded: true
+    else
+      @setState 
+        initiallyExpanded: false
+
   render: ->
 
     all_users = @state.users
@@ -149,15 +158,18 @@ UsersSection = React.createClass
       <AppBar title='Find and Add Promotional Staff to Your Events' className='hamburger' onLeftIconButtonTouchTap={@_handleClick} isInitiallyOpen={true}/>
       <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
 
-      <PaginatorSection totalPages={@state.meta.total_pages} currentPage={@state.meta.current_page} onPaginate={@_handleOnPaginate}/>
+      <PaginatorSection key={18908} totalPages={@state.meta.total_pages} currentPage={@state.meta.current_page} onPaginate={@_handleOnPaginate}/>
       <div className="col-md-2">
+
+        <Checkbox key={1000} onCheck={@_handleOnCheckedProfileExpander} />
+
         <EventList onEventSelection={@_handleOnEventSelection} events={all_events} key=1 />
         <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
         <h4 className="search-text">Search by City:</h4>
         <SearchInput className='search-input' style={searchInputStyle} ref='search' onChange={this.searchUpdated} />
       </div>
       <div className="col-md-10">
-        <Profile key=1 onCheckedEvent={@_handleOnCheckedEvent} selectedEvent={selectedEvent} events={all_events} users={@state.users} />
+        <Profile key={1} initiallyExpanded={@state.initiallyExpanded} onCheckedEvent={@_handleOnCheckedEvent} selectedEvent={selectedEvent} events={all_events} users={@state.users} />
       </div>
     </div>
 

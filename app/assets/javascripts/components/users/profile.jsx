@@ -44,10 +44,12 @@ module.exports = React.createClass({
       if ($.inArray(this.props.selectedEvent, myArray) != -1) {var right = true}
 
       rows.push(
-        <div className="col-md-5">
-          <Card key={this.props.id} className="card-class" initiallyExpanded={false}>
+        <div key={this.props.id} className="col-md-5">
+          <Card key={this.props.id} className="card-class" initiallyExpanded={this.props.initiallyExpanded}>
             <CardHeader
+              expanded={this.props.initiallyExpanded}
               key={this.props.id}
+              ref="CardHeader"
               title={this.props.users[i].first_name + ' ' + this.props.users[i].last_name}
               subtitle={this.props.users[i].city}
               actAsExpander={true}
@@ -55,9 +57,9 @@ module.exports = React.createClass({
               avatar="http://lorempixel.com/100/100/nature/"/>
             <Checkbox ref="checkbox" key={this.props.id} defaultChecked={right} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id)} />
             <CardMedia key={this.props.id} expandable={true} overlay={<CardTitle title={this.props.users[i].first_name} subtitle="subtitle"/>}>
-              <img src="http://lorempixel.com/600/337/nature/"/>
+              <img key={this.props.id} src="http://lorempixel.com/600/337/nature/"/>
             </CardMedia>
-            <CardTitle key={this.props.id} title={this.props.users[i].city} subtitle={this.props.users[i].email}/>
+            <CardTitle key={this.props.id + 1} title={this.props.users[i].city} subtitle={this.props.users[i].email}/>
             <CardActions key={this.props.id} expandable={true}>
             </CardActions>
           </Card>
