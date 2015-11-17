@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def index
     render json: {
       users: @users.as_json(include: :events),
-      events: Event.all.as_json(include: :users),
+      events: Event.order("created_at DESC").all.as_json(include: :users),
       meta: {
         current_page: @users.current_page,
         next_page: @users.next_page,

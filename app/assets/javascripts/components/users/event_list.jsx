@@ -27,7 +27,7 @@ module.exports = React.createClass({
 		for (var i=0; i < this.props.events.length; i++) {
 		    rows.push(
 		    	<List subheader={this.props.events[i].title} key={this.props.events[i].id}>
-      				<ListItem key={this.props.events[i].id} leftCheckbox={<Checkbox className="events-checkbox" ref={this.props.events[i].title} key={i} onCheck={this._handleCheckBoxOnCheck.bind(this, this.props.events[i].id)} />} primaryText={this.props.events[i].title} secondaryText={this.props.events[i].description} />
+      				<ListItem key={this.props.events[i].id} leftCheckbox={<Checkbox className="events-checkbox" ref={this.props.events[i].date} key={i} onCheck={this._handleCheckBoxOnCheck.bind(this, this.props.events[i].id)} />} primaryText={this.props.events[i].date} secondaryText={this.props.events[i].description} />
     			</List>
 		    );
 		}
