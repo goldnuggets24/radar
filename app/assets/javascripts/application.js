@@ -22,3 +22,4 @@
 Object.assign(window, require('./components/*.js', {mode: 'hash'}));
 window.ReactDOM = require('react-dom');
 require('react_ujs');
+require('react-intl');

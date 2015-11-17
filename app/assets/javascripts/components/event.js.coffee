@@ -1,5 +1,8 @@
 React = require('react')
 ReactDOM = require('react-dom')
+ReactIntl = require('react-intl/lib/react-intl')
+IntlMixin = ReactIntl.IntlMixin
+FormattedDate = ReactIntl.FormattedDate
 
 window.Event = React.createClass
 
@@ -37,7 +40,13 @@ window.Event = React.createClass
 
 	eventRow: ->
 	    React.DOM.tr null,
-	      React.DOM.td null, @props.event.date
+	      React.DOM.td null, <p>
+				                <FormattedDate
+				                    value={@props.event.date}
+				                    day="numeric"
+				                    month="long"
+				                    year="numeric" />
+				            </p>
 	      React.DOM.td null, @props.event.title
 	      React.DOM.td null, @props.event.description
 	      React.DOM.td null, if typeof @props.event.users != "undefined" then @props.event.users[0].first_name + ' ' + @props.event.users[0].last_name else 'Add Promotional Staff'
