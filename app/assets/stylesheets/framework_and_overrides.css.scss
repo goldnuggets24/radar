@@ -99,6 +99,21 @@ section {
   @extend .btn-xs;
 }
 
+/* User Profiles */
+.toggle-users {
+  float: left;
+  width: auto !important;
+  h3 {
+    float: left;
+    font-size: 14px !important;
+  }
+}
+
+h3.toggle-users-title {
+    float: left;
+    font-size: 14px !important;
+  }
+
 /* Cards */
 
 .card-class {margin-bottom: 10px;}

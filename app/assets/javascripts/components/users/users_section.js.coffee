@@ -160,9 +160,8 @@ UsersSection = React.createClass
 
       <PaginatorSection key={18908} totalPages={@state.meta.total_pages} currentPage={@state.meta.current_page} onPaginate={@_handleOnPaginate}/>
       <div className="col-md-2">
-
-        <Checkbox key={1000} onCheck={@_handleOnCheckedProfileExpander} />
-
+        <Checkbox className='toggle-users' key={1000} onCheck={@_handleOnCheckedProfileExpander} />
+        <h3 className='toggle-users-title'>Toggle User Profiles</h3>
         <EventList onEventSelection={@_handleOnEventSelection} events={all_events} key=1 />
         <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
         <h4 className="search-text">Search by City:</h4>

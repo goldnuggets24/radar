@@ -41,15 +41,15 @@ module.exports = React.createClass({
       							onCheck={this._handleCheckBoxOnCheck.bind(this, this.props.events[i].id)} />
       						} 
 						primaryText={
-	  						<p>
+	  						this.props.events[i].description	
+        				}
+                    	secondaryText={<p>
 				                <FormattedDate
-				                    value={this.props.events[i].date}
+				                    value={new Date(this.props.events[i].date.substring(0,4), Number(this.props.events[i].date.substring(5,7)) - 1, this.props.events[i].date.substring(8,10))}
 				                    day="numeric"
 				                    month="long"
 				                    year="numeric" />
-				            </p>
-        				}
-                    	secondaryText={this.props.events[i].description} />
+				            </p>} />
     			</List>
 		    );
 		}

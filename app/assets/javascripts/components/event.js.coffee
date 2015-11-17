@@ -42,7 +42,7 @@ window.Event = React.createClass
 	    React.DOM.tr null,
 	      React.DOM.td null, <p>
 				                <FormattedDate
-				                    value={@props.event.date}
+				                    value={new Date(@props.event.date.substring(0,4), Number(@props.event.date.substring(5,7)) - 1, @props.event.date.substring(8,10))}
 				                    day="numeric"
 				                    month="long"
 				                    year="numeric" />
