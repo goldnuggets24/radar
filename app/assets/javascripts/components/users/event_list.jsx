@@ -33,6 +33,7 @@ module.exports = React.createClass({
 		    	<List subheader={this.props.events[i].title} key={this.props.events[i].id}>
       				<ListItem 
       					key={this.props.events[i].id} 
+      					className="list-items"
       					leftCheckbox={
       						<Checkbox 
       							className="events-checkbox" 
