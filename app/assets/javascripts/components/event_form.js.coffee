@@ -1,4 +1,4 @@
-
+React = require('react')
 ReactDOM = require('react-dom')
 
 EventForm = React.createClass

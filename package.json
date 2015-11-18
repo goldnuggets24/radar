@@ -17,7 +17,9 @@
     "require-globify": "^1.2.1",
     "react-day-picker": "~1.0.10",
     "react-search-input": "~0.5.0",
-    "react-intl": "~1.2.1"
+    "react-intl": "~1.2.1",
+    "react-router": "~1.0.0",
+    "history": "~1.13.1"
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.js"

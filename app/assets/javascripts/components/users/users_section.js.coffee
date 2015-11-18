@@ -3,6 +3,7 @@ ReactDOM = require('react-dom')
 Profile = require('./profile.jsx')
 FilterableUserAttributes = require('./filterable_user_attributes')
 Navigation = require('../navigation/navigation.jsx')
+NewEvent = require('../events/new_event.jsx')
 LeftNav = require('material-ui/lib/left-nav')
 MenuItem = require('material-ui/lib/menu/menu-item')
 AppBar = require('material-ui/lib/app-bar')
@@ -14,6 +15,8 @@ Checkbox = require('material-ui/lib/checkbox')
 EventList = require('./event_list.jsx')
 injectTapEventPlugin = require("react-tap-event-plugin")
 injectTapEventPlugin()
+
+debugger
 
 menuItems = [
   { type: MenuItem.Types.SUBHEADER, text: 'New Assignment' },
@@ -45,6 +48,7 @@ UsersSection = React.createClass
     attributes: []
     events: []
     selectedEvent: ''
+    city: location.search.split('city=')[1]
     initiallyExpanded: false
 
     fetchData:
@@ -56,6 +60,10 @@ UsersSection = React.createClass
       total_pages: 0
       current_page: 1
       total_count: 0
+
+  componentWillReceiveProps: ->
+    @setState
+      city: @getQuery().city
 
   # Invoked right after the component renders
   componentDidMount: ->
@@ -165,7 +173,7 @@ UsersSection = React.createClass
         <EventList onEventSelection={@_handleOnEventSelection} events={all_events} key=1 />
         <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
         <h4 className="search-text">Search by City:</h4>
-        <SearchInput className='search-input' style={searchInputStyle} ref='search' onChange={this.searchUpdated} />
+        <SearchInput value={@state.city} className='search-input' style={searchInputStyle} ref='search' onChange={this.searchUpdated} />
       </div>
       <div className="col-md-10">
         <Profile key={1} initiallyExpanded={@state.initiallyExpanded} onCheckedEvent={@_handleOnCheckedEvent} selectedEvent={selectedEvent} events={all_events} users={@state.users} />

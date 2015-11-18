@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, :except => [:create, :index]
+  before_action :set_event, :except => [:create, :index, :new]
 
 	def index
     @all_events = Event.all.as_json(include: :users)
@@ -15,11 +15,16 @@ class EventsController < ApplicationController
     end
   end
 
+  def new
+  end
+
   def create
     @event = Event.new(event_params)
     if @event.save
-      @event.update_attributes(:date => params[:date].to_date)
-      render json: @event
+      respond_to do |format|
+        format.html
+        format.json { render json: @event }
+      end
     else
       render json: @event.errors, status: :unprocessable_entity
     end
