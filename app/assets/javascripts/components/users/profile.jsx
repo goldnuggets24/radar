@@ -48,11 +48,17 @@ module.exports = React.createClass({
       display: 'block'
     }
 
+    var s = ({});
+    for(var e=0;e<this.props.events.length;e++)if(this.props.events[e].id == this.props.selectedEvent){s = this.props.events[e]}
+
     for (var i=0; i < this.props.users.length; i++) {
       // check / uncheck users depending on which event is selected
       var right = false;
+      var is_team_lead = false;
       var myArray = this.props.users[i].events.map(function(i) {return i.id});
       if ($.inArray(this.props.selectedEvent, myArray) != -1) {var right = true}
+      // is user a team lead for selected event?
+      if (s.team_lead == this.props.users[i].id) {is_team_lead = true}
 
       rows.push(
         <div key={this.props.id} className="col-md-5">
@@ -71,7 +77,7 @@ module.exports = React.createClass({
               style={this.props.selectedEvent ? visible : hidden} 
               className="profile-checkboxes"
             >
-              <Checkbox label="Team Leader" ref="checkbox" key={this.props.id} defaultChecked={right} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id, 'team_lead')} />
+              <Checkbox label="Team Leader" ref="checkbox" key={this.props.id} defaultChecked={is_team_lead} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id, 'team_lead')} />
               <Checkbox label="Staff" ref="checkbox" key={this.props.id} defaultChecked={right} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id)} />
             </div>
 

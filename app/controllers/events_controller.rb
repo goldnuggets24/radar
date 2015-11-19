@@ -45,14 +45,21 @@ class EventsController < ApplicationController
   end
 
   def add_user
-    binding.pry
     @event.users << User.find(params[:user])
+
+    if params[:role]
+      Event.find(params[:id]).update_attributes(params[:role].intern => params[:user])
+    end
+
     render json: Event.all
   end
 
   def remove_user
     @user = User.find(params[:user])
     @event.users.delete(@user)
+
+    Event.find(params[:id]).update_attributes(params[:role].intern => nil)
+
     render json: Event.all
   end
 
