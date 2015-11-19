@@ -179,7 +179,6 @@ var DatePickerDialog = React.createClass({
   },
 
   _onDayTouchTap: function _onDayTouchTap() {
-    debugger;
     if (this.props.autoOk) {
       setTimeout(this._handleOKTouchTap, 300);
     }

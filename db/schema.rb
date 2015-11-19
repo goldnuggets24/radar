@@ -20,11 +20,20 @@ ActiveRecord::Schema.define(version: 20151117140137) do
     t.string   "title"
     t.date     "date"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.time     "start_time"
     t.time     "end_time"
-    t.string   "location"
+    t.date     "end_date"
+    t.string   "city"
+    t.string   "address"
+    t.string   "state"
+    t.integer  "team_lead"
+    t.integer  "project_manager"
+    t.integer  "product_specialist"
+    t.integer  "hospitality_server"
+    t.integer  "promotional_model"
+    t.integer  "event_manager"
   end
 
   create_table "events_users", force: :cascade do |t|

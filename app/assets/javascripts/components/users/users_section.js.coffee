@@ -12,11 +12,10 @@ List = require('material-ui/lib/lists/list')
 ListItem = require('material-ui/lib/lists/list-item')
 ListDivider = require('material-ui/lib/lists/list-divider')
 Checkbox = require('material-ui/lib/checkbox')
+RadioButton = require('material-ui/lib/radio-button')
 EventList = require('./event_list.jsx')
 injectTapEventPlugin = require("react-tap-event-plugin")
 injectTapEventPlugin()
-
-debugger
 
 menuItems = [
   { type: MenuItem.Types.SUBHEADER, text: 'New Assignment' },
@@ -170,7 +169,7 @@ UsersSection = React.createClass
       <div className="col-md-2">
         <Checkbox className='toggle-users' key={1000} onCheck={@_handleOnCheckedProfileExpander} />
         <h3 className='toggle-users-title'>Toggle User Profiles</h3>
-        <EventList onEventSelection={@_handleOnEventSelection} events={all_events} key=1 />
+        <EventList selectedEvent={@state.selectedEvent} onEventSelection={@_handleOnEventSelection} events={all_events} key=1 />
         <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
         <h4 className="search-text">Search by City:</h4>
         <SearchInput value={@state.city} className='search-input' style={searchInputStyle} ref='search' onChange={this.searchUpdated} />

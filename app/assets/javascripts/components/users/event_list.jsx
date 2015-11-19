@@ -5,18 +5,13 @@ var ListItem = require('material-ui/lib/lists/list-item');
 var Checkbox = require('material-ui/lib/checkbox');
 var ListDivider = require('material-ui/lib/lists/list-divider');
 var ReactIntl = require('react-intl/lib/react-intl');
+var RadioButton = require('material-ui/lib/radio-button');
 var IntlMixin = ReactIntl.IntlMixin;
 var FormattedDate = ReactIntl.FormattedDate;
 
 module.exports = React.createClass({
 	displayName: 'EventList',
 	mixins: [IntlMixin],
-
-	getInitialState: function getInitialState() {
-		return {
-			selectedEvent: ''
-		};
-	},
 
 	_handleCheckBoxOnCheck: function(event) {
 		if ($('.events-checkbox input').is(':checked')) {
@@ -35,10 +30,13 @@ module.exports = React.createClass({
       					key={this.props.events[i].id} 
       					className="list-items"
       					leftCheckbox={
-      						<Checkbox 
+      						<RadioButton 
       							className="events-checkbox" 
+      							name="event-list"
+      							value={this.props.events[i].date} 
       							ref={this.props.events[i].date} 
       							key={i} 
+      							checked={this.props.selectedEvent == this.props.events[i].id ? true : false}
       							onCheck={this._handleCheckBoxOnCheck.bind(this, this.props.events[i].id)} />
       						} 
 						primaryText={

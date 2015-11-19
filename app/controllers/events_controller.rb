@@ -20,6 +20,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.update_attributes(:date => params[:start_date].to_date)
     if @event.save
       respond_to do |format|
         format.html
