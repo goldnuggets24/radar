@@ -10,11 +10,12 @@ var CardTitle = require('material-ui/lib/card/card-title');
 var FlatButton = require('material-ui/lib/flat-button');
 var Checkbox = require('material-ui/lib/checkbox');
 var DatePicker = require('../events_calendar/date-picker');
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 module.exports = React.createClass({
   displayName: 'Profile',
 
-  handleSubmit: function(i) {
+  handleSubmit: function(i, role) {
     // uncheck / check based on selection
     var selected_user = ({});
     if (this.props.users.map(function(user){ if (user.id == i) {selected_user = user} }));
@@ -22,12 +23,14 @@ module.exports = React.createClass({
 
     if ($.inArray(this.props.selectedEvent, myArray) == -1) {
       $.get('/events/' + this.props.selectedEvent + '/add_user', {
-        user: i
+        user: i,
+        role: role
       }, (function(_this) {
       })(this), 'JSON');
     } else {
       $.get('/events/' + this.props.selectedEvent + '/remove_user', {
-        user: i
+        user: i,
+        role: role
       }, (function(_this) {
       })(this), 'JSON');
     }
@@ -36,6 +39,14 @@ module.exports = React.createClass({
 
   render: function() {
     var rows = [];
+
+    var hidden = {
+      display: 'none'
+    }
+
+    var visible = {
+      display: 'block'
+    }
 
     for (var i=0; i < this.props.users.length; i++) {
       // check / uncheck users depending on which event is selected
@@ -56,8 +67,11 @@ module.exports = React.createClass({
               showExpandableButton={true} 
               avatar="http://lorempixel.com/100/100/nature/"/>
             
-            <div className="profile-checkboxes">
-              <Checkbox label="Team Leader" ref="checkbox" key={this.props.id} defaultChecked={right} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id)} />
+            <div 
+              style={this.props.selectedEvent ? visible : hidden} 
+              className="profile-checkboxes"
+            >
+              <Checkbox label="Team Leader" ref="checkbox" key={this.props.id} defaultChecked={right} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id, 'team_lead')} />
               <Checkbox label="Staff" ref="checkbox" key={this.props.id} defaultChecked={right} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id)} />
             </div>
 

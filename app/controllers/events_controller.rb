@@ -45,6 +45,7 @@ class EventsController < ApplicationController
   end
 
   def add_user
+    binding.pry
     @event.users << User.find(params[:user])
     render json: Event.all
   end
