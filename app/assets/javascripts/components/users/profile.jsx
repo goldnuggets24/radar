@@ -55,8 +55,12 @@ module.exports = React.createClass({
               actAsExpander={true}
               showExpandableButton={true} 
               avatar="http://lorempixel.com/100/100/nature/"/>
-              
-            <Checkbox label="Staff" ref="checkbox" key={this.props.id} defaultChecked={right} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id)} />
+            
+            <div className="profile-checkboxes">
+              <Checkbox label="Team Leader" ref="checkbox" key={this.props.id} defaultChecked={right} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id)} />
+              <Checkbox label="Staff" ref="checkbox" key={this.props.id} defaultChecked={right} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id)} />
+            </div>
+
             <CardMedia key={this.props.id} expandable={true} overlay={<CardTitle title={this.props.users[i].first_name} subtitle="subtitle"/>}>
               <img key={this.props.id} src="http://lorempixel.com/600/337/nature/"/>
             </CardMedia>
