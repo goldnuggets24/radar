@@ -16,6 +16,7 @@ module.exports = React.createClass({
   displayName: 'Profile',
 
   handleSubmit: function(i, role) {
+    debugger;
     // uncheck / check based on selection
     var selected_user = ({});
     if (this.props.users.map(function(user){ if (user.id == i) {selected_user = user} }));
@@ -47,7 +48,7 @@ module.exports = React.createClass({
     var visible = {
       display: 'block'
     }
-
+    // selectedEvent as object
     var s = ({});
     for(var e=0;e<this.props.events.length;e++)if(this.props.events[e].id == this.props.selectedEvent){s = this.props.events[e]}
 
@@ -77,8 +78,8 @@ module.exports = React.createClass({
               style={this.props.selectedEvent ? visible : hidden} 
               className="profile-checkboxes"
             >
-              <Checkbox label="Team Leader" ref="checkbox" key={this.props.id} defaultChecked={is_team_lead} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id, 'team_lead')} />
-              <Checkbox label="Staff" ref="checkbox" key={this.props.id} defaultChecked={right} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id)} />
+              <Checkbox label="Team Leader" ref={"team_lead_checkbox"+i} key={this.props.id} defaultChecked={is_team_lead} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id, 'team_lead')} />
+              <Checkbox label="Staff" ref={"staff_checkbox"+i} key={this.props.id} defaultChecked={right} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id)} />
             </div>
 
             <CardMedia key={this.props.id} expandable={true} overlay={<CardTitle title={this.props.users[i].first_name} subtitle="subtitle"/>}>
