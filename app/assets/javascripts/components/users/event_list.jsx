@@ -36,7 +36,7 @@ module.exports = React.createClass({
 			multiSelectable: false,
 			enableSelectAll: false,
 			deselectOnClickaway: true,
-			height: '100px',
+			height: '90px',
     	};
 
 		var rows = [];
