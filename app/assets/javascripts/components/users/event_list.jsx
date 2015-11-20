@@ -69,10 +69,10 @@ module.exports = React.createClass({
 				onRowSelection={this._handleCheckBoxOnCheck}>
 			      <TableHeader key={this.state.enableSelectAll} enableSelectAll={this.state.enableSelectAll}>
 			        <TableRow>
-			          <TableHeaderColumn tooltip='The Date'>Date</TableHeaderColumn>
-			          <TableHeaderColumn tooltip='The Title'>Title</TableHeaderColumn>
-			          <TableHeaderColumn tooltip='The Description'>Description</TableHeaderColumn>
-			          <TableHeaderColumn tooltip='The City'>City</TableHeaderColumn>
+			          <TableHeaderColumn tooltip='Date'>Date</TableHeaderColumn>
+			          <TableHeaderColumn tooltip='Title'>Title</TableHeaderColumn>
+			          <TableHeaderColumn tooltip='Description'>Description</TableHeaderColumn>
+			          <TableHeaderColumn tooltip='City'>City</TableHeaderColumn>
 			        </TableRow>
 			      </TableHeader>
 			    <TableBody
