@@ -45,9 +45,18 @@ class EventsController < ApplicationController
   end
 
   def add_user
-    @event.users << User.find(params[:user])
+    events = Array.new
+    @user = User.find(params[:user])
+    
+    @event.users.each do |event| 
+      events << event.id
+    end
+    
+    unless events.include? @user.id
+      @event.users << @user
+    end
 
-    if params[:role]
+    if params[:role] && params[:role] != 'staff'
       Event.find(params[:id]).update_attributes(params[:role].intern => params[:user])
     end
 

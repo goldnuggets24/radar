@@ -56,6 +56,7 @@ module.exports = React.createClass({
 					</TableRowColumn>
 			          <TableRowColumn>{this.props.events[i].title}</TableRowColumn>
 			          <TableRowColumn>{this.props.events[i].description}</TableRowColumn>
+			          <TableRowColumn>{this.props.events[i].city}</TableRowColumn>
 			        </TableRow>
 		    );
 		}
@@ -69,13 +70,14 @@ module.exports = React.createClass({
 			      <TableHeader key={this.state.enableSelectAll} enableSelectAll={this.state.enableSelectAll}>
 			        <TableRow>
 			          <TableHeaderColumn colSpan="3" tooltip='Upcoming Events' style={{textAlign: 'center'}}>
-			            Upcoming Events
+			            <h3>Upcoming Events</h3>
 			          </TableHeaderColumn>
 			        </TableRow>
 			        <TableRow>
 			          <TableHeaderColumn tooltip='The Date'>Date</TableHeaderColumn>
-			          <TableHeaderColumn tooltip='The Name'>Title</TableHeaderColumn>
+			          <TableHeaderColumn tooltip='The Title'>Title</TableHeaderColumn>
 			          <TableHeaderColumn tooltip='The Description'>Description</TableHeaderColumn>
+			          <TableHeaderColumn tooltip='The City'>City</TableHeaderColumn>
 			        </TableRow>
 			      </TableHeader>
 			    <TableBody
