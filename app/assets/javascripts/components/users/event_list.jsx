@@ -69,11 +69,6 @@ module.exports = React.createClass({
 				onRowSelection={this._handleCheckBoxOnCheck}>
 			      <TableHeader key={this.state.enableSelectAll} enableSelectAll={this.state.enableSelectAll}>
 			        <TableRow>
-			          <TableHeaderColumn colSpan="3" tooltip='Upcoming Events' style={{textAlign: 'center'}}>
-			            <h3>Upcoming Events</h3>
-			          </TableHeaderColumn>
-			        </TableRow>
-			        <TableRow>
 			          <TableHeaderColumn tooltip='The Date'>Date</TableHeaderColumn>
 			          <TableHeaderColumn tooltip='The Title'>Title</TableHeaderColumn>
 			          <TableHeaderColumn tooltip='The Description'>Description</TableHeaderColumn>
