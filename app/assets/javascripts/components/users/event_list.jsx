@@ -6,6 +6,13 @@ var Checkbox = require('material-ui/lib/checkbox');
 var ListDivider = require('material-ui/lib/lists/list-divider');
 var ReactIntl = require('react-intl/lib/react-intl');
 var RadioButton = require('material-ui/lib/radio-button');
+var Table = require('material-ui/lib/table/table');
+var TableBody = require('material-ui/lib/table/table-body');
+var TableFooter = require('material-ui/lib/table/table-footer');
+var TableHeader = require('material-ui/lib/table/table-header');
+var TableHeaderColumn = require('material-ui/lib/table/table-header-column');
+var TableRow = require('material-ui/lib/table/table-row');
+var TableRowColumn = require('material-ui/lib/table/table-row-column');
 var IntlMixin = ReactIntl.IntlMixin;
 var FormattedDate = ReactIntl.FormattedDate;
 
@@ -14,45 +21,71 @@ module.exports = React.createClass({
 	mixins: [IntlMixin],
 
 	_handleCheckBoxOnCheck: function(event) {
-		if ($('.events-checkbox input').is(':checked')) {
-			this.props.onEventSelection(event);
-		} else {
-			this.props.onEventSelection('');
-		}
+		var eventselection = '';
+		for (var i=0; i < this.props.events.length; i++) {eventselection = this.props.events[event.toString()].id}
+		this.props.onEventSelection(eventselection);
 	},
 
 	render: function() {
+		// table options
+		this.state = {
+			fixedHeader: true,
+			stripedRows: true,
+			showRowHover: false,
+			selectable: true,
+			multiSelectable: false,
+			enableSelectAll: false,
+			deselectOnClickaway: true,
+			height: '100px',
+    	};
+
 		var rows = [];
 		for (var i=0; i < this.props.events.length; i++) {
 		    rows.push(
-		    	<List subheader={this.props.events[i].title} key={this.props.events[i].id}>
-      				<ListItem 
-      					key={this.props.events[i].id} 
-      					className="list-items"
-      					leftCheckbox={
-      						<RadioButton 
-      							className="events-checkbox" 
-      							name="event-list"
-      							value={this.props.events[i].date} 
-      							ref={this.props.events[i].date} 
-      							key={i} 
-      							checked={this.props.selectedEvent == this.props.events[i].id ? true : false}
-      							onCheck={this._handleCheckBoxOnCheck.bind(this, this.props.events[i].id)} />
-      						} 
-						primaryText={
-	  						this.props.events[i].description	
-        				}
-                    	secondaryText={<p>
-				                <FormattedDate
-				                    value={new Date(this.props.events[i].date.substring(0,4), Number(this.props.events[i].date.substring(5,7)) - 1, this.props.events[i].date.substring(8,10))}
-				                    day="numeric"
-				                    month="long"
-				                    year="numeric" />
-				            </p>} />
-    			</List>
+			      <TableRow 
+			      	selected={this.props.selectedEvent == this.props.events[i].id ? true : false}
+			      >
+			        <TableRowColumn>
+			          	<p>
+				           <FormattedDate
+								value={new Date(this.props.events[i].date.substring(0,4), Number(this.props.events[i].date.substring(5,7)) - 1, this.props.events[i].date.substring(8,10))}
+								day="numeric"
+								month="long"
+								year="numeric" />
+				            </p>
+					</TableRowColumn>
+			          <TableRowColumn>{this.props.events[i].title}</TableRowColumn>
+			          <TableRowColumn>{this.props.events[i].description}</TableRowColumn>
+			        </TableRow>
 		    );
 		}
-		return <div className="events-section"><h3 className="events-title">Events</h3>{rows}</div>;
+		return <div className="events-section">
+			<Table
+				height={this.state.height}
+				fixedHeader={this.state.fixedHeader}
+				selectable={this.state.selectable}
+				multiSelectable={this.state.multiSelectable}
+				onRowSelection={this._handleCheckBoxOnCheck}>
+			      <TableHeader key={this.state.enableSelectAll} enableSelectAll={this.state.enableSelectAll}>
+			        <TableRow>
+			          <TableHeaderColumn colSpan="3" tooltip='Upcoming Events' style={{textAlign: 'center'}}>
+			            Upcoming Events
+			          </TableHeaderColumn>
+			        </TableRow>
+			        <TableRow>
+			          <TableHeaderColumn tooltip='The Date'>Date</TableHeaderColumn>
+			          <TableHeaderColumn tooltip='The Name'>Title</TableHeaderColumn>
+			          <TableHeaderColumn tooltip='The Description'>Description</TableHeaderColumn>
+			        </TableRow>
+			      </TableHeader>
+			    <TableBody
+			        deselectOnClickaway={this.state.deselectOnClickaway}
+			        showRowHover={this.state.showRowHover}
+			        stripedRows={this.state.stripedRows}>
+			        	{rows}
+				</TableBody>
+	      		</Table>
+			</div>;
 	}
 });
 

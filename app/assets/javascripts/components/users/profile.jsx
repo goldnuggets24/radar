@@ -11,13 +11,6 @@ var FlatButton = require('material-ui/lib/flat-button');
 var Checkbox = require('material-ui/lib/checkbox');
 var DatePicker = require('../events_calendar/date-picker');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
-var Table = require('material-ui/lib/table/table');
-var TableBody = require('material-ui/lib/table/table-body');
-var TableFooter = require('material-ui/lib/table/table-footer');
-var TableHeader = require('material-ui/lib/table/table-header');
-var TableHeaderColumn = require('material-ui/lib/table/table-header-column');
-var TableRow = require('material-ui/lib/table/table-row');
-var TableRowColumn = require('material-ui/lib/table/table-row-column');
 
 module.exports = React.createClass({
   displayName: 'Profile',
@@ -47,17 +40,7 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    this.state = {
-      fixedHeader: true,
-      fixedFooter: true,
-      stripedRows: false,
-      showRowHover: false,
-      selectable: true,
-      multiSelectable: false,
-      enableSelectAll: false,
-      deselectOnClickaway: true,
-      height: '300px',
-    };
+    // table options
 
     var rows = [];
 
@@ -113,77 +96,6 @@ module.exports = React.createClass({
         </div>
       )
     }
-    return <div key={1}>    <Table
-      height={this.state.height}
-      fixedHeader={this.state.fixedHeader}
-      fixedFooter={this.state.fixedFooter}
-      selectable={this.state.selectable}
-      multiSelectable={this.state.multiSelectable}
-      onRowSelection={this._onRowSelection}>
-      <TableHeader enableSelectAll={this.state.enableSelectAll}>
-        <TableRow>
-          <TableHeaderColumn colSpan="3" tooltip='Super Header' style={{textAlign: 'center'}}>
-            Super Header
-          </TableHeaderColumn>
-        </TableRow>
-        <TableRow>
-          <TableHeaderColumn tooltip='The ID'>ID</TableHeaderColumn>
-          <TableHeaderColumn tooltip='The Name'>Name</TableHeaderColumn>
-          <TableHeaderColumn tooltip='The Status'>Status</TableHeaderColumn>
-        </TableRow>
-      </TableHeader>
-      <TableBody
-        deselectOnClickaway={this.state.deselectOnClickaway}
-        showRowHover={this.state.showRowHover}
-        stripedRows={this.state.stripedRows}>
-      <TableRow selected={true}>
-          <TableRowColumn>1</TableRowColumn>
-          <TableRowColumn>John Smith</TableRowColumn>
-          <TableRowColumn>Employed</TableRowColumn>
-        </TableRow>
-        <TableRow>
-          <TableRowColumn>2</TableRowColumn>
-          <TableRowColumn>Randal White</TableRowColumn>
-          <TableRowColumn>Unemployed</TableRowColumn>
-        </TableRow>
-        <TableRow selected={true}>
-          <TableRowColumn>3</TableRowColumn>
-          <TableRowColumn>Stephanie Sanders</TableRowColumn>
-          <TableRowColumn>Employed</TableRowColumn>
-        </TableRow>
-        <TableRow>
-          <TableRowColumn>4</TableRowColumn>
-          <TableRowColumn>Steve Brown</TableRowColumn>
-          <TableRowColumn>Employed</TableRowColumn>
-        </TableRow>
-        <TableRow>
-          <TableRowColumn>5</TableRowColumn>
-          <TableRowColumn>Joyce Whitten</TableRowColumn>
-          <TableRowColumn>Employed</TableRowColumn>
-        </TableRow>
-        <TableRow>
-          <TableRowColumn>6</TableRowColumn>
-          <TableRowColumn>Samuel Roberts</TableRowColumn>
-          <TableRowColumn>Unemployed</TableRowColumn>
-        </TableRow>
-        <TableRow>
-          <TableRowColumn>7</TableRowColumn>
-          <TableRowColumn>Adam Moore</TableRowColumn>
-          <TableRowColumn>Employed</TableRowColumn>
-        </TableRow>
-      </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TableRowColumn>ID</TableRowColumn>
-          <TableRowColumn>Name</TableRowColumn>
-          <TableRowColumn>Status</TableRowColumn>
-        </TableRow>
-        <TableRow>
-          <TableRowColumn colSpan="3" style={{textAlign: 'center'}}>
-            Super Footer
-          </TableRowColumn>
-        </TableRow>
-      </TableFooter>
-      </Table>{rows}</div>;
+    return <div key={1}>{rows}</div>;
   }
 });

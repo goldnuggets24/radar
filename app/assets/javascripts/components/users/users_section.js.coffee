@@ -165,11 +165,12 @@ UsersSection = React.createClass
       <AppBar title='Find and Add Promotional Staff to Your Events' className='hamburger' onLeftIconButtonTouchTap={@_handleClick} isInitiallyOpen={true}/>
       <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
 
+      <EventList selectedEvent={@state.selectedEvent} onEventSelection={@_handleOnEventSelection} events={all_events} key=1 />
+
       <PaginatorSection key={18908} totalPages={@state.meta.total_pages} currentPage={@state.meta.current_page} onPaginate={@_handleOnPaginate}/>
       <div className="col-md-2">
         <Checkbox className='toggle-users' key={1000} onCheck={@_handleOnCheckedProfileExpander} />
         <h3 className='toggle-users-title'>Toggle User Profiles</h3>
-        <EventList selectedEvent={@state.selectedEvent} onEventSelection={@_handleOnEventSelection} events={all_events} key=1 />
         <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
         <h4 className="search-text">Search by City:</h4>
         <SearchInput value={@state.city} className='search-input' style={searchInputStyle} ref='search' onChange={this.searchUpdated} />
