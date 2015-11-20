@@ -22,7 +22,7 @@ module.exports = React.createClass({
     if (this.props.users.map(function(user){ if (user.id == i) {selected_user = user} }));
     var myArray = selected_user.events.map(function(i) {return i.id});
 
-    if (this.refs["team_lead_checkbox-"+i].state.switched == true) {
+    if (this.refs["team_lead_checkbox-"+i].state.switched == false) {
 
       // if ($.inArray(this.props.selectedEvent, myArray) == -1) {
         $.get('/events/' + this.props.selectedEvent + '/add_user', {
@@ -56,12 +56,12 @@ module.exports = React.createClass({
 
     for (var i=0; i < this.props.users.length; i++) {
       // check / uncheck users depending on which event is selected
-      var right = false;
+      var is_staff = false;
       var is_team_lead = false;
       var myArray = this.props.users[i].events.map(function(i) {return i.id});
-      if ($.inArray(this.props.selectedEvent, myArray) != -1) {var right = true}
+      if ($.inArray(this.props.selectedEvent, myArray) != -1) {var is_staff = true}
       // is user a team lead for selected event?
-      if (s.team_lead == this.props.users[i].id) {is_team_lead = true}
+      if (s.team_lead == this.props.users[i].id) {(is_team_lead = true) && (is_staff = false)}
 
       rows.push(
         <div key={this.props.id} className="col-md-5">
@@ -81,7 +81,7 @@ module.exports = React.createClass({
               className="profile-checkboxes"
             >
               <Checkbox label="Team Leader" ref={"team_lead_checkbox-"+this.props.users[i].id} key={this.props.id} defaultChecked={is_team_lead} className={i} onCheck={this.handleSubmit.bind(this, this.props.users[i].id, 'team_lead')} />
-              <Checkbox label="Staff" ref={"staff_checkbox-"+this.props.users[i].id} key={this.props.id} defaultChecked={right} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id)} />
+              <Checkbox label="Staff" ref={"staff_checkbox-"+this.props.users[i].id} key={this.props.id} defaultChecked={is_staff} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id), 'staff'} />
             </div>
 
             <CardMedia key={this.props.id} expandable={true} overlay={<CardTitle title={this.props.users[i].first_name} subtitle="subtitle"/>}>
