@@ -46,8 +46,8 @@ UsersSection = React.createClass
     users: []
     attributes: []
     events: []
-    selectedEvent: ''
-    city: location.search.split('city=')[1]
+    selectedEvent: if location.href.indexOf('event=') != -1 then location.search.split('event=')[1].split('&')[0] else ''
+    city: if location.href.indexOf('city=') != -1 then location.search.split('city=')[1].split('&')[0] else ''
     initiallyExpanded: false
 
     fetchData:
@@ -143,7 +143,6 @@ UsersSection = React.createClass
         initiallyExpanded: false
 
   render: ->
-
     all_users = @state.users
     all_events = @state.events
     selectedEvent = @state.selectedEvent
@@ -182,3 +181,5 @@ UsersSection = React.createClass
 
 Staff = if $('#staff').length > 0 then ReactDOM.render(<UsersSection />, document.getElementById('staff')) else ''
 ReactDOM.render(<Navigation />, document.getElementById('nav'))
+Staff = if $('#create-event').length > 0 then ReactDOM.render(<NewEvent />, document.getElementById('create-event')) else ''
+

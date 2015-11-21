@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, :except => [:create, :index, :new]
+  before_action :set_event, :except => [:create, :index, :new, :route_to_home]
 
 	def index
     @all_events = Event.all.as_json(include: :users)
@@ -23,8 +23,7 @@ class EventsController < ApplicationController
     @event.update_attributes(:date => params[:start_date].to_date)
     if @event.save
       respond_to do |format|
-        format.html
-        format.json { render json: @event }
+        format.js {render js: "location.href = 'https://www.google.com'"}
       end
     else
       render json: @event.errors, status: :unprocessable_entity
@@ -68,6 +67,11 @@ class EventsController < ApplicationController
     @event.users.delete(@user)
     Event.find(params[:id]).update_attributes(params[:role].intern => nil)
     render json: Event.all
+  end
+
+  def route_to_home
+    @event = Event.last
+    redirect_to root_path(:event => @event.id, :city => @event.city)
   end
 
   private

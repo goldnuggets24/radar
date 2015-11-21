@@ -22,8 +22,3 @@ var MaterialMenu = React.createClass({
         );
     }
 });
-
-// ReactDOM.render(
-//   <MaterialMenu />,
-//   document.getElementById('test')
-// );

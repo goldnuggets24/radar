@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :events do
     get 'add_user', :on => :member
     get 'remove_user', :on => :member
+    get 'route_to_home', :on => :collection
   end
 
   authenticated :user do

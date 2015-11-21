@@ -39,7 +39,7 @@ module.exports = React.createClass({
       address: $('#mui-id-6').val(),
       city: $('#mui-id-7').val()
     }, (function(_this) {
-    	location.href = 'http://localhost:3000/?city=' + $('#mui-id-7').val();
+    	location.href = '/events/route_to_home'
     }) (this), 'JSON');
   },
 
