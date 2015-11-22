@@ -47,7 +47,7 @@ UsersSection = React.createClass
     attributes: []
     events: []
     selectedEvent: if location.href.indexOf('event=') != -1 then location.search.split('event=')[1].split('&')[0] else ''
-    city: if location.href.indexOf('city=') != -1 then location.search.split('city=')[1].split('&')[0] else ''
+    city: if location.href.indexOf('city=') != -1 then location.search.split('city=')[1].split('&')[0].replace(/[^a-zA-Z0-9]/g, ' ') else ''
     initiallyExpanded: false
 
     fetchData:

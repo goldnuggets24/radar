@@ -20,7 +20,9 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.update_attributes(:date => params[:start_date].to_date)
+    @event.update_attributes(:date => Date.strptime(params[:start_date], "%m/%d/%Y"))
+    binding.pry
+    @event.update_attributes(:city => params[:city])
     if @event.save
       respond_to do |format|
         format.js {render js: "location.href = 'https://www.google.com'"}
@@ -70,7 +72,7 @@ class EventsController < ApplicationController
   end
 
   def route_to_home
-    @event = Event.last
+    @event = Event.reorder("created_at ASC").last
     redirect_to root_path(:event => @event.id, :city => @event.city)
   end
 
@@ -81,6 +83,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :description, :date)
+    params.require(:event).permit(:title, :description, :date, :city, :address)
   end
 end
