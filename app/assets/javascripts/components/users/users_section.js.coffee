@@ -182,4 +182,3 @@ UsersSection = React.createClass
 Staff = if $('#staff').length > 0 then ReactDOM.render(<UsersSection />, document.getElementById('staff')) else ''
 ReactDOM.render(<Navigation />, document.getElementById('nav'))
 Staff = if $('#create-event').length > 0 then ReactDOM.render(<NewEvent />, document.getElementById('create-event')) else ''
-

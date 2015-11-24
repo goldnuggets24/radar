@@ -10,8 +10,18 @@ var CardTitle = require('material-ui/lib/card/card-title');
 var FlatButton = require('material-ui/lib/flat-button');
 var Checkbox = require('material-ui/lib/checkbox');
 var DatePicker = require('../events_calendar/date-picker');
+var List = require('material-ui/lib/lists/list');
+var ListItem = require('material-ui/lib/lists/list-item');
+var ListDivider = require('material-ui/lib/lists/list-divider');
 var Dialog = require('material-ui/lib/dialog');
 var RaisedButton = require('material-ui/lib/raised-button');
+var Table = require('material-ui/lib/table/table');
+var TableBody = require('material-ui/lib/table/table-body');
+var TableFooter = require('material-ui/lib/table/table-footer');
+var TableHeader = require('material-ui/lib/table/table-header');
+var TableHeaderColumn = require('material-ui/lib/table/table-header-column');
+var TableRow = require('material-ui/lib/table/table-row');
+var TableRowColumn = require('material-ui/lib/table/table-row-column');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 module.exports = React.createClass({
@@ -19,7 +29,8 @@ module.exports = React.createClass({
 
   getInitialState: function() {
       return {
-          openDialogStandardActions: false
+          openDialogStandardActions: false,
+          edit: false
       };
   },
 
@@ -52,14 +63,11 @@ module.exports = React.createClass({
   },
 
   render: function() {
-
     let standardActions = [
       { text: 'Cancel' },
       { text: 'Submit', onTouchTap: this._onDialogSubmit, ref: 'submit' }
     ];
     // table options
-
-    var rows = [];
 
     var hidden = {
       display: 'none'
@@ -72,16 +80,36 @@ module.exports = React.createClass({
     var s = ({});
 
     for(var e=0;e<this.props.events.length;e++)if(this.props.events[e].id == this.props.selectedEvent){s = this.props.events[e]}
-
+    
+    var tables = [];
+    // check / uncheck users depending on which event is selected
+    var is_staff = false;
+    var is_team_lead = false;
     for (var i=0; i < this.props.users.length; i++) {
-      // check / uncheck users depending on which event is selected
-      var is_staff = false;
-      var is_team_lead = false;
       var myArray = this.props.users[i].events.map(function(i) {return i.id});
       if ($.inArray(this.props.selectedEvent, myArray) != -1) {var is_staff = true}
       // is user a team lead for selected event?
       if (s.team_lead == this.props.users[i].id) {(is_team_lead = true) && (is_staff = false)}
+      tables.push(
+        <div key={this.props.id} className="col-md-5">
+          <TableRow>
+            <TableRowColumn>{this.props.users[i].last_name}</TableRowColumn>
+            <TableRowColumn>{this.props.users[i].city}</TableRowColumn>
+            <TableRowColumn>{this.props.users[i].city}</TableRowColumn>
+          </TableRow>
+        </div>
+      )
+    }
 
+    // check / uncheck users depending on which event is selected
+    var rows = [];
+    var is_staff = false;
+    var is_team_lead = false;
+    for (var i=0; i < this.props.users.length; i++) {
+      var myArray = this.props.users[i].events.map(function(i) {return i.id});
+      if ($.inArray(this.props.selectedEvent, myArray) != -1) {var is_staff = true}
+      // is user a team lead for selected event?
+      if (s.team_lead == this.props.users[i].id) {(is_team_lead = true) && (is_staff = false)}
       rows.push(
         <div key={this.props.id} className="col-md-5">
           <Card key={this.props.id} className="card-class" initiallyExpanded={this.props.initiallyExpanded}>
@@ -149,8 +177,35 @@ module.exports = React.createClass({
             </CardActions>
           </Card>
         </div>
-      )
+        )
+      }
+
+      if (this.state.edit) {
+        return <div>{rows}</div>
+      } else {
+        return <div>
+          <Table
+            height={this.state.height}
+            fixedHeader={this.state.fixedHeader}
+            selectable={this.state.selectable}
+            multiSelectable={this.state.multiSelectable}
+            onRowSelection={this._handleCheckBoxOnCheck}>
+            <TableHeader key={this.state.enableSelectAll} enableSelectAll={this.state.enableSelectAll}>
+              <TableRow>
+                <TableHeaderColumn tooltip='Date'>Date</TableHeaderColumn>
+                <TableHeaderColumn tooltip='Title'>Title</TableHeaderColumn>
+                <TableHeaderColumn tooltip='Description'>Description</TableHeaderColumn>
+                <TableHeaderColumn tooltip='City'>City</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody
+              deselectOnClickaway={this.state.deselectOnClickaway}
+              showRowHover={this.state.showRowHover}
+              stripedRows={this.state.stripedRows}>
+              {tables}
+            </TableBody>
+          </Table>
+          </div>
+      }
     }
-    return <div key={1}>{rows}</div>;
-  }
-});
+  });
