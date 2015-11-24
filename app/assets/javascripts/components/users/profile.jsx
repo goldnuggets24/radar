@@ -107,17 +107,44 @@ module.exports = React.createClass({
               <img key={this.props.id} src="http://lorempixel.com/600/337/nature/"/>
             </CardMedia>
             <CardTitle key={this.props.id + 1} title={this.props.users[i].city} subtitle={this.props.users[i].email}/>
-            <RaisedButton label="Show Profile" onTouchTap={this._handleStandardDialogTouchTap.bind(this, this.props.users[i].id)} />
+            <RaisedButton label="Show Full Profile" onTouchTap={this._handleStandardDialogTouchTap.bind(this, this.props.users[i].id)} />
             <Dialog
               ref={"profile-dialog-"+this.props.users[i].id}
               title={i.first_name}
               className={"profile-dialog"}
-              actions={standardActions}
               actionFocus="submit"
               open={this.state.openDialogStandardActions}
               onRequestClose={this._handleRequestClose}>
-              <h3>{this.props.users[i].first_name + ' ' + this.props.users[i].last_name}</h3>
+
+              <Card key={this.props.id} className="card-class" initiallyExpanded={true}>
+                <CardHeader
+                  expanded={this.props.initiallyExpanded}
+                  key={this.props.id}
+                  ref="CardHeader"
+                  title={this.props.users[i].first_name + ' ' + this.props.users[i].last_name}
+                  subtitle={
+                    <div>
+                      <h4>Sex: {this.props.users[i].sex}</h4>
+                      <h4>Ethnicity: {this.props.users[i].ethnicity}</h4>
+                    </div>
+                  }
+                  actAsExpander={true}
+                  showExpandableButton={true} 
+                  avatar="http://lorempixel.com/100/100/nature/"/>
+                
+                <div 
+                  style={this.props.selectedEvent ? visible : hidden} 
+                  className="profile-checkboxes"
+                >
+                  <Checkbox label="Team Leader" ref={"team_lead_checkbox-"+this.props.users[i].id} key={this.props.id} defaultChecked={is_team_lead} className={i} onCheck={this.handleSubmit.bind(this, this.props.users[i].id, 'team_lead')} />
+                  <Checkbox label="Staff" ref={"staff_checkbox-"+this.props.users[i].id} key={this.props.id} defaultChecked={is_staff} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id, 'staff')} />
+                </div>
+                <CardTitle key={this.props.id + 1} title={this.props.users[i].city} subtitle={this.props.users[i].email}/>
+                <CardActions key={this.props.id} expandable={true}>
+                </CardActions>
+              </Card>
             </Dialog>
+
             <CardActions key={this.props.id} expandable={true}>
             </CardActions>
           </Card>
