@@ -62,7 +62,11 @@ module.exports = React.createClass({
     this.refs['profile-dialog-'+user].show();
   },
 
-  _toggleProfiles: function() {
+  _condensedProfiles: function() {
+    this.setState({profile_toggle: false})
+  },
+
+  _expandedProfiles: function() {
     this.setState({profile_toggle: true})
   },
 
@@ -96,8 +100,8 @@ module.exports = React.createClass({
       if (s.team_lead == this.props.users[i].id) {(is_team_lead = true) && (is_staff = false)}
       tables.push(
           <TableRow>
-            <TableRowColumn>{this.props.users[i].last_name}</TableRowColumn>
-            <TableRowColumn>{this.props.users[i].city}</TableRowColumn>
+            <TableRowColumn>{this.props.users[i].first_name + ' ' + this.props.users[i].last_name}</TableRowColumn>
+            <TableRowColumn>{this.props.users[i].email}</TableRowColumn>
             <TableRowColumn>{this.props.users[i].city}</TableRowColumn>
           </TableRow>
         )
@@ -181,9 +185,9 @@ module.exports = React.createClass({
       }
 
       if (this.state.profile_toggle) {
-        return <div><FlatButton label="Default" onTouchTap={this._toggleProfiles} />{rows}</div>
+        return <div><FlatButton label="Condensed" onTouchTap={this._condensedProfiles} />{rows}</div>
       } else {
-        return <div><FlatButton label="Default" onTouchTap={this._toggleProfiles} />
+        return <div><FlatButton label="Expanded" onTouchTap={this._expandedProfiles} />
           <Table
             height={this.state.height}
             fixedHeader={this.state.fixedHeader}
@@ -192,9 +196,8 @@ module.exports = React.createClass({
             onRowSelection={this._handleCheckBoxOnCheck}>
             <TableHeader key={this.state.enableSelectAll} enableSelectAll={this.state.enableSelectAll}>
               <TableRow>
-                <TableHeaderColumn tooltip='Date'>Date</TableHeaderColumn>
-                <TableHeaderColumn tooltip='Title'>Title</TableHeaderColumn>
-                <TableHeaderColumn tooltip='Description'>Description</TableHeaderColumn>
+                <TableHeaderColumn tooltip='Name'>Name</TableHeaderColumn>
+                <TableHeaderColumn tooltip='Email'>Email</TableHeaderColumn>
                 <TableHeaderColumn tooltip='City'>City</TableHeaderColumn>
               </TableRow>
             </TableHeader>
