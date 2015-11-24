@@ -30,7 +30,7 @@ module.exports = React.createClass({
   getInitialState: function() {
       return {
           openDialogStandardActions: false,
-          edit: false
+          profile_toggle: false
       };
   },
 
@@ -62,6 +62,10 @@ module.exports = React.createClass({
     this.refs['profile-dialog-'+user].show();
   },
 
+  _toggleProfiles: function() {
+    this.setState({profile_toggle: true})
+  },
+
   render: function() {
     let standardActions = [
       { text: 'Cancel' },
@@ -91,20 +95,16 @@ module.exports = React.createClass({
       // is user a team lead for selected event?
       if (s.team_lead == this.props.users[i].id) {(is_team_lead = true) && (is_staff = false)}
       tables.push(
-        <div key={this.props.id} className="col-md-5">
           <TableRow>
             <TableRowColumn>{this.props.users[i].last_name}</TableRowColumn>
             <TableRowColumn>{this.props.users[i].city}</TableRowColumn>
             <TableRowColumn>{this.props.users[i].city}</TableRowColumn>
           </TableRow>
-        </div>
-      )
-    }
+        )
+      }
 
     // check / uncheck users depending on which event is selected
     var rows = [];
-    var is_staff = false;
-    var is_team_lead = false;
     for (var i=0; i < this.props.users.length; i++) {
       var myArray = this.props.users[i].events.map(function(i) {return i.id});
       if ($.inArray(this.props.selectedEvent, myArray) != -1) {var is_staff = true}
@@ -180,10 +180,10 @@ module.exports = React.createClass({
         )
       }
 
-      if (this.state.edit) {
-        return <div>{rows}</div>
+      if (this.state.profile_toggle) {
+        return <div><FlatButton label="Default" onTouchTap={this._toggleProfiles} />{rows}</div>
       } else {
-        return <div>
+        return <div><FlatButton label="Default" onTouchTap={this._toggleProfiles} />
           <Table
             height={this.state.height}
             fixedHeader={this.state.fixedHeader}
