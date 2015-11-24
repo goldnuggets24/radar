@@ -10,10 +10,18 @@ var CardTitle = require('material-ui/lib/card/card-title');
 var FlatButton = require('material-ui/lib/flat-button');
 var Checkbox = require('material-ui/lib/checkbox');
 var DatePicker = require('../events_calendar/date-picker');
+var Dialog = require('material-ui/lib/dialog');
+var RaisedButton = require('material-ui/lib/raised-button');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 module.exports = React.createClass({
   displayName: 'Profile',
+
+  getInitialState: function() {
+      return {
+          openDialogStandardActions: false
+      };
+  },
 
   handleSubmit: function(i, role) {
     // uncheck / check based on selection
@@ -39,7 +47,16 @@ module.exports = React.createClass({
       this.props.onCheckedEvent(i);
   },
 
+  _handleStandardDialogTouchTap: function(user) {
+    this.refs['profile-dialog-'+user].show();
+  },
+
   render: function() {
+
+    let standardActions = [
+      { text: 'Cancel' },
+      { text: 'Submit', onTouchTap: this._onDialogSubmit, ref: 'submit' }
+    ];
     // table options
 
     var rows = [];
@@ -90,6 +107,17 @@ module.exports = React.createClass({
               <img key={this.props.id} src="http://lorempixel.com/600/337/nature/"/>
             </CardMedia>
             <CardTitle key={this.props.id + 1} title={this.props.users[i].city} subtitle={this.props.users[i].email}/>
+            <RaisedButton label="Show Profile" onTouchTap={this._handleStandardDialogTouchTap.bind(this, this.props.users[i].id)} />
+            <Dialog
+              ref={"profile-dialog-"+this.props.users[i].id}
+              title={i.first_name}
+              className={"profile-dialog"}
+              actions={standardActions}
+              actionFocus="submit"
+              open={this.state.openDialogStandardActions}
+              onRequestClose={this._handleRequestClose}>
+              <h3>{this.props.users[i].first_name + ' ' + this.props.users[i].last_name}</h3>
+            </Dialog>
             <CardActions key={this.props.id} expandable={true}>
             </CardActions>
           </Card>
