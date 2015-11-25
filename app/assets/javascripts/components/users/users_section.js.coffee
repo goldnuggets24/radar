@@ -125,7 +125,7 @@ UsersSection = React.createClass
     e.preventDefault
 
   searchUpdated: (term) ->
-    @state.fetchData.per = 100
+    @state.fetchData.per = 90
     @setState 
       searchTerm: term
 

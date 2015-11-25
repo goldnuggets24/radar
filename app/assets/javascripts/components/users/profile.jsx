@@ -156,8 +156,8 @@ module.exports = React.createClass({
                   title={this.props.users[i].first_name + ' ' + this.props.users[i].last_name}
                   subtitle={
                     <div>
-                      <h5>Sex: {this.props.users[i].sex}</h5>
-                      <h5>Ethnicity: {this.props.users[i].ethnicity}</h5>
+                      <h6>Sex: {this.props.users[i].sex}</h6>
+                      <h6>Ethnicity: {this.props.users[i].ethnicity}</h6>
                     </div>
                   }
                   actAsExpander={true}
