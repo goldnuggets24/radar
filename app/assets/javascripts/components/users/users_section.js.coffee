@@ -54,6 +54,7 @@ UsersSection = React.createClass
       search: ''
       attr: ''
       page: 1
+      per: ''
 
     meta:
       total_pages: 0
@@ -142,6 +143,10 @@ UsersSection = React.createClass
       @setState 
         initiallyExpanded: false
 
+  _handleToggleCondensedUserList: () ->
+    @setState
+      per: 20
+
   render: ->
     all_users = @state.users
     all_events = @state.events
@@ -175,7 +180,7 @@ UsersSection = React.createClass
         <SearchInput value={@state.city} className='search-input' style={searchInputStyle} ref='search' onChange={this.searchUpdated} />
       </div>
       <div className="col-md-10">
-        <Profile key={1} initiallyExpanded={@state.initiallyExpanded} onCheckedEvent={@_handleOnCheckedEvent} selectedEvent={selectedEvent} events={all_events} users={@state.users} />
+        <Profile key={1} initiallyExpanded={@state.initiallyExpanded} onToggle={@_handleToggleCondensedUserList} onCheckedEvent={@_handleOnCheckedEvent} selectedEvent={selectedEvent} events={all_events} users={@state.users} />
       </div>
     </div>
 
