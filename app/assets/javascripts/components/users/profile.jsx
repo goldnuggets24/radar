@@ -29,8 +29,7 @@ module.exports = React.createClass({
 
   getInitialState: function() {
       return {
-          openDialogStandardActions: false,
-          profile_toggle: false
+          openDialogStandardActions: false
       };
   },
 
@@ -63,11 +62,11 @@ module.exports = React.createClass({
   },
 
   _condensedProfiles: function() {
-    this.setState({profile_toggle: false})
+    this.props.onToggle(20, false);
   },
 
   _expandedProfiles: function() {
-    this.setState({profile_toggle: true})
+    this.props.onToggle(4, true);
   },
 
   render: function() {
@@ -184,7 +183,7 @@ module.exports = React.createClass({
         )
       }
 
-      if (this.state.profile_toggle) {
+      if (this.props.profile_toggle) {
         return <div><FlatButton label="Condensed" onTouchTap={this._condensedProfiles} />{rows}</div>
       } else {
         return <div><FlatButton label="Expanded" onTouchTap={this._expandedProfiles} />

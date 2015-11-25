@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :events
   
-  paginates_per 4
+  paginates_per 20
   # after_create :create_user_profile
 
   # has_one :user_profile, dependent: :destroy

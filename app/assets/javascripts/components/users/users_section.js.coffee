@@ -49,12 +49,13 @@ UsersSection = React.createClass
     selectedEvent: if location.href.indexOf('event=') != -1 then location.search.split('event=')[1].split('&')[0] else ''
     city: if location.href.indexOf('city=') != -1 then location.search.split('city=')[1].split('&')[0].replace(/[^a-zA-Z0-9]/g, ' ') else ''
     initiallyExpanded: false
+    profile_toggle: false
 
     fetchData:
       search: ''
       attr: ''
       page: 1
-      per: ''
+      per: 20
 
     meta:
       total_pages: 0
@@ -143,9 +144,12 @@ UsersSection = React.createClass
       @setState 
         initiallyExpanded: false
 
-  _handleToggleCondensedUserList: () ->
-    @setState
-      per: 20
+  _handleToggleCondensedUserList: (e, bool) ->
+    @state.fetchData.per = e
+    @setState 
+      profile_toggle: bool
+
+    @_fetchUsers()
 
   render: ->
     all_users = @state.users
@@ -180,7 +184,7 @@ UsersSection = React.createClass
         <SearchInput value={@state.city} className='search-input' style={searchInputStyle} ref='search' onChange={this.searchUpdated} />
       </div>
       <div className="col-md-10">
-        <Profile key={1} initiallyExpanded={@state.initiallyExpanded} onToggle={@_handleToggleCondensedUserList} onCheckedEvent={@_handleOnCheckedEvent} selectedEvent={selectedEvent} events={all_events} users={@state.users} />
+        <Profile key={1} profile_toggle={@state.profile_toggle} initiallyExpanded={@state.initiallyExpanded} onToggle={@_handleToggleCondensedUserList} onCheckedEvent={@_handleOnCheckedEvent} selectedEvent={selectedEvent} events={all_events} users={@state.users} />
       </div>
     </div>
 

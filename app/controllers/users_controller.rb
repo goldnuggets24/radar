@@ -53,7 +53,7 @@ class UsersController < ApplicationController
         User.where(:ethnicity => params[:attr]).includes(:events)
       end
     else
-      User.page(params[:page]).per(4).includes(:events)
+      User.page(params[:page]).per(params[:per]).includes(:events)
     end.sorted
   end
 
