@@ -185,9 +185,9 @@ module.exports = React.createClass({
       }
 
       if (this.props.profile_toggle) {
-        return <div><FlatButton key={'button-1'} label="Condensed" onTouchTap={this._condensedProfiles} />{rows}</div>
+        return <div><FlatButton key={'button-1'} label="Expanded View" onTouchTap={this._condensedProfiles} />{rows}</div>
       } else {
-        return <div><FlatButton key={'button-2'} label="Expanded" onTouchTap={this._expandedProfiles} />
+        return <div><FlatButton key={'button-2'} label="Condensed View" onTouchTap={this._expandedProfiles} />
           <Table
             key={24353647}
             height={this.state.height}
