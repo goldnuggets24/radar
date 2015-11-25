@@ -154,3 +154,9 @@ h3.toggle-users-title {
   color: #000;
   font-weight: 600;
 }
+
+/* DELETE THIS LATER! */
+
+@media (max-width: 600px) {
+  #nav {display: none;}
+}

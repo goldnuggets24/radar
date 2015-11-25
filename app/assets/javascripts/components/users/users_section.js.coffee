@@ -125,8 +125,11 @@ UsersSection = React.createClass
     e.preventDefault
 
   searchUpdated: (term) ->
+    @state.fetchData.per = 100
+    @setState 
+      searchTerm: term
+
     @_fetchUsers()
-    @setState searchTerm: term
 
   _handleOnEventSelection: (e) ->
     @setState 

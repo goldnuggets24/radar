@@ -99,9 +99,9 @@ module.exports = React.createClass({
       if (s.team_lead == this.props.users[i].id) {(is_team_lead = true) && (is_staff = false)}
       tables.push(
           <TableRow>
-            <TableRowColumn>{this.props.users[i].first_name + ' ' + this.props.users[i].last_name}</TableRowColumn>
-            <TableRowColumn>{this.props.users[i].email}</TableRowColumn>
-            <TableRowColumn>{this.props.users[i].city}</TableRowColumn>
+            <TableRowColumn key='table-row-1'>{this.props.users[i].first_name + ' ' + this.props.users[i].last_name}</TableRowColumn>
+            <TableRowColumn key='table-row-2'>{this.props.users[i].email}</TableRowColumn>
+            <TableRowColumn key='table-row-3'>{this.props.users[i].city}</TableRowColumn>
           </TableRow>
         )
       }
@@ -138,8 +138,9 @@ module.exports = React.createClass({
               <img key={this.props.id} src="http://lorempixel.com/600/337/nature/"/>
             </CardMedia>
             <CardTitle key={this.props.id + 1} title={this.props.users[i].city} subtitle={this.props.users[i].email}/>
-            <RaisedButton label="Show Full Profile" onTouchTap={this._handleStandardDialogTouchTap.bind(this, this.props.users[i].id)} />
+            <RaisedButton key='raised-button-key' label="Show Full Profile" onTouchTap={this._handleStandardDialogTouchTap.bind(this, this.props.users[i].id)} />
             <Dialog
+              key='profile-dialog'
               ref={"profile-dialog-"+this.props.users[i].id}
               title={i.first_name}
               className={"profile-dialog"}
@@ -155,8 +156,8 @@ module.exports = React.createClass({
                   title={this.props.users[i].first_name + ' ' + this.props.users[i].last_name}
                   subtitle={
                     <div>
-                      <h4>Sex: {this.props.users[i].sex}</h4>
-                      <h4>Ethnicity: {this.props.users[i].ethnicity}</h4>
+                      <h5>Sex: {this.props.users[i].sex}</h5>
+                      <h5>Ethnicity: {this.props.users[i].ethnicity}</h5>
                     </div>
                   }
                   actAsExpander={true}
@@ -167,8 +168,8 @@ module.exports = React.createClass({
                   style={this.props.selectedEvent ? visible : hidden} 
                   className="profile-checkboxes"
                 >
-                  <Checkbox label="Team Leader" ref={"team_lead_checkbox-"+this.props.users[i].id} key={this.props.id} defaultChecked={is_team_lead} className={i} onCheck={this.handleSubmit.bind(this, this.props.users[i].id, 'team_lead')} />
-                  <Checkbox label="Staff" ref={"staff_checkbox-"+this.props.users[i].id} key={this.props.id} defaultChecked={is_staff} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id, 'staff')} />
+                  <Checkbox label="Team Leader" ref={"team_lead_checkbox-"+this.props.users[i].id} key={this.props.id+'g'} defaultChecked={is_team_lead} className={i} onCheck={this.handleSubmit.bind(this, this.props.users[i].id, 'team_lead')} />
+                  <Checkbox label="Staff" ref={"staff_checkbox-"+this.props.users[i].id} key={this.props.id+'d'} defaultChecked={is_staff} className={this.props.first_name} onCheck={this.handleSubmit.bind(this, this.props.users[i].id, 'staff')} />
                 </div>
                 <CardTitle key={this.props.id + 1} title={this.props.users[i].city} subtitle={this.props.users[i].email}/>
                 <CardActions key={this.props.id} expandable={true}>
@@ -184,23 +185,25 @@ module.exports = React.createClass({
       }
 
       if (this.props.profile_toggle) {
-        return <div><FlatButton label="Condensed" onTouchTap={this._condensedProfiles} />{rows}</div>
+        return <div><FlatButton key={'button-1'} label="Condensed" onTouchTap={this._condensedProfiles} />{rows}</div>
       } else {
-        return <div><FlatButton label="Expanded" onTouchTap={this._expandedProfiles} />
+        return <div><FlatButton key={'button-2'} label="Expanded" onTouchTap={this._expandedProfiles} />
           <Table
+            key={24353647}
             height={this.state.height}
             fixedHeader={this.state.fixedHeader}
             selectable={this.state.selectable}
             multiSelectable={this.state.multiSelectable}
             onRowSelection={this._handleCheckBoxOnCheck}>
-            <TableHeader key={this.state.enableSelectAll} enableSelectAll={this.state.enableSelectAll}>
+            <TableHeader key={32456774635} enableSelectAll={this.state.enableSelectAll}>
               <TableRow>
-                <TableHeaderColumn tooltip='Name'>Name</TableHeaderColumn>
-                <TableHeaderColumn tooltip='Email'>Email</TableHeaderColumn>
-                <TableHeaderColumn tooltip='City'>City</TableHeaderColumn>
+                <TableHeaderColumn key={7867546} tooltip='Name'>Name</TableHeaderColumn>
+                <TableHeaderColumn key={3245354} tooltip='Email'>Email</TableHeaderColumn>
+                <TableHeaderColumn key={3234555} tooltip='City'>City</TableHeaderColumn>
               </TableRow>
             </TableHeader>
             <TableBody
+              key={4593859}
               deselectOnClickaway={this.state.deselectOnClickaway}
               showRowHover={this.state.showRowHover}
               stripedRows={this.state.stripedRows}>
