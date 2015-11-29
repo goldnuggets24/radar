@@ -182,7 +182,7 @@ UsersSection = React.createClass
       <div className="col-md-2">
         <Checkbox className='toggle-users' key={1000} onCheck={@_handleOnCheckedProfileExpander} />
         <h3 className='toggle-users-title'>Toggle User Profiles</h3>
-        <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
+
         <h4 className="search-text">Search by City:</h4>
         <SearchInput value={@state.city} className='search-input' style={searchInputStyle} ref='search' onChange={this.searchUpdated} />
       </div>
