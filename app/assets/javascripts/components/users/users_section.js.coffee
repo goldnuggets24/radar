@@ -15,6 +15,7 @@ Checkbox = require('material-ui/lib/checkbox')
 RadioButton = require('material-ui/lib/radio-button')
 EventList = require('./event_list.jsx')
 injectTapEventPlugin = require("react-tap-event-plugin")
+Paper = require('material-ui/lib/paper')
 injectTapEventPlugin()
 
 menuItems = [
@@ -180,11 +181,20 @@ UsersSection = React.createClass
 
       <PaginatorSection key={18908} totalPages={@state.meta.total_pages} currentPage={@state.meta.current_page} onPaginate={@_handleOnPaginate}/>
       <div className="col-md-2">
-        <Checkbox className='toggle-users' key={1000} onCheck={@_handleOnCheckedProfileExpander} />
-        <h3 className='toggle-users-title'>Toggle User Profiles</h3>
 
-        <h4 className="search-text">Search by City:</h4>
-        <SearchInput value={@state.city} className='search-input' style={searchInputStyle} ref='search' onChange={this.searchUpdated} />
+        <Paper zDepth={1} className="paper">
+          <Checkbox className='toggle-users' key={1000} onCheck={@_handleOnCheckedProfileExpander} />
+          <h3 className='toggle-users-title'>Toggle User Profiles</h3>
+        </Paper>
+
+        <Paper zDepth={1} className="paper">
+          <h4 className="search-text">Search by City:</h4>
+          <SearchInput value={@state.city} className='search-input' style={searchInputStyle} ref='search' onChange={this.searchUpdated} />
+        </Paper>
+
+        <Paper zDepth={1} className="paper">
+          <FilterableUserAttributes onFilterLinkClick={@_handleOnClickFilter} />
+        </Paper>
       </div>
       <div className="col-md-10">
         <Profile key={1} profile_toggle={@state.profile_toggle} initiallyExpanded={@state.initiallyExpanded} onToggle={@_handleToggleCondensedUserList} onCheckedEvent={@_handleOnCheckedEvent} selectedEvent={@state.selectedEvent} events={all_events} users={@state.users} />
