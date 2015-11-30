@@ -22,7 +22,8 @@ module.exports = React.createClass({
 
 	_handleCheckBoxOnCheck: function(event) {
 		var eventselection = '';
-		for (var i=0; i < this.props.events.length; i++) {eventselection = this.props.events[event.toString()].id}
+		debugger;
+		for (var i=0; i < this.props.events.length; i++) {eventselection = event.length == 0 ? '' : this.props.events[event.toString()].id}
 		this.props.onEventSelection(eventselection);
 	},
 

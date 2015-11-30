@@ -133,6 +133,7 @@ UsersSection = React.createClass
 
   _handleOnEventSelection: (e) ->
     @_fetchUsers()
+    debugger
     @setState
       selectedEvent: e
 
