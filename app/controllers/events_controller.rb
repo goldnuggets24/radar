@@ -67,7 +67,7 @@ class EventsController < ApplicationController
   def remove_user
     @user = User.find(params[:user])
     @event.users.delete(@user)
-    Event.find(params[:id]).update_attributes(params[:role].intern => nil)
+    Event.find(params[:id]).update_attributes(params[:role].intern => nil) unless params[:role] == 'staff'
     render json: Event.all
   end
 

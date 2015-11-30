@@ -132,9 +132,9 @@ UsersSection = React.createClass
     @_fetchUsers()
 
   _handleOnEventSelection: (e) ->
-    @setState 
-      selectedEvent: e
     @_fetchUsers()
+    @setState
+      selectedEvent: e
 
   _handleOnCheckedEvent: (e) ->
     @_fetchUsers()
@@ -157,7 +157,6 @@ UsersSection = React.createClass
   render: ->
     all_users = @state.users
     all_events = @state.events
-    selectedEvent = @state.selectedEvent
 
     searchInputStyle =
       float: 'left'
@@ -187,7 +186,7 @@ UsersSection = React.createClass
         <SearchInput value={@state.city} className='search-input' style={searchInputStyle} ref='search' onChange={this.searchUpdated} />
       </div>
       <div className="col-md-10">
-        <Profile key={1} profile_toggle={@state.profile_toggle} initiallyExpanded={@state.initiallyExpanded} onToggle={@_handleToggleCondensedUserList} onCheckedEvent={@_handleOnCheckedEvent} selectedEvent={selectedEvent} events={all_events} users={@state.users} />
+        <Profile key={1} profile_toggle={@state.profile_toggle} initiallyExpanded={@state.initiallyExpanded} onToggle={@_handleToggleCondensedUserList} onCheckedEvent={@_handleOnCheckedEvent} selectedEvent={@state.selectedEvent} events={all_events} users={@state.users} />
       </div>
     </div>
 

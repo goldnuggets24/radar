@@ -37,8 +37,7 @@ module.exports = React.createClass({
     // uncheck / check based on selection
     var selected_user = ({});
     if (this.props.users.map(function(user){ if (user.id == i) {selected_user = user} }));
-    var myArray = selected_user.events.map(function(i) {return i.id});
-
+    // var myArray = selected_user.events.map(function(i) {return i.id});
     if (this.refs[role+"_checkbox-"+i].state.switched == false) {
 
       // if ($.inArray(this.props.selectedEvent, myArray) == -1) {
@@ -90,13 +89,13 @@ module.exports = React.createClass({
     
     var tables = [];
     // check / uncheck users depending on which event is selected
-    var is_staff = false;
-    var is_team_lead = false;
+    // var is_staff = false;
+    // var is_team_lead = false;
     for (var i=0; i < this.props.users.length; i++) {
-      var myArray = this.props.users[i].events.map(function(i) {return i.id});
-      if ($.inArray(this.props.selectedEvent, myArray) != -1) {var is_staff = true}
-      // is user a team lead for selected event?
-      if (s.team_lead == this.props.users[i].id) {(is_team_lead = true) && (is_staff = false)}
+      // var myArray = this.props.users[i].events.map(function(i) {return i.id});
+      // if ($.inArray(this.props.selectedEvent, myArray) != -1) {var is_staff = true}
+      // // is user a team lead for selected event?
+      // if (s.team_lead == this.props.users[i].id) {(is_team_lead = true) && (is_staff = false)}
       tables.push(
           <TableRow>
             <TableRowColumn key='table-row-1'>{this.props.users[i].first_name + ' ' + this.props.users[i].last_name}</TableRowColumn>
@@ -106,11 +105,15 @@ module.exports = React.createClass({
         )
       }
 
-    // check / uncheck users depending on which event is selected
+    // check / uncheck user roles depending on which event is selected
     var rows = [];
     for (var i=0; i < this.props.users.length; i++) {
-      var myArray = this.props.users[i].events.map(function(i) {return i.id});
-      if ($.inArray(this.props.selectedEvent, myArray) != -1) {var is_staff = true}
+      
+      var is_staff = false;
+      var is_team_lead = false;
+      var myArray = this.props.users[i].events.map(function(e) {return e.id});
+      
+      if ($.inArray(this.props.selectedEvent, myArray) != -1) {is_staff = true}
       // is user a team lead for selected event?
       if (s.team_lead == this.props.users[i].id) {(is_team_lead = true) && (is_staff = false)}
       rows.push(
