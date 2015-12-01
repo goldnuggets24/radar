@@ -73,7 +73,7 @@ module.exports = React.createClass({
 			          <TableHeaderColumn tooltip='Date'>Date</TableHeaderColumn>
 			          <TableHeaderColumn tooltip='Title'>Title</TableHeaderColumn>
 			          <TableHeaderColumn tooltip='Description'>Description</TableHeaderColumn>
-			          <TableHeaderColumn tooltip='City'>City</TableHeaderColumn>
+			          <TableHeaderColumn tooltip='City'>City </TableHeaderColumn>
 			        </TableRow>
 			      </TableHeader>
 			    <TableBody
