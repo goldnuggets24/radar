@@ -17,6 +17,8 @@ gem 'font-awesome-rails'
 gem "browserify-rails"
 gem "bower-rails"
 gem "kaminari"
+gem "fullcalendar-rails"
+gem "momentjs-rails"
 
 group :development, :test do
   gem 'byebug'

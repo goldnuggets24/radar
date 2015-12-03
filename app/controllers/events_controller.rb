@@ -7,12 +7,15 @@ class EventsController < ApplicationController
         str = params[:date]
         @events = Event.where(:date => str.slice(0..(str.index(' GMT')))).as_json(include: :users)
     else
-      @events = Event.all.as_json(include: :users)
+      @events = Event.all.includes([:users])
     end
-    respond_to do |format|
-      format.html
-      format.json { render json: {events: @events} }
-    end
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: {events: @events} }
+    # end
+  end
+
+  def show
   end
 
   def new

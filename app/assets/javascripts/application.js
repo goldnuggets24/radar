@@ -17,7 +17,8 @@
 //= require js-routes
 //= require_tree .
 //= require_tree ./components
-
+//= require moment
+//= require fullcalendar
 
 Object.assign(window, require('./components/*.js', {mode: 'hash'}));
 window.ReactDOM = require('react-dom');
