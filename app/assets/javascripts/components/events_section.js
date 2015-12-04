@@ -10,10 +10,11 @@ injectTapEventPlugin();
 
 window.date = ''
 window.fc = ({})
+
 window.EventsSection = React.createClass({
 
-  componentWillMount: function(){
-    fc.love = (data) => {
+  componentDidMount: function(){
+    fc.day = (data) => {
       this.setState({fc_clicked_date: data});
     };
   },
@@ -81,7 +82,7 @@ window.EventsSection = React.createClass({
     });
   },
 
-  fullCalendar: function() {
+  fullCalendar: function(events) {
     $('#full-calendar').fullCalendar({
       header: {
         left: 'prev,next today',
@@ -90,19 +91,19 @@ window.EventsSection = React.createClass({
       },
       defaultDate: '2015-12-12',
       editable: true,
-      events: '/events',
+      events: events,
       dayClick: function(date, jsEvent, view) {
         // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
         // alert('Current view: ' + view.name);
         $(this).css('background-color', 'red');
-        fc.love(date.format());
+        fc.day(date.format());
       }
     });
   },
 
   render: function() {
 
-    this.fullCalendar();
+    this.fullCalendar(this.state.events);
 
     var event;
     return React.DOM.div({
