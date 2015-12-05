@@ -13,7 +13,8 @@ module.exports = React.createClass({
       title: '',
       description: '',
       address: '',
-      city: ''
+      city: '',
+      start_date: location.href.indexOf('date=') != -1 ? location.search.split('date=')[1].split('&')[0].replace(/[^a-zA-Z0-9]/g, ' ') : ''
     };
   },
   valid: function() {
@@ -60,6 +61,14 @@ module.exports = React.createClass({
 					onChange={this.handleChange}
 				/>
 
+				<TextField
+		          	type='text'
+					hintText='Location'
+					name='location'
+					value={this.state.location}
+					onChange={this.handleChange}
+				/>
+
 				 <TextField
 		          	type='text'
 					hintText='Description'
@@ -67,26 +76,6 @@ module.exports = React.createClass({
 					value={this.state.description}
 					onChange={this.handleChange}
 				/>
-
-				<DatePicker
-					name='start_date'
-					hintText="Start Date"
-					mode="portrait" />
-
-				<DatePicker
-					name='end_date'
-					hintText="End Date"
-					mode="portrait" />
-
-				<TimePicker
-					name='start_time'
-					hintText="Start Time"
-					mode="portrait" />
-
-				<TimePicker
-					name='end_time'
-					hintText="End Time"
-					mode="portrait" />
 				
 				<TextField
 		          	type='text'
@@ -104,9 +93,65 @@ module.exports = React.createClass({
 					onChange={this.handleChange}
 				/>
 
+				<h3 className="tracking-header">Dates &amp; Times</h3>
+
+				<DatePicker
+					name='start_date'
+					className='pull-left'
+					hintText={this.state.start_date}
+					value={this.state.start_date}
+					mode="portrait" />
+
+				<DatePicker
+					name='end_date'
+					hintText="End Date"
+					mode="portrait" />
+
+				<TimePicker
+					name='start_time'
+					className='pull-left'
+					hintText="Start Time"
+					mode="portrait" />
+
+				<TimePicker
+					name='end_time'
+					hintText="End Time"
+					mode="portrait" />
+
+				<h3 className="tracking-header">Tracking</h3>
+
+				<TextField
+		          	type='text'
+					hintText='Manager'
+					name='manager'
+					className='pull-left'
+					value={this.state.manager}
+					onChange={this.handleChange}
+				/>
+
+				<TextField
+		          	type='text'
+		          	className='pull-left'
+					hintText='Client'
+					name='client'
+					value={this.state.client}
+					onChange={this.handleChange}
+				/>
+
+				<TextField
+		          	type='text'
+		          	className='pull-left'
+					hintText='Region'
+					name='region'
+					value={this.state.region}
+					onChange={this.handleChange}
+				/>
+
+				<div className="clearfix">&nbsp;</div>
+
 				 <FlatButton
 			        type='submit'
-			        className='btn btn-primary create-event'
+			        className='btn pull-left clearfix btn-primary create-event'
 			        disabled={!this.valid()}
 			        label='Create event' />
 

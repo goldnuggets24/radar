@@ -92,11 +92,18 @@ window.EventsSection = React.createClass({
       defaultDate: '2015-12-12',
       editable: true,
       events: events,
+      eventClick: function(calEvent, jsEvent, view) {
+        // alert('Event: ' + calEvent.date);
+        // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+        // alert('View: ' + view.name);
+        $(this).css('border-color', 'green');
+      },
       dayClick: function(date, jsEvent, view) {
         // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
         // alert('Current view: ' + view.name);
         $(this).css('background-color', 'red');
         fc.day(date.format());
+        location.href = '/events/new?date=' + date.format();
       }
     });
   },

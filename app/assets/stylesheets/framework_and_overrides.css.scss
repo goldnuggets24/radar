@@ -132,6 +132,8 @@ h3.toggle-users-title {
 .form-control.description {width: auto;}
 .btn-primary.create-event {margin-bottom: 4px;}
 
+.tracking-header {padding: 20px 0;}
+
 .events-title {color: #000;}
 
 .events-section {
@@ -143,7 +145,7 @@ h3.toggle-users-title {
 }
 
 .fc-basic-view td.fc-week-number span, .fc-basic-view td.fc-day-number {
-  padding-top: 10px;
+  padding-top: 10px !important;
 }
 
 /* Search */

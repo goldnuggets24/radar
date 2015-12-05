@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :shifts
+  resources :clients
   resources :events do
     get 'add_user', :on => :member
     get 'remove_user', :on => :member

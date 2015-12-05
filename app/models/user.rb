@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   include PgSearch
 
   has_and_belongs_to_many :events
+  has_many :shifts
   
   paginates_per 20
   # after_create :create_user_profile

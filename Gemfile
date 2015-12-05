@@ -19,6 +19,7 @@ gem "bower-rails"
 gem "kaminari"
 gem "fullcalendar-rails"
 gem "momentjs-rails"
+gem "city-state"
 
 group :development, :test do
   gem 'byebug'
