@@ -121,8 +121,6 @@ window.EventsSection = React.createClass({
         title: 'View / Add / Edit Your Events',
         className: 'hamburger',
         isInitiallyOpen: true
-      }), React.createElement(EventForm, {
-      handleNewEvent: this.addEvent, ref: 'item0', events: this.state.events, all_events: this.state.all_events
-    }));
+      }));
   }
 });

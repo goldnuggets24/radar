@@ -19,6 +19,7 @@ class EventsController < ApplicationController
   end
 
   def new
+    @cities = CS.countries
   end
 
   def create

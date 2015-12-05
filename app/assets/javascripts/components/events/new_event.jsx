@@ -1,20 +1,21 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
 var TextField = require('material-ui/lib/text-field');
 var FlatButton = require('material-ui/lib/flat-button');
 var DatePicker = require('material-ui/lib/date-picker/date-picker');
 var DatePickerDialog = require('material-ui/lib/date-picker/date-picker-dialog');
 var TimePicker = require('material-ui/lib/time-picker');
+var AutoComplete = require('material-ui/lib/auto-complete');
+var injectTapEventPlugin = require("react-tap-event-plugin");
+injectTapEventPlugin();
 
 module.exports = React.createClass({
-
   getInitialState: function() {
     return {
       title: '',
       description: '',
       address: '',
       city: '',
-      start_date: location.href.indexOf('date=') != -1 ? location.search.split('date=')[1].split('&')[0].replace(/[^a-zA-Z0-9]/g, ' ') : ''
+      start_date: location.href.indexOf('date=') != -1 ? location.search.split('date=')[1].split('&')[0].replace(/[^a-zA-Z0-9]/g, ' ') : '',
+      cities: ['alabama']
     };
   },
   valid: function() {
@@ -53,45 +54,14 @@ module.exports = React.createClass({
 		      className='form-inline'
 		      onSubmit={this.handleSubmit}>
 
-		        <TextField
-		          	type='text'
-					hintText='Title'
-					name='title'
-					value={this.state.title}
-					onChange={this.handleChange}
-				/>
 
-				<TextField
-		          	type='text'
-					hintText='Location'
-					name='location'
-					value={this.state.location}
-					onChange={this.handleChange}
-				/>
 
-				 <TextField
-		          	type='text'
-					hintText='Description'
-					name='description'
-					value={this.state.description}
-					onChange={this.handleChange}
-				/>
-				
-				<TextField
-		          	type='text'
-					hintText='Address'
-					name='address'
-					value={this.state.address}
-					onChange={this.handleChange}
-				/>
-
-				<TextField
-		          	type='text'
-					hintText='City'
-					name='city'
-					value={this.state.city}
-					onChange={this.handleChange}
-				/>
+				<AutoComplete
+					fullWidth={true}
+					floatingLabelText = "Choose Region"
+					showAllItems = {true}
+					animated = {false}
+					dataSource = {this.state.cities} />
 
 				<h3 className="tracking-header">Dates &amp; Times</h3>
 

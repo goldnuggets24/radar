@@ -1,7 +1,6 @@
 'use strict';
 
 var React = require('react');
-var DateTime = require('../utils/date-time');
 var IconButton = require('../icon-button');
 var Toolbar = require('../toolbar/toolbar');
 var ToolbarGroup = require('../toolbar/toolbar-group');
@@ -10,6 +9,24 @@ var NavigationChevronRight = require('../svg-icons/navigation/chevron-right');
 var SlideInTransitionGroup = require('../transition-groups/slide-in');
 var ThemeManager = require('../styles/theme-manager');
 var DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+
+var styles = {
+  root: {
+    position: 'relative',
+    padding: 0,
+    backgroundColor: 'inherit'
+  },
+  title: {
+    position: 'absolute',
+    top: 17,
+    lineHeight: '14px',
+    fontSize: 14,
+    height: 14,
+    width: '100%',
+    fontWeight: '500',
+    textAlign: 'center'
+  }
+};
 
 var CalendarToolbar = React.createClass({
   displayName: 'CalendarToolbar',
@@ -30,6 +47,8 @@ var CalendarToolbar = React.createClass({
   },
 
   propTypes: {
+    DateTimeFormat: React.PropTypes.func.isRequired,
+    locale: React.PropTypes.string.isRequired,
     displayDate: React.PropTypes.object.isRequired,
     nextMonth: React.PropTypes.bool,
     onMonthChange: React.PropTypes.func,
@@ -66,31 +85,16 @@ var CalendarToolbar = React.createClass({
     }
   },
 
-  _styles: function _styles() {
-    return {
-      root: {
-        position: 'relative',
-        padding: 0,
-        backgroundColor: 'inherit'
-      },
-
-      title: {
-        position: 'absolute',
-        top: '17px',
-        lineHeight: '14px',
-        fontSize: '14px',
-        height: '14px',
-        width: '100%',
-        fontWeight: '500',
-        textAlign: 'center'
-      }
-    };
-  },
-
   render: function render() {
-    var month = DateTime.getFullMonth(this.props.displayDate);
-    var year = this.props.displayDate.getFullYear();
-    var styles = this._styles();
+    var _props = this.props;
+    var DateTimeFormat = _props.DateTimeFormat;
+    var locale = _props.locale;
+    var displayDate = _props.displayDate;
+
+    var dateTimeFormatted = new DateTimeFormat(locale, {
+      month: 'long',
+      year: 'numeric'
+    }).format(displayDate);
 
     var nextButtonIcon = this.state.muiTheme.isRtl ? React.createElement(NavigationChevronRight, null) : React.createElement(NavigationChevronLeft, null);
     var prevButtonIcon = this.state.muiTheme.isRtl ? React.createElement(NavigationChevronLeft, null) : React.createElement(NavigationChevronRight, null);
@@ -105,10 +109,8 @@ var CalendarToolbar = React.createClass({
           direction: this.state.transitionDirection },
         React.createElement(
           'div',
-          { key: month + '_' + year },
-          month,
-          ' ',
-          year
+          { key: dateTimeFormatted },
+          dateTimeFormatted
         )
       ),
       React.createElement(
