@@ -43,7 +43,6 @@ class UsersController < ApplicationController
   def search_and_filter_users
     sex = [['Male'], ['Female']]
     ethnicity = [['White'], ['Black']]
-
     @users = if params[:search].present?
       User.search(params[:search])
     elsif params[:attr].present?

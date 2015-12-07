@@ -19,7 +19,12 @@ class EventsController < ApplicationController
   end
 
   def new
-    @cities = CS.countries
+    respond_to do |format|
+      format.json {
+        render json: {cities: @cities = CS.countries}
+      }
+      format.html
+    end
   end
 
   def create

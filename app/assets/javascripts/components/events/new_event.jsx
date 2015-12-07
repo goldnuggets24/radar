@@ -8,16 +8,46 @@ var injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
 
 module.exports = React.createClass({
-  getInitialState: function() {
-    return {
-      title: '',
-      description: '',
-      address: '',
-      city: '',
-      start_date: location.href.indexOf('date=') != -1 ? location.search.split('date=')[1].split('&')[0].replace(/[^a-zA-Z0-9]/g, ' ') : '',
-      cities: ['alabama']
-    };
-  },
+	displayName: 'NewEvent',
+	getInitialState: function() {
+	    return {
+			title: '',
+			description: '',
+			address: '',
+			city: '',
+			start_date: location.href.indexOf('date=') != -1 ? location.search.split('date=')[1].split('&')[0].replace(/[^a-zA-Z0-9]/g, ' ') : '',
+			cities: ['alabama']
+	    };
+	  },
+
+  	componentDidMount: function() {
+    	return this._fetchUsers({});
+  	},
+
+	_fetchUsers: function() {
+    	return $.ajax({
+			url: '/events/new',
+			dataType: 'json',
+			data: this.state.fetchData
+		}).done(this._fetchDataDone).fail(this._fetchDataFail);
+	},
+
+  	_fetchDataDone: function(data, textStatus, jqXHR) {
+    	if (!this.isMounted()) {
+			return false;
+		}
+		return this.setState({
+			didFetchData: true,
+			users: data.cities
+    	});
+  	},
+
+	_fetchDataFail: (function(_this) {
+    	return function(xhr, status, err) {
+      		return console.error(_this.props.url, status, err.toString());
+    	};
+	})(this),
+
   valid: function() {
     return this.state.title;
   },
@@ -54,14 +84,44 @@ module.exports = React.createClass({
 		      className='form-inline'
 		      onSubmit={this.handleSubmit}>
 
+		      	<TextField
+		          	type='text'
+					hintText='Title'
+					name='title'
+					value={this.state.title}
+					onChange={this.handleChange}
+				/>
 
+				<TextField
+		          	type='text'
+					hintText='Location'
+					name='location'
+					value={this.state.location}
+					onChange={this.handleChange}
+				/>
+
+				 <TextField
+		          	type='text'
+					hintText='Description'
+					name='description'
+					value={this.state.description}
+					onChange={this.handleChange}
+				/>
+				
+				<TextField
+		          	type='text'
+					hintText='Address'
+					name='address'
+					value={this.state.address}
+					onChange={this.handleChange}
+				/>
 
 				<AutoComplete
 					fullWidth={true}
 					floatingLabelText = "Choose Region"
-					showAllItems = {true}
+					showAllItems = {false}
 					animated = {false}
-					dataSource = {this.state.cities} />
+					dataSource = {this.state.users} />
 
 				<h3 className="tracking-header">Dates &amp; Times</h3>
 
