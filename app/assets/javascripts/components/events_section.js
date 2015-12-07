@@ -93,9 +93,7 @@ window.EventsSection = React.createClass({
       editable: true,
       events: events,
       eventClick: function(calEvent, jsEvent, view) {
-        // alert('Event: ' + calEvent.date);
-        // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-        // alert('View: ' + view.name);
+        window.open('/events/' + calEvent.id);
         $(this).css('border-color', 'green');
       },
       dayClick: function(date, jsEvent, view) {

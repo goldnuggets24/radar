@@ -9,22 +9,21 @@ injectTapEventPlugin();
 
 module.exports = React.createClass({
 	displayName: 'NewEvent',
+
 	getInitialState: function() {
 	    return {
 			title: '',
 			description: '',
 			address: '',
-			city: '',
-			start_date: location.href.indexOf('date=') != -1 ? location.search.split('date=')[1].split('&')[0].replace(/[^a-zA-Z0-9]/g, ' ') : '',
-			cities: ['alabama']
+			startDate: location.href.indexOf('date=') != -1 ? new Date(location.search.split('date=')[1].split('&')[0].replace(/[^a-zA-Z0-9]/g, ',')) : {}
 	    };
 	  },
 
   	componentDidMount: function() {
-    	return this._fetchUsers({});
+		return this._fetchCities({});
   	},
 
-	_fetchUsers: function() {
+	_fetchCities: function() {
     	return $.ajax({
 			url: '/events/new',
 			dataType: 'json',
@@ -38,10 +37,9 @@ module.exports = React.createClass({
 		}
 		return this.setState({
 			didFetchData: true,
-			users: data.cities
+			region: data.cities
     	});
   	},
-
 	_fetchDataFail: (function(_this) {
     	return function(xhr, status, err) {
       		return console.error(_this.props.url, status, err.toString());
@@ -51,7 +49,7 @@ module.exports = React.createClass({
   valid: function() {
     return this.state.title;
   },
-  handleChange: function(e) {
+  _handleChange: function(e) {
     var name, obj;
     name = e.target.name;
     return this.setState((
@@ -64,12 +62,11 @@ module.exports = React.createClass({
     e.preventDefault();
     return $.post('/events', {
       event: this.state,
-      start_date: $('#mui-id-2').val(),
-      end_date: $('#mui-id-3').val(),
-      start_time: $('#mui-id-4').val(),
-      end_time: $('#mui-id-5').val(),
-      address: $('#mui-id-6').val(),
-      city: $('#mui-id-7').val()
+      region: $('#mui-id-4').val(),
+      start_date: $('#mui-id-5').val(),
+      end_date: $('#mui-id-6').val(),
+      start_time: $('#mui-id-7').val(),
+      end_time: $('#mui-id-8').val()
     }, (function(_this) {
     	location.href = '/events/route_to_home'
     }) (this), 'JSON');
@@ -89,7 +86,7 @@ module.exports = React.createClass({
 					hintText='Title'
 					name='title'
 					value={this.state.title}
-					onChange={this.handleChange}
+					onChange={this._handleChange}
 				/>
 
 				<TextField
@@ -97,15 +94,16 @@ module.exports = React.createClass({
 					hintText='Location'
 					name='location'
 					value={this.state.location}
-					onChange={this.handleChange}
+					onChange={this._handleChange}
 				/>
 
-				 <TextField
+				<TextField
 		          	type='text'
-					hintText='Description'
+					hintText='Notes'
 					name='description'
+					className='text-field-long'
 					value={this.state.description}
-					onChange={this.handleChange}
+					onChange={this._handleChange}
 				/>
 				
 				<TextField
@@ -113,39 +111,45 @@ module.exports = React.createClass({
 					hintText='Address'
 					name='address'
 					value={this.state.address}
-					onChange={this.handleChange}
+					onChange={this._handleChange}
 				/>
 
 				<AutoComplete
 					fullWidth={true}
-					floatingLabelText = "Choose Region"
+					floatingLabelText = 'Choose Region'
 					showAllItems = {false}
-					animated = {false}
-					dataSource = {this.state.users} />
+					animated = {true}
+					name='region'
+					value={this.state.region}
+					onChange={this._handleChange}
+					dataSource = {this.state.region} />
 
 				<h3 className="tracking-header">Dates &amp; Times</h3>
 
 				<DatePicker
 					name='start_date'
 					className='pull-left'
-					hintText={this.state.start_date}
-					value={this.state.start_date}
+					hintText="Start Date"
+					value={this.state.startDate}
 					mode="portrait" />
 
 				<DatePicker
 					name='end_date'
+					className='pull-left'
 					hintText="End Date"
 					mode="portrait" />
 
 				<TimePicker
 					name='start_time'
-					className='pull-left'
+					className='pull-left start-time'
 					hintText="Start Time"
+					onChange={this._handleChange}
 					mode="portrait" />
 
 				<TimePicker
 					name='end_time'
 					hintText="End Time"
+					onChange={this._handleChange}
 					mode="portrait" />
 
 				<h3 className="tracking-header">Tracking</h3>
@@ -155,8 +159,8 @@ module.exports = React.createClass({
 					hintText='Manager'
 					name='manager'
 					className='pull-left'
-					value={this.state.manager}
-					onChange={this.handleChange}
+					value={this.state.project_manager}
+					onChange={this._handleChange}
 				/>
 
 				<TextField
@@ -165,16 +169,7 @@ module.exports = React.createClass({
 					hintText='Client'
 					name='client'
 					value={this.state.client}
-					onChange={this.handleChange}
-				/>
-
-				<TextField
-		          	type='text'
-		          	className='pull-left'
-					hintText='Region'
-					name='region'
-					value={this.state.region}
-					onChange={this.handleChange}
+					onChange={this._handleChange}
 				/>
 
 				<div className="clearfix">&nbsp;</div>

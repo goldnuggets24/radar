@@ -29,12 +29,16 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.update_attributes(:date => Date.strptime(params[:start_date], "%m/%d/%Y"))
-    binding.pry
+    @event.update_attributes(:date => params[:event][:startDate])
+    @event.update_attributes(:end_date => Date.strptime(params[:end_date], "%m/%d/%Y"))
     @event.update_attributes(:city => params[:city])
+    @event.update_attributes(:region => params[:region])
+    @event.update_attributes(:start_time => params[:start_time].to_time)
+    @event.update_attributes(:end_time => params[:end_time].to_time)
+    
     if @event.save
       respond_to do |format|
-        format.js {render js: "location.href = 'https://www.google.com'"}
+        format.js {render js: "location.href = '/events'"}
       end
     else
       render json: @event.errors, status: :unprocessable_entity
@@ -82,7 +86,7 @@ class EventsController < ApplicationController
 
   def route_to_home
     @event = Event.reorder("created_at ASC").last
-    redirect_to root_path(:event => @event.id, :city => @event.city)
+    redirect_to events_path(:event => @event.id, :city => @event.city)
   end
 
   private
@@ -92,6 +96,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :description, :date, :city, :address)
+    params.require(:event).permit(:start_date, :end_date, :startDate, :start_time, :end_time, :region, :manager, :client, :users, :location, :title, :description, :date, :city, :address)
   end
 end
