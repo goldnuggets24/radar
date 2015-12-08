@@ -58,6 +58,11 @@ module.exports = React.createClass({
       obj
     ));
   },
+
+  _setStartDate: function(e,date){
+  	this.setState({startDate: date});
+  },
+
   handleSubmit: function(e) {
     e.preventDefault();
     return $.post('/events', {
@@ -131,6 +136,7 @@ module.exports = React.createClass({
 					className='pull-left'
 					hintText="Start Date"
 					value={this.state.startDate}
+					onChange={this._setStartDate}
 					mode="portrait" />
 
 				<DatePicker
