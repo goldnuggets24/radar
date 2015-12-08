@@ -1,5 +1,43 @@
-.container.wrapper
-	%h3 Event Information
-	%p= @event.title
-	%p= @event.description
-	%p= @event.date
+.container
+  / Portfolio Item Heading
+  .row
+    .col-lg-12
+      %h1.page-header
+        Portfolio Item
+        %small Item Subheading
+
+        %h3 Event Information
+        %p= @event.title
+        %p= @event.description
+        %p= @event.date
+  / /.row
+  / Portfolio Item Row
+  .row
+    .col-md-8
+      %img.img-responsive{:alt => "", :src => "http://placehold.it/750x500"}/
+    .col-md-4
+      %h3 Project Description
+      %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.
+      %h3 Project Details
+      %ul
+        %li Lorem Ipsum
+        %li Dolor Sit Amet
+        %li Consectetur
+        %li Adipiscing Elit
+  / /.row
+  / Related Projects Row
+  .row
+    .col-lg-12
+      %h3.page-header Related Projects
+    .col-sm-3.col-xs-6
+      %a{:href => "#"}
+        %img.img-responsive.portfolio-item{:alt => "", :src => "http://placehold.it/500x300"}/
+    .col-sm-3.col-xs-6
+      %a{:href => "#"}
+        %img.img-responsive.portfolio-item{:alt => "", :src => "http://placehold.it/500x300"}/
+    .col-sm-3.col-xs-6
+      %a{:href => "#"}
+        %img.img-responsive.portfolio-item{:alt => "", :src => "http://placehold.it/500x300"}/
+    .col-sm-3.col-xs-6
+      %a{:href => "#"}
+        %img.img-responsive.portfolio-item{:alt => "", :src => "http://placehold.it/500x300"}/
