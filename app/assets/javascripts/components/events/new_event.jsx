@@ -104,7 +104,7 @@ module.exports = React.createClass({
 
 				<TextField
 		          	type='text'
-					hintText='Notes'
+					hintText='Notes '
 					name='description'
 					className='text-field-long'
 					value={this.state.description}
