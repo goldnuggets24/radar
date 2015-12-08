@@ -6,6 +6,7 @@
         = @event.title
       %small Event Date
       %p= @event.date
+      %p= @event.start_time.strftime("%I:%M%P") + ' - ' + @event.end_time.strftime("%I:%M%P")
   / /.row
   / Portfolio Item Row
   .row
@@ -16,7 +17,9 @@
       %p= @event.description
       %h3 Event Details
       %ul
-        %li Lorem Ipsum
+        %li 
+          %b Address: 
+          = @event.address
         %li Dolor Sit Amet
         %li Consectetur
         %li Adipiscing Elit
@@ -24,7 +27,7 @@
   / Related Projects Row
   .row
     .col-lg-12
-      %h3.page-header Related Projects
+      %h3.page-header Related Events
     .col-sm-3.col-xs-6
       %a{:href => "#"}
         %img.img-responsive.portfolio-item{:alt => "", :src => "http://placehold.it/500x300"}/
