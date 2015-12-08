@@ -5,8 +5,10 @@
       %h1.page-header
         = @event.title
       %small Event Date
-      %p= @event.date
-      %p= @event.start_time.strftime("%I:%M%P") + ' - ' + @event.end_time.strftime("%I:%M%P")
+      %p
+        = @event.date.to_time.strftime('%B %e')
+        %br
+        = @event.start_time.strftime("%I:%M%P") + ' - ' + @event.end_time.strftime("%I:%M%P")
   / /.row
   / Portfolio Item Row
   .row
@@ -20,9 +22,10 @@
         %li 
           %b Address: 
           = @event.address
-        %li Dolor Sit Amet
-        %li Consectetur
-        %li Adipiscing Elit
+        %li
+          %b Team Lead: 
+          %i Example Team Lead
+
   / /.row
   / Related Projects Row
   .row
