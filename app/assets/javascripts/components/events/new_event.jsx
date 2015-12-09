@@ -65,7 +65,7 @@ module.exports = React.createClass({
   },
 
   onTextChange: function(value) {
-    this.setState({ text:value });
+    this.setState({ description:value });
   },
 
   handleSubmit: function(e) {
@@ -107,13 +107,13 @@ module.exports = React.createClass({
 						onChange={this._handleChange}
 					/>
 
-					<TextField
-			          	type='text'
-						hintText='Notes'
-						name='description'
+					<h3>Notes</h3>
+
+					<ReactQuill
+						theme="snow"
+                  		value={this.state.description}
+                  		onChange={this.onTextChange}
 						className='text-field-long'
-						value={this.state.description}
-						onChange={this._handleChange}
 					/>
 					
 					<TextField
@@ -190,10 +190,6 @@ module.exports = React.createClass({
 				        className='btn pull-left clearfix btn-primary create-event'
 				        disabled={!this.valid()}
 				        label='Create event' />
-
-					 <ReactQuill theme="snow"
-                  		value={this.state.text}
-                  		onChange={this.onTextChange} />
 
 				</form>
 
