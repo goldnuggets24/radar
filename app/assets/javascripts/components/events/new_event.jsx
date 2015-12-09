@@ -1,4 +1,5 @@
 var TextField = require('material-ui/lib/text-field');
+var ReactQuill = require('react-quill');
 var FlatButton = require('material-ui/lib/flat-button');
 var DatePicker = require('material-ui/lib/date-picker/date-picker');
 var DatePickerDialog = require('material-ui/lib/date-picker/date-picker-dialog');
@@ -63,6 +64,10 @@ module.exports = React.createClass({
   	this.setState({startDate: date});
   },
 
+  onTextChange: function(value) {
+    this.setState({ text:value });
+  },
+
   handleSubmit: function(e) {
     e.preventDefault();
     return $.post('/events', {
@@ -82,113 +87,115 @@ module.exports = React.createClass({
         return (
         	<div className="create-event-form">
 
-        	<form
-		      className='form-inline'
-		      onSubmit={this.handleSubmit}>
+	        	<form
+			      className='form-inline'
+			      onSubmit={this.handleSubmit}>
 
-		      	<TextField
-		          	type='text'
-					hintText='Title'
-					name='title'
-					value={this.state.title}
-					onChange={this._handleChange}
-				/>
+			      	<TextField
+			          	type='text'
+						hintText='Title'
+						name='title'
+						value={this.state.title}
+						onChange={this._handleChange}
+					/>
 
-				<TextField
-		          	type='text'
-					hintText='Location'
-					name='location'
-					value={this.state.location}
-					onChange={this._handleChange}
-				/>
+					<TextField
+			          	type='text'
+						hintText='Location'
+						name='location'
+						value={this.state.location}
+						onChange={this._handleChange}
+					/>
 
-				<TextField
-		          	type='text'
-					hintText='Notes'
-					name='description'
-					className='text-field-long'
-					value={this.state.description}
-					onChange={this._handleChange}
-				/>
-				
-				<TextField
-		          	type='text'
-					hintText='Address'
-					name='address'
-					value={this.state.address}
-					onChange={this._handleChange}
-				/>
+					<TextField
+			          	type='text'
+						hintText='Notes'
+						name='description'
+						className='text-field-long'
+						value={this.state.description}
+						onChange={this._handleChange}
+					/>
+					
+					<TextField
+			          	type='text'
+						hintText='Address'
+						name='address'
+						value={this.state.address}
+						onChange={this._handleChange}
+					/>
 
-				<AutoComplete
-					fullWidth={true}
-					floatingLabelText = 'Choose Region'
-					showAllItems = {false}
-					animated = {true}
-					name='region'
-					value={this.state.region}
-					onChange={this._handleChange}
-					dataSource = {this.state.region} />
+					<AutoComplete
+						fullWidth={true}
+						floatingLabelText = 'Choose Region'
+						showAllItems = {false}
+						animated = {true}
+						name='region'
+						value={this.state.region}
+						onChange={this._handleChange}
+						dataSource = {this.state.region} />
 
-				<h3 className="tracking-header">Dates &amp; Times</h3>
+					<h3 className="tracking-header">Dates &amp; Times</h3>
 
-				<DatePicker
-					name='start_date'
-					className='pull-left'
-					hintText="Start Date"
-					value={this.state.startDate}
-					onChange={this._setStartDate}
-					mode="portrait" />
+					<DatePicker
+						name='start_date'
+						className='pull-left'
+						hintText="Start Date"
+						value={this.state.startDate}
+						onChange={this._setStartDate}
+						mode="portrait" />
 
-				<DatePicker
-					name='end_date'
-					className='pull-left'
-					hintText="End Date"
-					mode="portrait" />
+					<DatePicker
+						name='end_date'
+						className='pull-left'
+						hintText="End Date"
+						mode="portrait" />
 
-				<TimePicker
-					name='start_time'
-					className='pull-left start-time'
-					hintText="Start Time"
-					onChange={this._handleChange}
-					mode="portrait" />
+					<TimePicker
+						name='start_time'
+						className='pull-left start-time'
+						hintText="Start Time"
+						onChange={this._handleChange}
+						mode="portrait" />
 
-				<TimePicker
-					name='end_time'
-					hintText="End Time"
-					onChange={this._handleChange}
-					mode="portrait" />
+					<TimePicker
+						name='end_time'
+						hintText="End Time"
+						onChange={this._handleChange}
+						mode="portrait" />
 
-				<h3 className="tracking-header">Tracking</h3>
+					<h3 className="tracking-header">Tracking</h3>
 
-				<TextField
-		          	type='text'
-					hintText='Manager'
-					name='manager'
-					className='pull-left'
-					value={this.state.project_manager}
-					onChange={this._handleChange}
-				/>
+					<TextField
+			          	type='text'
+						hintText='Manager'
+						name='manager'
+						className='pull-left'
+						value={this.state.project_manager}
+						onChange={this._handleChange}
+					/>
 
-				<TextField
-		          	type='text'
-		          	className='pull-left'
-					hintText='Client'
-					name='client'
-					value={this.state.client}
-					onChange={this._handleChange}
-				/>
+					<TextField
+			          	type='text'
+			          	className='pull-left'
+						hintText='Client'
+						name='client'
+						value={this.state.client}
+						onChange={this._handleChange}
+					/>
 
-				<div className="clearfix">&nbsp;</div>
+					<div className="clearfix">&nbsp;</div>
 
-				 <FlatButton
-			        type='submit'
-			        className='btn pull-left clearfix btn-primary create-event'
-			        disabled={!this.valid()}
-			        label='Create event' />
+					 <FlatButton
+				        type='submit'
+				        className='btn pull-left clearfix btn-primary create-event'
+				        disabled={!this.valid()}
+				        label='Create event' />
 
-				
+					 <ReactQuill theme="snow"
+                  		value={this.state.text}
+                  		onChange={this.onTextChange} />
 
-			</form>
+				</form>
 
 			</div>
         );

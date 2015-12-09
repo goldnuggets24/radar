@@ -5,6 +5,7 @@
     %title= content_for?(:title) ? yield(:title) : 'Radar'
     %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Radar'}"}
     = stylesheet_link_tag 'application', media: 'all'
+    %link{:href => "//cdn.quilljs.com/0.20.1/quill.snow.css", :rel => "stylesheet"}/
     = javascript_include_tag 'application', defer: 'defer'
     = csrf_meta_tags
   %body

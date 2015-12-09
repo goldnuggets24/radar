@@ -19,7 +19,8 @@
     "react-search-input": "~0.5.0",
     "react-intl": "~1.2.1",
     "react-router": "~1.0.0",
-    "history": "~1.13.1"
+    "history": "~1.13.1",
+    "react-quill-editor": "~0.3.6"
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.js"
