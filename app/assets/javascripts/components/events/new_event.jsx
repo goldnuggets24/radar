@@ -73,10 +73,10 @@ module.exports = React.createClass({
     return $.post('/events', {
       event: this.state,
       region: $('#mui-id-4').val(),
-      start_date: $('#mui-id-5').val(),
-      end_date: $('#mui-id-6').val(),
-      start_time: $('#mui-id-7').val(),
-      end_time: $('#mui-id-8').val()
+      start_date: $('#mui-id-4').val(),
+      end_date: $('#mui-id-5').val(),
+      start_time: $('#mui-id-6').val(),
+      end_time: $('#mui-id-7').val()
     }, (function(_this) {
     	location.href = '/events/route_to_home'
     }) (this), 'JSON');
@@ -101,29 +101,30 @@ module.exports = React.createClass({
 
 					<TextField
 			          	type='text'
-						hintText='Location'
-						name='location'
-						value={this.state.location}
-						onChange={this._handleChange}
-					/>
-
-					<h3>Notes</h3>
-
-					<ReactQuill
-						theme="snow"
-                  		value={this.state.description}
-                  		onChange={this.onTextChange}
-						className='text-field-long'
-					/>
-					
-					<TextField
-			          	type='text'
 						hintText='Address'
 						name='address'
 						value={this.state.address}
 						onChange={this._handleChange}
 					/>
 
+					<TextField
+			          	type='text'
+						hintText='Location'
+						name='location'
+						value={this.state.location}
+						onChange={this._handleChange}
+					/>
+					<br /><br />
+					<h3>Notes</h3>
+
+					<ReactQuill
+						theme="snow"
+						name="description"
+                  		value={this.state.description}
+                  		onChange={this.onTextChange}
+						className='text-field-long'
+					/>
+					
 					<AutoComplete
 						fullWidth={true}
 						floatingLabelText = 'Choose Region'

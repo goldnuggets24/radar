@@ -16,7 +16,7 @@
       %img.img-responsive{:alt => "", :src => "http://placehold.it/750x500"}/
     .col-md-4
       %h3 Event Notes
-      %p= @event.description
+      %p= @event.description.html_safe
       %h3 Event Details
       %ul
         %li 
