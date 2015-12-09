@@ -161,6 +161,7 @@ module.exports = React.createClass({
 					<TimePicker
 						name='end_time'
 						hintText="End Time"
+						className="end-time"
 						onChange={this._handleChange}
 						mode="portrait" />
 

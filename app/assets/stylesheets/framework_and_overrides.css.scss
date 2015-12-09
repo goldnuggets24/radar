@@ -127,6 +127,10 @@ h3.toggle-users-title {
 
 /* Events */
 
+.create-event-form button {color: #000;}
+
+.create-event-form button:hover {color: #ccc;}
+
 .quill-contents.ql-container.ql-snow {
   border: 1px solid #ccc;
 }
