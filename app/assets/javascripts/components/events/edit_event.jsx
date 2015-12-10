@@ -18,7 +18,7 @@ window.NewEvent = React.createClass({
 
 			$.ajax({
 			  url: "/events/" + this.state.id,
-			  data: 'event='+ this.state.title,
+			  data: 'event='+ i.target.value,
 			  type: 'PUT'
 			});
 		},

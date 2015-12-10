@@ -46,8 +46,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    binding.pry
-    if @event.update(event_params)
+    if @event.update_attributes(:title => params[:event])
       render json: @event
     else
       render json: @event.errors, status: :unprocessable_entity
