@@ -30,7 +30,7 @@ window.NewEvent = React.createClass({
 
 			      	<TextField
 			          	type='text'
-						ref='titlefield'
+						ref='title-field'
 						value={this.state.title}
 						onChange={this._onTextChange} />
 
