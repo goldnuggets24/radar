@@ -46,6 +46,7 @@ class EventsController < ApplicationController
   end
 
   def update
+    binding.pry
     if @event.update(event_params)
       render json: @event
     else

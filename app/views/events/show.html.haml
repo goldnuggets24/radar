@@ -3,7 +3,7 @@
   .row
     .col-lg-12
       %h1.page-header
-        = @event.title
+        .edit-title= react_component 'NewEvent', { data: @event}
       %small Event Date
       %p
         = @event.date.to_time.strftime('%B %e')
