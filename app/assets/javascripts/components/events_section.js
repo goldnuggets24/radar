@@ -8,6 +8,7 @@ var AppBar = require('material-ui/lib/app-bar');
 var injectTapEventPlugin = require('react-tap-event-plugin');
 var FlatButton = require('material-ui/lib/flat-button');
 var Dialog = require('material-ui/lib/dialog');
+var NewEvent = require('./events/new_event.jsx');
 injectTapEventPlugin();
 
 window.date = ''
@@ -154,15 +155,18 @@ window.EventsSection = React.createClass({
     }, React.DOM.h2({
       className: 'title'
     }, ''), React.createElement(AppBar, { 
-        title: 'View / Add / Edit Your Events',
+        title: 'Add Event',
         className: 'hamburger',
         isInitiallyOpen: true
       }), React.createElement(Dialog, { 
-        title: 'View / Add / Edit Your Events',
-        className: 'hamburger',
+        title: 'Add a New Event',
+        className: 'new-event',
         open: this.state.new_event_clicked_event,
         onRequestClose: this._handleRequestClose,
         actions: customActions
-      }), );
+      }, 
+      React.createElement(NewEvent, { 
+      })
+      ), );
   }
 });

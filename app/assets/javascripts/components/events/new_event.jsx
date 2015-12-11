@@ -114,7 +114,7 @@ module.exports = React.createClass({
 						value={this.state.location}
 						onChange={this._handleChange}
 					/>
-					<br /><br />
+					<br />
 					<h3>Notes</h3>
 
 					<ReactQuill

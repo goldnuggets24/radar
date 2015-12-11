@@ -3,7 +3,7 @@ var FlatButton = require('material-ui/lib/flat-button');
 var injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
 
-window.NewEvent = React.createClass({
+window.EditEvent = React.createClass({
 	displayName: 'NewEvent',
 
 	getInitialState: function() {
