@@ -6,10 +6,13 @@ var Event = require('./event.js.coffee');
 var update = require('react-addons-update');
 var AppBar = require('material-ui/lib/app-bar');
 var injectTapEventPlugin = require('react-tap-event-plugin');
+var FlatButton = require('material-ui/lib/flat-button');
+var Dialog = require('material-ui/lib/dialog');
 injectTapEventPlugin();
 
 window.date = ''
 window.fc = ({})
+window.new_event = ({})
 
 window.EventsSection = React.createClass({
 
@@ -17,13 +20,20 @@ window.EventsSection = React.createClass({
     fc.day = (data) => {
       this.setState({fc_clicked_date: data});
     };
+    new_event.dialog = (data) => {
+      this.setState({new_event_clicked_event: data});
+    };
   },
 
 	getInitialState: function() {
     	return {
           fc_clicked_date: '',
+          new_event_clicked_event: false,
       		events: this.props.data,
-          all_events: this.props.all_events
+          all_events: this.props.all_events,
+          openDialogStandardActions: false,
+          openDialogCustomActions: false,
+          openDialogScrollable: false
     	};
   	},
 
@@ -82,6 +92,22 @@ window.EventsSection = React.createClass({
     });
   },
 
+  _handleCustomDialogCancel: function() {
+    this.setState({
+      openDialogCustomActions: false,
+      new_event_clicked_event: false
+    });
+  },
+
+  _handleRequestClose: function(buttonClicked) {
+    if (!buttonClicked && this.state.modal) return;
+    this.setState({
+      openDialogStandardActions: false,
+      openDialogCustomActions: false,
+      openDialogScrollable: false
+    });
+  },
+
   fullCalendar: function(events) {
     $('#full-calendar').fullCalendar({
       header: {
@@ -93,7 +119,8 @@ window.EventsSection = React.createClass({
       editable: true,
       events: events,
       eventClick: function(calEvent, jsEvent, view) {
-        window.open('/events/' + calEvent.id);
+        // window.open('/events/' + calEvent.id);
+        new_event.dialog(true);
         $(this).css('border-color', 'green');
       },
       dayClick: function(date, jsEvent, view) {
@@ -108,6 +135,17 @@ window.EventsSection = React.createClass({
 
   render: function() {
 
+    let customActions = [
+      <FlatButton
+        label="Cancel"
+        secondary={true}
+        onTouchTap={this._handleCustomDialogCancel} />,
+      <FlatButton
+        label="Submit"
+        primary={true}
+        onTouchTap={this._handleCustomDialogSubmit} />
+  ];
+
     this.fullCalendar(this.state.events);
 
     var event;
@@ -119,6 +157,12 @@ window.EventsSection = React.createClass({
         title: 'View / Add / Edit Your Events',
         className: 'hamburger',
         isInitiallyOpen: true
-      }));
+      }), React.createElement(Dialog, { 
+        title: 'View / Add / Edit Your Events',
+        className: 'hamburger',
+        open: this.state.new_event_clicked_event,
+        onRequestClose: this._handleRequestClose,
+        actions: customActions
+      }), );
   }
 });
