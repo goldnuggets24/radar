@@ -117,21 +117,45 @@ window.EventsSection = React.createClass({
         right: 'month,basicWeek,basicDay'
       },
       defaultDate: '2015-12-12',
+      lazyFetching: false,
       editable: true,
       events: events,
       eventClick: function(calEvent, jsEvent, view) {
-        // window.open('/events/' + calEvent.id);
-        new_event.dialog(true);
         $(this).css('border-color', 'green');
       },
       dayClick: function(date, jsEvent, view) {
-        // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-        // alert('Current view: ' + view.name);
-        $(this).css('background-color', 'red');
         fc.day(date.format());
-        location.href = '/events/new?date=' + date.format();
+        new_event.dialog(true);
       }
     });
+  },
+
+  _handleSubmit: function(e) {
+    e.preventDefault();
+    $.post('/events', {
+      title: $('#mui-id-0').val(),
+      address: $('#mui-id-1').val(),
+      location: $('#mui-id-2').val(),
+      description: $('#ql-editor-1').html(),
+      start_date: $('#mui-id-4').val(),
+      end_date: $('#mui-id-5').val(),
+      start_time: $('#mui-id-6').val(),
+      end_time: $('#mui-id-7').val()
+    });
+    $.ajax({
+      method: 'GET',
+      url: "/events.json",
+      dataType: 'JSON',
+      success: function(data) {
+        this.setState({
+          events: data,
+          all_events: data
+        });
+      }.bind(this)
+    });
+    // live update cal to add new events
+    $('#full-calendar').fullCalendar('removeEvents');
+    $('#full-calendar').fullCalendar('addEventSource', '/events.json' );
   },
 
   render: function() {
@@ -143,9 +167,11 @@ window.EventsSection = React.createClass({
         onTouchTap={this._handleCustomDialogCancel} />,
       <FlatButton
         label="Submit"
+        type="submit"
+        className="btn pull-right clearfix btn-primary create-event"
         primary={true}
-        onTouchTap={this._handleCustomDialogSubmit} />
-  ];
+        onTouchTap={this._handleSubmit} />
+    ];
 
     this.fullCalendar(this.state.events);
 
@@ -160,12 +186,15 @@ window.EventsSection = React.createClass({
         isInitiallyOpen: true
       }), React.createElement(Dialog, { 
         title: 'Add a New Event',
+        autoDetectWindowHeight: true,
+        autoScrollBodyContent: true,
         className: 'new-event',
         open: this.state.new_event_clicked_event,
         onRequestClose: this._handleRequestClose,
         actions: customActions
       }, 
       React.createElement(NewEvent, { 
+        fc_clicked_date: this.state.fc_clicked_date
       })
       ), );
   }

@@ -28,8 +28,9 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
-    @event.update_attributes(:date => params[:event][:startDate])
+    @event = Event.new
+    @event.update_attributes(:title => params[:title])
+    @event.update_attributes(:date => Date.strptime(params[:start_date], "%m/%d/%Y"))
     @event.update_attributes(:end_date => Date.strptime(params[:end_date], "%m/%d/%Y"))
     @event.update_attributes(:city => params[:city])
     @event.update_attributes(:region => params[:region])
@@ -38,7 +39,7 @@ class EventsController < ApplicationController
     
     if @event.save
       respond_to do |format|
-        format.js {render js: "location.href = '/events'"}
+        format.js {render js: "console.log('success');"}
       end
     else
       render json: @event.errors, status: :unprocessable_entity

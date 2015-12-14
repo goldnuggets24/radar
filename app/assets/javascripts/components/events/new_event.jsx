@@ -16,7 +16,7 @@ module.exports = React.createClass({
 			title: '',
 			description: '',
 			address: '',
-			startDate: location.href.indexOf('date=') != -1 ? new Date(location.search.split('date=')[1].split('&')[0].replace(/[^a-zA-Z0-9]/g, ',')) : {}
+			startDate: new Date(this.props.fc_clicked_date.replace(/[^a-zA-Z0-9]/g, ','))
 	    };
 	  },
 
@@ -72,7 +72,7 @@ module.exports = React.createClass({
     e.preventDefault();
     return $.post('/events', {
       event: this.state,
-      region: $('#mui-id-4').val(),
+      region: $('#mui-id-3').val(),
       start_date: $('#mui-id-4').val(),
       end_date: $('#mui-id-5').val(),
       start_time: $('#mui-id-6').val(),
@@ -187,11 +187,6 @@ module.exports = React.createClass({
 
 					<div className="clearfix">&nbsp;</div>
 
-					 <FlatButton
-				        type='submit'
-				        className='btn pull-left clearfix btn-primary create-event'
-				        disabled={!this.valid()}
-				        label='Create event' />
 
 				</form>
 
