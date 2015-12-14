@@ -137,7 +137,7 @@ window.EventsSection = React.createClass({
       address: $('#mui-id-1').val(),
       location: $('#mui-id-2').val(),
       description: $('#ql-editor-1').html(),
-      start_date: $('#mui-id-4').val(),
+      start_date: $('input[name="start_date"]').val(),
       end_date: $('#mui-id-5').val(),
       start_time: $('#mui-id-6').val(),
       end_time: $('#mui-id-7').val()
