@@ -109,7 +109,7 @@ module.exports = React.createClass({
 
 					<TextField
 			          	type='text'
-						hintText='Location'
+						hintText='Location '
 						name='location'
 						value={this.state.location}
 						onChange={this._handleChange}
