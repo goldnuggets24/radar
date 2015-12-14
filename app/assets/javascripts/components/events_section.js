@@ -156,6 +156,7 @@ window.EventsSection = React.createClass({
     // live update cal to add new events
     $('#full-calendar').fullCalendar('removeEvents');
     $('#full-calendar').fullCalendar('addEventSource', '/events.json' );
+    new_event.dialog(false);
   },
 
   render: function() {
