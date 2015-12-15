@@ -36,6 +36,7 @@ class EventsController < ApplicationController
     @event.update_attributes(:region => params[:region])
     @event.update_attributes(:start_time => params[:start_time].to_time)
     @event.update_attributes(:end_time => params[:end_time].to_time)
+    @event.update_attributes(:description => params[:description])
     
     if @event.save
       respond_to do |format|
