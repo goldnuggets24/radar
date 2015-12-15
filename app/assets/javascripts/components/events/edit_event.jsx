@@ -4,7 +4,7 @@ var injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
 
 window.EditEvent = React.createClass({
-	displayName: 'NewEvent',
+	displayName: 'EditEvent',
 
 	getInitialState: function() {
 	    return {

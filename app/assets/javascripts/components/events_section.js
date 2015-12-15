@@ -121,7 +121,8 @@ window.EventsSection = React.createClass({
       editable: true,
       events: events,
       eventClick: function(calEvent, jsEvent, view) {
-        $(this).css('border-color', 'green');
+        // fc.day(date.format());
+        location.href = '/events/' + calEvent.id;
       },
       dayClick: function(date, jsEvent, view) {
         fc.day(date.format());
