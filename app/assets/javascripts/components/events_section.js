@@ -183,8 +183,8 @@ window.EventsSection = React.createClass({
     }, React.DOM.h2({
       className: 'title'
     }, ''), React.createElement(AppBar, { 
-        title: 'Add Event',
-        className: 'hamburger',
+        title: 'Events',
+        className: 'app-bar',
         isInitiallyOpen: true
       }), React.createElement(Dialog, { 
         title: 'Add a New Event',
